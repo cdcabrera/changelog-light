@@ -1,6 +1,6 @@
 {
   "env": {
-    "es2018": true,
+    "es2022": true,
     "jest": true
   },
   "plugins": ["node", "prettier"],
@@ -24,7 +24,7 @@
     }
   ],
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2022
   },
   "rules": {
     "arrow-parens": ["error", "as-needed"],
@@ -40,6 +40,7 @@
     "no-console": 0,
     "no-debugger": 1,
     "no-plusplus": 0,
+    "no-unsafe-optional-chaining": 1,
     "no-var": 2,
     "node/no-unsupported-features/es-syntax": 1,
     "node/shebang": 0,
