@@ -6,16 +6,16 @@ All notable changes to this project will be documented in this file.
 ## ¯\\_(ツ)_/¯ (2022-10-01)
 
 ### Features
-* **dolor** issues/20 sit enhancements (#8) (53a12345479ef91123456e921234548ac4123450)
+* **dolor** issues/20 sit enhancements  (#8) (53a123)
 
 ### Code Refactoring
-* **file** lorem updates (#8) (1f12345b597123453031234555b6d25574ccacee)
+* **file** lorem updates  (#8) (1f1234)
 
 ### Chores
-* **build** npm packages (#15) (e5c456ea12345vv4610fa4aff7812345ss31b1e2)
+* **build** npm packages  (#15) (e5c456)
 
 ### Bug Fixes
-* **build** eslint, jsdoc updates (#16) (d1234537b5e94a6512345xeb96503312345x18d2)
+* **build** eslint, jsdoc updates  (#16) (d12345)
 
 "
 `;

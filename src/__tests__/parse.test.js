@@ -16,9 +16,14 @@ describe('Parse', () => {
       1412345dd312345d4212345d53e12345dca12345 build(deps): bump actions/github-script from 5 to 6 (#9)
     `;
 
-    const commitObj = parseCommits({ getGit: () => commitLog });
+    const commitObj = parseCommits(undefined, { getGit: () => commitLog });
 
-    expect({ default: parseCommits(), commits: commitObj }).toMatchSnapshot('parsed commits');
+    const urlPathObj = parseCommits(
+      { commitPath: 'sit', prPath: 'dolor', remoteUrl: 'https://localhost/lorem/ipsum' },
+      { getGit: () => commitLog }
+    );
+
+    expect({ default: parseCommits(), commits: commitObj, urls: urlPathObj }).toMatchSnapshot('parsed commits');
     expect({ default: semverBump(), commits: semverBump(commitObj) }).toMatchSnapshot('semver bump');
   });
 });

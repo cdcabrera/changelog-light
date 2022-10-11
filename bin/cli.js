@@ -9,9 +9,12 @@ const { commitChangelog } = require('../src');
  */
 const {
   commit: isCommit,
+  'commit-path': commitPath,
   date,
   'dry-run': isDryRun,
-  override: overrideVersion
+  override: overrideVersion,
+  'pr-path': prPath,
+  'remote-url': remoteUrl
 } = yargs
   .usage('Generate a CHANGELOG.md with conventional commit types.\n\nUsage: changelog [options]')
   .help('help')
@@ -40,15 +43,35 @@ const {
     default: false,
     describe: 'Generate CHANGELOG.md sample output',
     type: 'boolean'
+  })
+  .option('commit-path', {
+    default: 'commit/',
+    describe:
+      'CHANGELOG.md path used for commits. This will be "joined" with "remote-url". Defaults to the commits path for GitHub.',
+    type: 'string'
+  })
+  .option('pr-path', {
+    default: 'pull/',
+    describe:
+      'CHANGELOG.md path used for PRs/MRs. This will be "joined" with "remote-url". Defaults to the PR path for GitHub.',
+    type: 'string'
+  })
+  .option('remote-url', {
+    describe:
+      'Git remote get-url for updating CHANGELOG.md base urls. This should start with "http". Defaults to "$ git remote get-url origin"',
+    type: 'string'
   }).argv;
 
 if (process.env.NODE_ENV === 'test') {
-  process.stdout.write(JSON.stringify({ date, isDryRun, isCommit, overrideVersion }));
+  process.stdout.write(JSON.stringify({ commitPath, date, isDryRun, isCommit, overrideVersion, prPath, remoteUrl }));
 } else {
   commitChangelog({
+    commitPath,
     date,
     isDryRun,
     isCommit,
-    overrideVersion
+    overrideVersion,
+    prPath,
+    remoteUrl
   });
 }
