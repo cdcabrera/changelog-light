@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Commands should attempt to run commands: commands 1`] = `
+[
+  {
+    "commitFiles": "<execSync>["git add ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md && git commit ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md -m \\"chore(release): undefined\\""]</execSync>",
+  },
+  {
+    "getGit": "<execSync>["git log <execSync>[\\"git..HEAD --pretty=oneline"]</execSync>",
+  },
+  {
+    "getReleaseCommit": "<execSync>["git log --grep=\\"chore(release)\\" --pretty=oneline -1"]</execSync>",
+  },
+  {
+    "getVersion": {
+      "clean": "<semverClean>["<semverInc>[\\"0.0.100\\",\\"\\"]</semverInc>"]</semverClean>",
+      "version": "<semverInc>["0.0.100",""]</semverInc>",
+    },
+  },
+  {
+    "runCmd": "<execSync>[null]</execSync>",
+  },
+]
+`;

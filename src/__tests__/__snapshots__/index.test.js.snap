@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Commit Changelog should parse commits to produce a CHANGELOG.md: Commit Changelog 1`] = `
+{
+  "changelog": "# Changelog
+All notable changes to this project will be documented in this file.
+## <semverClean>["<semverInc>[\\"0.0.100\\",\\"patch\\"]</semverInc>"]</semverClean> (2022-10-01)
+
+",
+  "package": "Version bump: patch",
+  "parsedCommits": {},
+  "semverBump": "patch",
+  "semverWeight": 0,
+  "version": "<semverInc>["0.0.100","patch"]</semverInc>",
+  "versionClean": "<semverClean>["<semverInc>[\\"0.0.100\\",\\"patch\\"]</semverInc>"]</semverClean>",
+}
+`;

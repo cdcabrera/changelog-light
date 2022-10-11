@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global should return specific properties: specific properties 1`] = `
+{
+  "color": {
+    "BLACK": "[30m",
+    "BLUE": "[34m",
+    "CYAN": "[36m",
+    "GREEN": "[32m",
+    "GREY": "[90m",
+    "MAGENTA": "[35m",
+    "NOCOLOR": "[0m",
+    "RED": "[31m",
+    "WHITE": "[37m",
+    "YELLOW": "[33m",
+  },
+  "contextPath": "../src/__fixtures__",
+}
+`;

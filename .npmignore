@@ -1,0 +1,10 @@
+*
+!package.json
+src/**/package.json
+!bin/**/*.js
+!src/**/*.js
+src/**/*test.js
+src/**/*.archive
+!LICENSE
+!README.md
+!CHANGELOG.md

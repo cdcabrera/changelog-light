@@ -1,0 +1,65 @@
+{
+  "env": {
+    "es2018": true,
+    "jest": true
+  },
+  "plugins": ["node", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["tests/**/*.js", "lib/**/*.js"],
+      "plugins": ["jest"],
+      "extends": [
+        "plugin:jest/recommended"
+      ],
+      "globals": {
+        "_COMMIT_CHANGELOG_CONTEXT_ROOT": "readonly",
+        "generateFixture": "readonly",
+        "setMockResourceFunctions": "readonly"
+      }
+    }
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "comma-dangle": 0,
+    "consistent-return": 1,
+    "max-len": [
+      "error",
+      {
+        "code": 240,
+        "ignoreUrls": true
+      }
+    ],
+    "no-console": 0,
+    "no-debugger": 1,
+    "no-plusplus": 0,
+    "no-var": 2,
+    "node/no-unsupported-features/es-syntax": 1,
+    "node/shebang": 0,
+    "node/no-unpublished-bin": 0,
+    "node/no-unpublished-require": [
+      "error",
+      {
+        "allowModules": ["shelljs", "mockery", "mock-fs"]
+      }
+    ],
+    "padded-blocks": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "avoid",
+        "singleQuote": true,
+        "trailingComma": "none",
+        "printWidth": 120
+      }
+    ],
+    "space-before-function-paren": 0
+  }
+}
