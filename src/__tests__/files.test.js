@@ -10,7 +10,7 @@ describe('Files', () => {
       e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)
     `;
 
-    const commitObj = parseCommits({ getGit: () => commitLog });
+    const commitObj = parseCommits(undefined, { getGit: () => commitLog });
 
     expect(updateChangelog(commitObj, undefined, { date: '2022-10-01' })).toMatchSnapshot('changelog');
   });

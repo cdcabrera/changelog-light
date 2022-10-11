@@ -62,6 +62,34 @@ const getReleaseCommit = () =>
   runCmd('git log --grep="chore(release)" --pretty=oneline -1', 'Skipping release commit check... {0}');
 
 /**
+ * Get the repositories remote
+ *
+ * @param {object} params
+ * @param {string} params.commitPath
+ * @param {string} params.prPath
+ * @param {string} params.remoteUrl
+ * @returns {{baseUrl: string, prUrl, commitUrl}}
+ */
+const getRemoteUrls = ({ commitPath, prPath, remoteUrl } = {}) => {
+  const setUrl = remoteUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
+  let updatedUrl;
+  let commitUrl;
+  let prUrl;
+
+  if (/^http/.test(setUrl)) {
+    updatedUrl = setUrl.trim().replace(/(\.git)$/, '');
+    commitUrl = join(updatedUrl, commitPath);
+    prUrl = join(updatedUrl, prPath);
+  }
+
+  return {
+    baseUrl: updatedUrl,
+    commitUrl,
+    prUrl
+  };
+};
+
+/**
  * Return output for a range of commits from a hash
  *
  * @param {object} options
@@ -70,6 +98,11 @@ const getReleaseCommit = () =>
  */
 const getGit = ({ getReleaseCommit: getAliasReleaseCommit = getReleaseCommit } = {}) => {
   const releaseCommitHash = getAliasReleaseCommit().split(/\s/)[0];
+
+  if (!releaseCommitHash) {
+    return runCmd(`git log --pretty=oneline`, 'Skipping commit "get" check... {0}');
+  }
+
   return runCmd(`git log ${releaseCommitHash}..HEAD --pretty=oneline`, 'Skipping commit "get" check... {0}');
 };
 
@@ -130,6 +163,7 @@ module.exports = {
   getGit,
   getOverrideVersion,
   getReleaseCommit,
+  getRemoteUrls,
   getVersion,
   runCmd
 };
