@@ -10,7 +10,8 @@ const { commitChangelog } = require('../src');
 const {
   commit: isCommit,
   date,
-  'dry-run': isDryRun
+  'dry-run': isDryRun,
+  override: overrideVersion
 } = yargs
   .usage('Generate a CHANGELOG.md with conventional commit types.\n\nUsage: changelog [options]')
   .help('help')
@@ -29,6 +30,11 @@ const {
     describe: 'CHANGELOG.md release date in the form of a valid date string. Uses system new Date([your date])',
     type: 'string'
   })
+  .option('o', {
+    alias: 'override',
+    describe: 'Use a version you define.',
+    type: 'string'
+  })
   .option('r', {
     alias: 'dry-run',
     default: false,
@@ -37,11 +43,12 @@ const {
   }).argv;
 
 if (process.env.NODE_ENV === 'test') {
-  process.stdout.write(JSON.stringify({ date, isDryRun, isCommit }));
+  process.stdout.write(JSON.stringify({ date, isDryRun, isCommit, overrideVersion }));
 } else {
   commitChangelog({
     date,
     isDryRun,
-    isCommit
+    isCommit,
+    overrideVersion
   });
 }

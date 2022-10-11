@@ -74,6 +74,32 @@ const getGit = ({ getReleaseCommit: getAliasReleaseCommit = getReleaseCommit } =
 };
 
 /**
+ * Determine if override version is valid semver and return
+ *
+ * @param {string|*} version
+ * @return {{clean: string, version: string}}
+ */
+const getOverrideVersion = version => {
+  let updatedVersion;
+  let clean;
+
+  try {
+    clean = semverClean(version);
+  } catch (e) {
+    console.error(color.RED, `Semver: ${e.message}`, color.NOCOLOR);
+  }
+
+  if (clean) {
+    updatedVersion = version;
+  }
+
+  return {
+    version: updatedVersion,
+    clean
+  };
+};
+
+/**
  * Set package.json version using npm version
  *
  * @param {'major'|'minor'|'patch'|*} versionBump
@@ -102,6 +128,7 @@ const getVersion = (versionBump, { getCurrentVersion: getAliasCurrentVersion = g
 module.exports = {
   commitFiles,
   getGit,
+  getOverrideVersion,
   getReleaseCommit,
   getVersion,
   runCmd

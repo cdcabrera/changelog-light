@@ -42,6 +42,7 @@ or Yarn
                    Uses system new Date([your date])
                                       [string] [default: new Date().toISOString()]
     -r, --dry-run  Generate CHANGELOG.md sample output  [boolean] [default: false]
+    -o, --override  Use a version you define.                             [string]
     -h, --help     Show help                                             [boolean]
     -v, --version  Show version number                                   [boolean]
 ```
