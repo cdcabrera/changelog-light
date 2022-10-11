@@ -9,6 +9,12 @@ exports[`Commands should attempt to run commands: commands 1`] = `
     "getGit": "<execSync>["git log <execSync>[\\"git..HEAD --pretty=oneline"]</execSync>",
   },
   {
+    "getOverrideVersion": {
+      "clean": "<semverClean>[null]</semverClean>",
+      "version": undefined,
+    },
+  },
+  {
     "getReleaseCommit": "<execSync>["git log --grep=\\"chore(release)\\" --pretty=oneline -1"]</execSync>",
   },
   {

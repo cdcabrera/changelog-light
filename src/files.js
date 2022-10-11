@@ -9,14 +9,20 @@ const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
  * @param {object} parsedCommits
  * @param {*|string} packageVersion
  * @param {object} options
+ * @param {string} options.fallbackPackageVersion
  * @param {string} options.filePath
  * @param {boolean} options.isDryRun
  * @returns {string}
  */
 const updateChangelog = (
   parsedCommits = {},
-  packageVersion = '0.1.0',
-  { date, filePath = join(CONTEXT_PATH, `/CHANGELOG.md`), isDryRun = false } = {}
+  packageVersion,
+  {
+    date,
+    fallbackPackageVersion = '¯\\_(ツ)_/¯',
+    filePath = join(CONTEXT_PATH, `/CHANGELOG.md`),
+    isDryRun = false
+  } = {}
 ) => {
   const systemTimestamp = ((date && new Date(date)) || new Date()).toLocaleDateString('fr-CA', {
     timeZone: 'UTC'
@@ -35,7 +41,7 @@ const updateChangelog = (
   const displayCommits = Object.values(parsedCommits)
     .sort(({ title: titleA }, { title: titleB }) => titleB.localeCompare(titleA))
     .reduce((str, { title, commits = [] }) => `${str}\n### ${title}\n${commits.join('\n')}\n`, '');
-  const updatedBody = `## ${packageVersion} (${systemTimestamp})\n${displayCommits}`;
+  const updatedBody = `## ${packageVersion || fallbackPackageVersion} (${systemTimestamp})\n${displayCommits}`;
   const output = `${header}\n${updatedBody}\n${body}`;
 
   if (isDryRun) {
