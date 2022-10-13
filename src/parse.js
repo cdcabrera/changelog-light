@@ -15,6 +15,25 @@ const getCommitType = ({ isAllowNonConventionalCommits } = {}) => ({
 });
 
 /**
+ * In the current context, get the first and last commits based on the last release commit message.
+ *
+ * @param {object} options
+ * @param {Function} options.getGit
+ * @return {{last: string, first: string}}
+ */
+const getComparisonCommitHashes = ({ getGit: getAliasGit = getGit } = {}) => {
+  const [first, ...rest] = getAliasGit()
+    .trim()
+    .split(/\n/g)
+    .map(value => value.trim().split(/\s/)[0])
+    .reverse();
+  return {
+    first,
+    last: rest.pop()
+  };
+};
+
+/**
  * Parse a commit message
  *
  * @param message
@@ -190,6 +209,7 @@ const semverBump = (
 
 module.exports = {
   getCommitType,
+  getComparisonCommitHashes,
   formatChangelogMessage,
   parseCommitMessage,
   parseCommits,

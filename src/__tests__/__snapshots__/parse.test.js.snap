@@ -8,6 +8,13 @@ exports[`Parse should format a changelog commit message: formatChangelogMessages
 }
 `;
 
+exports[`Parse should get the first, last commits: first and last 1`] = `
+{
+  "first": "FIRST12345dd312345d42123123131231ca11235",
+  "last": "LAST1f12345b597123453031234555bvvvccacee",
+}
+`;
+
 exports[`Parse should parse a commit listing using conventional commit types and semver: parsed commits 1`] = `
 {
   "commits": {

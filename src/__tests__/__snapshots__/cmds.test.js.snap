@@ -21,6 +21,7 @@ exports[`Commands should attempt to run commands: commands 1`] = `
     "getRemoteUrls": {
       "baseUrl": undefined,
       "commitUrl": undefined,
+      "compareUrl": undefined,
       "prUrl": undefined,
     },
   },

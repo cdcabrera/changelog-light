@@ -1,6 +1,7 @@
 const { existsSync, readFileSync, writeFileSync } = require('fs');
 const { join } = require('path');
-const { runCmd } = require('./cmds');
+const { getRemoteUrls, runCmd } = require('./cmds');
+const { getComparisonCommitHashes } = require('./parse');
 const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
 
 /**
@@ -19,17 +20,23 @@ const updateChangelog = (
   parsedCommits = {},
   packageVersion,
   {
+    comparePath,
     date,
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     filePath = join(CONTEXT_PATH, `/CHANGELOG.md`),
+    getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
+    getRemoteUrls: getAliasRemoteUrls = getRemoteUrls,
     headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`,
-    isDryRun = false
+    isDryRun = false,
+    remoteUrl
   } = {}
 ) => {
   const systemTimestamp = ((date && new Date(date)) || new Date()).toLocaleDateString('fr-CA', {
     timeZone: 'UTC'
   });
+  const { compareUrl } = getAliasRemoteUrls({ comparePath, remoteUrl });
   let header = headerMd;
+  let version = fallbackPackageVersion;
   let body = '';
 
   if (existsSync(filePath)) {
@@ -43,7 +50,19 @@ const updateChangelog = (
   const displayCommits = Object.values(parsedCommits)
     .sort(({ title: titleA }, { title: titleB }) => titleB.localeCompare(titleA))
     .reduce((str, { title, commits = [] }) => `${str}\n### ${title}\n${commits.join('\n')}\n`, '');
-  const updatedBody = `## ${packageVersion || fallbackPackageVersion} (${systemTimestamp})\n${displayCommits}`;
+
+  if (packageVersion) {
+    version = packageVersion;
+
+    if (compareUrl) {
+      const { first, last } = getAliasComparisonCommitHashes();
+      if (first && last) {
+        version = `[${version}](${compareUrl}${first}...${last})`;
+      }
+    }
+  }
+
+  const updatedBody = `## ${version} (${systemTimestamp})\n${displayCommits}`;
   const output = `${header}\n${updatedBody}\n${body}`;
 
   if (isDryRun) {
