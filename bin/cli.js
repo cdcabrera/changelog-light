@@ -10,6 +10,7 @@ const { commitChangelog } = require('../src');
 const {
   commit: isCommit,
   'commit-path': commitPath,
+  'compare-path': comparePath,
   date,
   'dry-run': isDryRun,
   'non-cc': isAllowNonConventionalCommits,
@@ -58,6 +59,12 @@ const {
       'CHANGELOG.md path used for commits. This will be "joined" with "remote-url". Defaults to the commits path for GitHub.',
     type: 'string'
   })
+  .option('compare-path', {
+    default: 'compare/',
+    describe:
+      'CHANGELOG.md path used for version comparison. This will be "joined" with "remote-url". Defaults to the comparison path for GitHub.',
+    type: 'string'
+  })
   .option('pr-path', {
     default: 'pull/',
     describe:
@@ -74,6 +81,7 @@ if (process.env.NODE_ENV === 'test') {
   process.stdout.write(
     JSON.stringify({
       commitPath,
+      comparePath,
       date,
       isAllowNonConventionalCommits,
       isDryRun,
@@ -86,6 +94,7 @@ if (process.env.NODE_ENV === 'test') {
 } else {
   commitChangelog({
     commitPath,
+    comparePath,
     date,
     isAllowNonConventionalCommits,
     isDryRun,

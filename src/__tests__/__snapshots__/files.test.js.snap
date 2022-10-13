@@ -1,6 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Files should create, and update a CHANGELOG.md: changelog 1`] = `
+exports[`Files should create, and update CHANGELOG.md version with a comparison urls: urls and paths 1`] = `
+"# Changelog
+All notable changes to this project will be documented in this file.
+## [1.0.0](https://localhost/lorem/ipsum/comparmock/FIRSTdd312345d421231231312312345dca11235...LASTg45b597123453031234555b6d25574ccacee) (2022-10-01)
+
+### Features
+* **dolor** issues/20 sit enhancements  (#8) (53a1234)
+
+### Code Refactoring
+* **file** lorem updates  (#8) (LASTg45)
+
+### Chores
+* **build** npm packages  (#15) (e5c456e)
+
+### Bug Fixes
+* **build** eslint, jsdoc updates  (#16) (d123453)
+
+"
+`;
+
+exports[`Files should create, and update a basic CHANGELOG.md: changelog 1`] = `
 "# Changelog
 All notable changes to this project will be documented in this file.
 ## ¯\\_(ツ)_/¯ (2022-10-01)

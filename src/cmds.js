@@ -69,35 +69,38 @@ const getReleaseCommit = ({ releaseTypeScope = 'chore(release)' } = {}) =>
  *
  * @param {object} params
  * @param {string} params.commitPath
+ * @param {string} params.comparePath
  * @param {string} params.prPath
  * @param {string} params.remoteUrl
  * @returns {{baseUrl: string, prUrl, commitUrl}}
  */
-const getRemoteUrls = ({ commitPath, prPath, remoteUrl } = {}) => {
+const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = {}) => {
   const setUrl = remoteUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
   let updatedUrl;
   let commitUrl;
+  let compareUrl;
   let prUrl;
 
   if (/^http/.test(setUrl)) {
     updatedUrl = setUrl.trim().replace(/(\.git)$/, '');
     const [protocol, remotePath] = updatedUrl.split('://');
+    const generateUrl = path => {
+      let tempUrl = typeof path === 'string' && `${protocol}://${join(remotePath, path)}`;
+      if (tempUrl && !/\/$/.test(tempUrl)) {
+        tempUrl += '/';
+      }
+      return tempUrl;
+    };
 
-    commitUrl = typeof commitPath === 'string' && `${protocol}://${join(remotePath, commitPath)}`;
-    prUrl = typeof prPath === 'string' && `${protocol}://${join(remotePath, prPath)}`;
-
-    if (commitUrl && !/\/$/.test(commitUrl)) {
-      commitUrl += '/';
-    }
-
-    if (prUrl && !/\/$/.test(prUrl)) {
-      prUrl += '/';
-    }
+    commitUrl = generateUrl(commitPath);
+    compareUrl = generateUrl(comparePath);
+    prUrl = generateUrl(prPath);
   }
 
   return {
     baseUrl: updatedUrl,
     commitUrl,
+    compareUrl,
     prUrl
   };
 };

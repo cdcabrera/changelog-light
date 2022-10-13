@@ -1,9 +1,29 @@
-const { getCommitType, formatChangelogMessage, parseCommitMessage, parseCommits, semverBump } = require('../parse');
+const {
+  getCommitType,
+  formatChangelogMessage,
+  parseCommitMessage,
+  parseCommits,
+  semverBump,
+  getComparisonCommitHashes
+} = require('../parse');
 
 describe('Parse', () => {
   it('should return commit types', () => {
     expect(getCommitType()).toMatchSnapshot('getCommitType');
     expect(getCommitType({ isAllowNonConventionalCommits: true }).general).toMatchSnapshot('non-conventional-commits');
+  });
+
+  it('should get the first, last commits', () => {
+    const commitLog = `
+      LAST1f12345b597123453031234555bvvvccacee refactor(file): lorem updates (#8)
+      53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)
+      d1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)
+      e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)
+      FIRST12345dd312345d42123123131231ca11235 Initial commit
+    `;
+
+    const comparisonObj = getComparisonCommitHashes({ getGit: () => commitLog });
+    expect(comparisonObj).toMatchSnapshot('first and last');
   });
 
   it('should parse a commit message', () => {

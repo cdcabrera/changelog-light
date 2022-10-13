@@ -9,6 +9,7 @@ const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
  *
  * @param {object} params
  * @param {string} params.commitPath
+ * @param {string} params.comparePath
  * @param {string} params.contextPath
  * @param {string} params.date
  * @param {boolean} params.isCommit
@@ -19,6 +20,7 @@ const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
  */
 const commitChangelog = ({
   commitPath,
+  comparePath,
   contextPath = CONTEXT_PATH,
   date,
   isCommit,
@@ -43,7 +45,7 @@ const commitChangelog = ({
     );
   }
 
-  const changelog = updateChangelog(parsedCommits, cleanVersion, { isDryRun, date });
+  const changelog = updateChangelog(parsedCommits, cleanVersion, { comparePath, date, isDryRun, remoteUrl });
   const packageJSON = updatePackage(bump, { isDryRun });
 
   if (isCommit && !isDryRun) {
