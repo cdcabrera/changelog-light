@@ -12,6 +12,7 @@ const {
   'commit-path': commitPath,
   date,
   'dry-run': isDryRun,
+  'non-cc': isAllowNonConventionalCommits,
   override: overrideVersion,
   'pr-path': prPath,
   'remote-url': remoteUrl
@@ -32,6 +33,13 @@ const {
     default: new Date().toISOString(),
     describe: 'CHANGELOG.md release date in the form of a valid date string. Uses system new Date([your date])',
     type: 'string'
+  })
+  .option('n', {
+    alias: 'non-cc',
+    default: false,
+    describe:
+      'Allow non-conventional commits to apply a semver weight and appear in CHANGELOG.md under a general type description.',
+    type: 'boolean'
   })
   .option('o', {
     alias: 'override',
@@ -63,11 +71,23 @@ const {
   }).argv;
 
 if (process.env.NODE_ENV === 'test') {
-  process.stdout.write(JSON.stringify({ commitPath, date, isDryRun, isCommit, overrideVersion, prPath, remoteUrl }));
+  process.stdout.write(
+    JSON.stringify({
+      commitPath,
+      date,
+      isAllowNonConventionalCommits,
+      isDryRun,
+      isCommit,
+      overrideVersion,
+      prPath,
+      remoteUrl
+    })
+  );
 } else {
   commitChangelog({
     commitPath,
     date,
+    isAllowNonConventionalCommits,
     isDryRun,
     isCommit,
     overrideVersion,

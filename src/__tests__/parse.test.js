@@ -1,6 +1,40 @@
-const { parseCommits, semverBump } = require('../parse');
+const { getCommitType, formatChangelogMessage, parseCommitMessage, parseCommits, semverBump } = require('../parse');
 
 describe('Parse', () => {
+  it('should return commit types', () => {
+    expect(getCommitType()).toMatchSnapshot('getCommitType');
+    expect(getCommitType({ isAllowNonConventionalCommits: true }).general).toMatchSnapshot('non-conventional-commits');
+  });
+
+  it('should parse a commit message', () => {
+    const commitMessageRefactor = '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)';
+    const commitMessageFeature = '1f12345b597123453031234555b6d25574ccacee feat(dolor): issues/20 sit enhancements';
+    const commitMessageNonCC = '1f12345b597123453031234555b6d25574ccacee Initial commit';
+
+    expect({
+      refactor: parseCommitMessage(commitMessageRefactor),
+      feat: parseCommitMessage(commitMessageFeature),
+      general: parseCommitMessage(commitMessageNonCC)
+    }).toMatchSnapshot('parseCommitMessages');
+  });
+
+  it('should format a changelog commit message', () => {
+    const commitMessageRefactor = '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)';
+    const commitMessageFeature = '1f12345b597123453031234555b6d25574ccacee feat(dolor): issues/20 sit enhancements';
+    const commitMessageNonCC = '1f12345b597123453031234555b6d25574ccacee Initial commit';
+
+    expect({
+      refactor: formatChangelogMessage(parseCommitMessage(commitMessageRefactor), {
+        getRemoteUrls: () => ({
+          commitUrl: 'https://localhost/lorem/ipsum/commitsmock/',
+          prUrl: 'https://localhost/lorem/ipsum/prmock/'
+        })
+      }),
+      feat: formatChangelogMessage(parseCommitMessage(commitMessageFeature)),
+      general: formatChangelogMessage(parseCommitMessage(commitMessageNonCC))
+    }).toMatchSnapshot('formatChangelogMessages');
+  });
+
   it('should parse a commit listing using conventional commit types and semver', () => {
     const commitLog = `
       1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)
@@ -14,16 +48,25 @@ describe('Parse', () => {
       512345d6712345a1234581234501234516b12345 build(deps): bump actions/checkout from 1 to 2 (#11)
       12345d71e12345d2fc712345dd411234586b850a build(deps): aggregated checks, updates (#10)
       1412345dd312345d4212345d53e12345dca12345 build(deps): bump actions/github-script from 5 to 6 (#9)
+      12345dd312345d421231231312312345dca11235 Initial commit
     `;
 
     const commitObj = parseCommits(undefined, { getGit: () => commitLog });
-
     const urlPathObj = parseCommits(
       { commitPath: 'sit', prPath: 'dolor', remoteUrl: 'https://localhost/lorem/ipsum' },
       { getGit: () => commitLog }
     );
+    const generalCommitsObj = parseCommits(
+      { remoteUrl: 'https://localhost/lorem/ipsum' },
+      { getGit: () => commitLog, isAllowNonConventionalCommits: true }
+    );
 
-    expect({ default: parseCommits(), commits: commitObj, urls: urlPathObj }).toMatchSnapshot('parsed commits');
+    expect({
+      default: parseCommits(),
+      commits: commitObj,
+      urls: urlPathObj,
+      generalCommits: generalCommitsObj
+    }).toMatchSnapshot('parsed commits');
     expect({ default: semverBump(), commits: semverBump(commitObj) }).toMatchSnapshot('semver bump');
   });
 });

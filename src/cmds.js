@@ -78,8 +78,8 @@ const getRemoteUrls = ({ commitPath, prPath, remoteUrl } = {}) => {
 
   if (/^http/.test(setUrl)) {
     updatedUrl = setUrl.trim().replace(/(\.git)$/, '');
-    commitUrl = join(updatedUrl, commitPath);
-    prUrl = join(updatedUrl, prPath);
+    commitUrl = typeof commitPath === 'string' && join(updatedUrl, commitPath);
+    prUrl = typeof prPath === 'string' && join(updatedUrl, prPath);
   }
 
   return {
