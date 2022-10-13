@@ -169,11 +169,11 @@ const semverBump = (
 
   Object.entries(parsedCommits).forEach(([key, { commits = [] }]) => {
     switch (key) {
-      case commitType.feat.value:
-      case commitType.revert.value:
+      case commitType?.feat?.value:
+      case commitType?.['revert']?.value:
         weight += 10 * commits.length;
         break;
-      case commitType.refactor.value:
+      case commitType?.refactor?.value:
         weight += commits.length;
         break;
       default:
