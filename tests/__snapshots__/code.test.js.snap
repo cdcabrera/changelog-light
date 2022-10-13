@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`General code checks should only have specific console.[warn|log|info|error] methods: console methods 1`] = `
+[
+  "cmds.js:21:    console.error(color.RED, errorMessage.replace('{0}', e.message), color.NOCOLOR)",
+  "cmds.js:93:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
+  "files.js:42:    console.info(\` \${output}\`)",
+  "index.js:26:    console.info( index.js:40:    console.info(color.NOCOLOR)",
+  "parse.js:19:    console.error(color.RED, \`Conventional commit types: \${e.message}\`, color.NOCOLOR)",
+]
+`;
