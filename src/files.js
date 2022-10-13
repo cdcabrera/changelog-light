@@ -11,6 +11,7 @@ const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
  * @param {object} options
  * @param {string} options.fallbackPackageVersion
  * @param {string} options.filePath
+ * @param {string} options.headerMd
  * @param {boolean} options.isDryRun
  * @returns {string}
  */
@@ -21,13 +22,14 @@ const updateChangelog = (
     date,
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     filePath = join(CONTEXT_PATH, `/CHANGELOG.md`),
+    headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`,
     isDryRun = false
   } = {}
 ) => {
   const systemTimestamp = ((date && new Date(date)) || new Date()).toLocaleDateString('fr-CA', {
     timeZone: 'UTC'
   });
-  let header = `# Changelog\nAll notable changes to this project will be documented in this file.`;
+  let header = headerMd;
   let body = '';
 
   if (existsSync(filePath)) {
