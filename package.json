@@ -11,6 +11,14 @@
   "bugs": {
     "url": "https://github.com/cdcabrera/changelog-light/issues"
   },
+  "keywords": [
+    "change log",
+    "changelog",
+    "commit messages",
+    "commits",
+    "conventional",
+    "history"
+  ],
   "engines": {
     "node": ">=14.0.0"
   },
