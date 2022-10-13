@@ -3,9 +3,9 @@
 exports[`General code checks should only have specific console.[warn|log|info|error] methods: console methods 1`] = `
 [
   "cmds.js:21:    console.error(color.RED, errorMessage.replace('{0}', e.message), color.NOCOLOR)",
-  "cmds.js:122:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
-  "cmds.js:152:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
-  "files.js:48:    console.info(\` \${output}\`)",
+  "cmds.js:125:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
+  "cmds.js:155:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
+  "files.js:50:    console.info(\` \${output}\`)",
   "global.js:64:    console.error(color.RED, \`Conventional commit types: \${e.message}\`, color.NOCOLOR)",
   "index.js:40:    console.info( index.js:54:    console.info(color.NOCOLOR)",
 ]
