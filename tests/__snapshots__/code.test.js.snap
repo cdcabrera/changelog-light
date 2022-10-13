@@ -6,7 +6,7 @@ exports[`General code checks should only have specific console.[warn|log|info|er
   "cmds.js:122:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
   "cmds.js:152:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
   "files.js:48:    console.info(\` \${output}\`)",
-  "index.js:39:    console.info( index.js:53:    console.info(color.NOCOLOR)",
-  "parse.js:27:    console.error(color.RED, \`Conventional commit types: \${e.message}\`, color.NOCOLOR)",
+  "global.js:64:    console.error(color.RED, \`Conventional commit types: \${e.message}\`, color.NOCOLOR)",
+  "index.js:40:    console.info( index.js:54:    console.info(color.NOCOLOR)",
 ]
 `;

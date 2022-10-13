@@ -1,4 +1,5 @@
 const { join } = require('path');
+const commitTypes = require('conventional-commit-types');
 
 /**
  * Console output colors
@@ -30,4 +31,40 @@ const contextPath = (global._COMMIT_CHANGELOG_CONTEXT_PATH =
   (process.env.NODE_ENV === 'development' && join(__dirname, './__fixtures__')) ||
   process.cwd());
 
-module.exports = { color, contextPath };
+/**
+ * Custom catch all commit type for use with the "isAllowNonConventionalCommits"
+ *
+ * @type {{general: {description: string, title: string, value: string}}}
+ */
+const generalCommitType = {
+  general: {
+    description: 'Commits without category',
+    title: 'General',
+    value: 'general'
+  }
+};
+
+/**
+ * Conventional commit types, expose "key" as "value"
+ *
+ * @type {{feat: {description: string, title: string, value: string}, fix: {description: string, title: string, value: string},
+ *     chore: {description: string, title: string, value: string}}}
+ */
+const conventionalCommitType = (types => {
+  const updatedTypes = {};
+
+  try {
+    Object.entries(types).forEach(([key, value]) => {
+      updatedTypes[key] = {
+        ...value,
+        value: key
+      };
+    });
+  } catch (e) {
+    console.error(color.RED, `Conventional commit types: ${e.message}`, color.NOCOLOR);
+  }
+
+  return updatedTypes;
+})(commitTypes.types);
+
+module.exports = { color, contextPath, conventionalCommitType, generalCommitType };

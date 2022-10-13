@@ -15,5 +15,69 @@ exports[`Global should return specific properties: specific properties 1`] = `
     "YELLOW": "[33m",
   },
   "contextPath": "../src/__fixtures__",
+  "conventionalCommitType": {
+    "build": {
+      "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+      "title": "Builds",
+      "value": "build",
+    },
+    "chore": {
+      "description": "Other changes that don't modify src or test files",
+      "title": "Chores",
+      "value": "chore",
+    },
+    "ci": {
+      "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)",
+      "title": "Continuous Integrations",
+      "value": "ci",
+    },
+    "docs": {
+      "description": "Documentation only changes",
+      "title": "Documentation",
+      "value": "docs",
+    },
+    "feat": {
+      "description": "A new feature",
+      "title": "Features",
+      "value": "feat",
+    },
+    "fix": {
+      "description": "A bug fix",
+      "title": "Bug Fixes",
+      "value": "fix",
+    },
+    "perf": {
+      "description": "A code change that improves performance",
+      "title": "Performance Improvements",
+      "value": "perf",
+    },
+    "refactor": {
+      "description": "A code change that neither fixes a bug nor adds a feature",
+      "title": "Code Refactoring",
+      "value": "refactor",
+    },
+    "revert": {
+      "description": "Reverts a previous commit",
+      "title": "Reverts",
+      "value": "revert",
+    },
+    "style": {
+      "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
+      "title": "Styles",
+      "value": "style",
+    },
+    "test": {
+      "description": "Adding missing tests or correcting existing tests",
+      "title": "Tests",
+      "value": "test",
+    },
+  },
+  "generalCommitType": {
+    "general": {
+      "description": "Commits without category",
+      "title": "General",
+      "value": "general",
+    },
+  },
 }
 `;

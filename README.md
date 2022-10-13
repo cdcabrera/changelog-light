@@ -40,7 +40,10 @@ or Yarn
                                                          [boolean] [default: true]
     -d, --date         CHANGELOG.md release date in the form of a valid date
                        string. Uses system new Date([your date])
-                                    [string] [default: "2022-10-11T04:24:24.472Z"]
+                                    [string] [default: "2022-10-13T12:25:39.055Z"]
+    -n, --non-cc       Allow non-conventional commits to apply a semver weight and
+                       appear in CHANGELOG.md under a general type description.
+                                                        [boolean] [default: false]
     -o, --override     Use a version you define.                          [string]
     -r, --dry-run      Generate CHANGELOG.md sample output
                                                         [boolean] [default: false]

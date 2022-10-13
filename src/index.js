@@ -23,6 +23,7 @@ const commitChangelog = ({
   date,
   isCommit,
   isDryRun,
+  isAllowNonConventionalCommits,
   overrideVersion,
   prPath,
   remoteUrl
@@ -31,8 +32,8 @@ const commitChangelog = ({
     process.chdir(contextPath);
   }
 
-  const parsedCommits = parseCommits({ commitPath, prPath, remoteUrl });
-  const { bump, weight } = semverBump(parsedCommits);
+  const parsedCommits = parseCommits({ commitPath, prPath, remoteUrl }, { isAllowNonConventionalCommits });
+  const { bump, weight } = semverBump(parsedCommits, { isAllowNonConventionalCommits });
   const { clean: cleanVersion, version } = (overrideVersion && getOverrideVersion(overrideVersion)) || getVersion(bump);
 
   if (isDryRun) {
