@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## 0.1.0 (2022-10-13)
+
+## [0.2.0](https://github.com/cdcabrera/changelog-light/compare/d08d8185f64132196eda6b238de7d6196c586f89...a4f58159f6f5869aa427283d492378e821678b14) (2022-10-13)
+
+### Features
+* **cli** generate comparison links  ([a4f5815](https://github.com/cdcabrera/changelog-light/commit/a4f58159f6f5869aa427283d492378e821678b14))
+
+### Chores
+* **build** package keywords  ([d08d818](https://github.com/cdcabrera/changelog-light/commit/d08d8185f64132196eda6b238de7d6196c586f89))
+
+##  0.1.0 (2022-10-13)
 
 ### Performance Improvements
 * **cmds,files** prep strings for cli options  ([974e795](https://github.com/cdcabrera/changelog-light/commit/974e79585bd443a1b82fe8e58a10b0cfb8a7bfb9))
