@@ -25,7 +25,7 @@
     "test:ci": "export CI=true; jest --collectCoverage",
     "test:clearCache": "jest --clearCache",
     "test:deps": "run-s test",
-    "test:dev": "eslint ./src; jest --watch",
+    "test:dev": "eslint ./src ./bin; jest --watch",
     "test:integration": "jest --roots=./tests",
     "test:integration-dev": "jest --roots=./tests --watchAll",
     "test:lint": "eslint ./src ./bin"
