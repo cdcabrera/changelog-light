@@ -87,12 +87,12 @@ const formatChangelogMessage = (
   let updatedPr = (prNumber && `(#${prNumber})`) || '';
   let updatedHash = (hash && `(${hash.substring(0, 7)})`) || '';
 
-  if (prUrl && updatedPr !== '') {
-    updatedPr = `([#${prNumber}](${prUrl ?? ''}${prNumber}))`;
+  if (prUrl && updatedPr) {
+    updatedPr = `([#${prNumber}](${new URL(prNumber, prUrl).href}))`;
   }
 
-  if (commitUrl && updatedHash !== '') {
-    updatedHash = `([${hash.substring(0, 7)}](${commitUrl ?? ''}${hash}))`;
+  if (commitUrl && updatedHash) {
+    updatedHash = `([${hash.substring(0, 7)}](${new URL(hash, commitUrl).href}))`;
   }
 
   output = `* ${updatedScope} ${description} ${updatedPr} ${updatedHash}`;

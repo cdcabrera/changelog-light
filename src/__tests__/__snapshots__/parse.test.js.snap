@@ -118,11 +118,11 @@ exports[`Parse should parse a commit listing using conventional commit types and
   "urls": {
     "build": {
       "commits": [
-        "* **deps** bump codecov/codecov-action from 1.1.0 to 1.1.1  ([#19](https:/localhost/lorem/ipsum/dolor19)) ([fe7d312](https:/localhost/lorem/ipsum/sitfe7d312345xe604d8328d025612345925123457b))",
-        "* **deps** bump actions/cache from 1 to 2  ([#12](https:/localhost/lorem/ipsum/dolor12)) ([112345c](https:/localhost/lorem/ipsum/sit112345ca212345c8d2d123450c31234588f12345))",
-        "* **deps** bump actions/checkout from 1 to 2  ([#11](https:/localhost/lorem/ipsum/dolor11)) ([512345d](https:/localhost/lorem/ipsum/sit512345d6712345a1234581234501234516b12345))",
-        "* **deps** aggregated checks, updates  ([#10](https:/localhost/lorem/ipsum/dolor10)) ([12345d7](https:/localhost/lorem/ipsum/sit12345d71e12345d2fc712345dd411234586b850a))",
-        "* **deps** bump actions/github-script from 5 to 6  ([#9](https:/localhost/lorem/ipsum/dolor9)) ([1412345](https:/localhost/lorem/ipsum/sit1412345dd312345d4212345d53e12345dca12345))",
+        "* **deps** bump codecov/codecov-action from 1.1.0 to 1.1.1  ([#19](https://localhost/lorem/ipsum/dolor/19)) ([fe7d312](https://localhost/lorem/ipsum/sit/fe7d312345xe604d8328d025612345925123457b))",
+        "* **deps** bump actions/cache from 1 to 2  ([#12](https://localhost/lorem/ipsum/dolor/12)) ([112345c](https://localhost/lorem/ipsum/sit/112345ca212345c8d2d123450c31234588f12345))",
+        "* **deps** bump actions/checkout from 1 to 2  ([#11](https://localhost/lorem/ipsum/dolor/11)) ([512345d](https://localhost/lorem/ipsum/sit/512345d6712345a1234581234501234516b12345))",
+        "* **deps** aggregated checks, updates  ([#10](https://localhost/lorem/ipsum/dolor/10)) ([12345d7](https://localhost/lorem/ipsum/sit/12345d71e12345d2fc712345dd411234586b850a))",
+        "* **deps** bump actions/github-script from 5 to 6  ([#9](https://localhost/lorem/ipsum/dolor/9)) ([1412345](https://localhost/lorem/ipsum/sit/1412345dd312345d4212345d53e12345dca12345))",
       ],
       "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
       "title": "Builds",
@@ -130,8 +130,8 @@ exports[`Parse should parse a commit listing using conventional commit types and
     },
     "chore": {
       "commits": [
-        "* **build** npm packages  ([#15](https:/localhost/lorem/ipsum/dolor15)) ([e5c456e](https:/localhost/lorem/ipsum/site5c456ea12345vv4610fa4aff7812345ss31b1e2))",
-        "* **build** npm packages  ([#15](https:/localhost/lorem/ipsum/dolor15)) ([6f0f55d](https:/localhost/lorem/ipsum/sit6f0f55d32412345221234512345d2345c3212345))",
+        "* **build** npm packages  ([#15](https://localhost/lorem/ipsum/dolor/15)) ([e5c456e](https://localhost/lorem/ipsum/sit/e5c456ea12345vv4610fa4aff7812345ss31b1e2))",
+        "* **build** npm packages  ([#15](https://localhost/lorem/ipsum/dolor/15)) ([6f0f55d](https://localhost/lorem/ipsum/sit/6f0f55d32412345221234512345d2345c3212345))",
       ],
       "description": "Other changes that don't modify src or test files",
       "title": "Chores",
@@ -139,7 +139,7 @@ exports[`Parse should parse a commit listing using conventional commit types and
     },
     "feat": {
       "commits": [
-        "* **dolor** issues/20 sit enhancements  ([#8](https:/localhost/lorem/ipsum/dolor8)) ([53a1234](https:/localhost/lorem/ipsum/sit53a12345479ef91123456e921234548ac4123450))",
+        "* **dolor** issues/20 sit enhancements  ([#8](https://localhost/lorem/ipsum/dolor/8)) ([53a1234](https://localhost/lorem/ipsum/sit/53a12345479ef91123456e921234548ac4123450))",
       ],
       "description": "A new feature",
       "title": "Features",
@@ -147,8 +147,8 @@ exports[`Parse should parse a commit listing using conventional commit types and
     },
     "fix": {
       "commits": [
-        "* **build** npm packages  ([#18](https:/localhost/lorem/ipsum/dolor18)) ([6112345](https:/localhost/lorem/ipsum/sit611234511234543c39c1234536dc01234521549c))",
-        "* **build** eslint, jsdoc updates  ([#16](https:/localhost/lorem/ipsum/dolor16)) ([d123453](https:/localhost/lorem/ipsum/sitd1234537b5e94a6512345xeb96503312345x18d2))",
+        "* **build** npm packages  ([#18](https://localhost/lorem/ipsum/dolor/18)) ([6112345](https://localhost/lorem/ipsum/sit/611234511234543c39c1234536dc01234521549c))",
+        "* **build** eslint, jsdoc updates  ([#16](https://localhost/lorem/ipsum/dolor/16)) ([d123453](https://localhost/lorem/ipsum/sit/d1234537b5e94a6512345xeb96503312345x18d2))",
       ],
       "description": "A bug fix",
       "title": "Bug Fixes",
@@ -156,7 +156,7 @@ exports[`Parse should parse a commit listing using conventional commit types and
     },
     "refactor": {
       "commits": [
-        "* **file** lorem updates  ([#8](https:/localhost/lorem/ipsum/dolor8)) ([1f12345](https:/localhost/lorem/ipsum/sit1f12345b597123453031234555b6d25574ccacee))",
+        "* **file** lorem updates  ([#8](https://localhost/lorem/ipsum/dolor/8)) ([1f12345](https://localhost/lorem/ipsum/sit/1f12345b597123453031234555b6d25574ccacee))",
       ],
       "description": "A code change that neither fixes a bug nor adds a feature",
       "title": "Code Refactoring",
