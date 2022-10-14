@@ -66,7 +66,7 @@ const updateChangelog = (
   const output = `${header}\n${updatedBody}\n${body}`;
 
   if (isDryRun) {
-    console.info(`\n${output}`);
+    console.info(`\n${updatedBody}`);
   } else {
     writeFileSync(filePath, output);
   }
