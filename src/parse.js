@@ -1,5 +1,5 @@
 const { generalCommitType, conventionalCommitType } = require('./global');
-const { getGit, getRemoteUrls } = require('./cmds');
+const { getGit, getReleaseCommit, getRemoteUrls } = require('./cmds');
 
 /**
  * Aggregate conventional commit types. Optionally allow non-conventional commit types.
@@ -21,15 +21,20 @@ const getCommitType = ({ isAllowNonConventionalCommits } = {}) => ({
  * @param {Function} options.getGit
  * @return {{last: string, first: string}}
  */
-const getComparisonCommitHashes = ({ getGit: getAliasGit = getGit } = {}) => {
-  const [first, ...rest] = getAliasGit()
+const getComparisonCommitHashes = ({
+  getGit: getAliasGit = getGit,
+  getReleaseCommit: getAliasReleaseCommit = getReleaseCommit
+} = {}) => {
+  const releaseCommitHash = getAliasReleaseCommit().split(/\s/)[0];
+  const rest = getAliasGit()
     .trim()
     .split(/\n/g)
     .map(value => value.trim().split(/\s/)[0])
     .reverse();
+
   return {
-    first,
-    last: rest.pop()
+    first: releaseCommitHash || null,
+    last: (releaseCommitHash && rest.pop()) || null
   };
 };
 

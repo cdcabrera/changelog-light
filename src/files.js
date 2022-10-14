@@ -5,6 +5,10 @@ const { getComparisonCommitHashes } = require('./parse');
 const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
 
 /**
+ * ToDo: syntax for the comparison can include the use of caret
+ * Review using caret vs a release commit for determining range
+ */
+/**
  * Update CHANGELOG.md with commit output.
  *
  * @param {object} parsedCommits
