@@ -3,7 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 
-## [0.2.0](https://github.com/cdcabrera/changelog-light/compare/d08d8185f64132196eda6b238de7d6196c586f89...a4f58159f6f5869aa427283d492378e821678b14) (2022-10-13)
+
+## [0.2.1](https://github.com/cdcabrera/changelog-light/compare/953ed4f4b47cfbdd0b883c81df2c4c78869ead7a...215a34961a3b5d436c268981d1ad675f326926c2) (2022-10-14)
+
+### Chores
+* **build** codecov config  ([215a349](https://github.com/cdcabrera/changelog-light/commit/215a34961a3b5d436c268981d1ad675f326926c2))
+
+### Bug Fixes
+* **parse** comparison, last release commit  ([#6](https://github.com/cdcabrera/changelog-light/pull/6)) ([e2739e5](https://github.com/cdcabrera/changelog-light/commit/e2739e516c61e9b9c7e4d8629149cce53a61ea4f))
+* **files** dry-run display latest release  ([#6](https://github.com/cdcabrera/changelog-light/pull/6)) ([d956f5f](https://github.com/cdcabrera/changelog-light/commit/d956f5fd562053154bc3610a0872cb8612723c0d))
+
+##  [0.2.0](https://github.com/cdcabrera/changelog-light/compare/d08d8185f64132196eda6b238de7d6196c586f89...a4f58159f6f5869aa427283d492378e821678b14) (2022-10-13)
 
 ### Features
 * **cli** generate comparison links  ([a4f5815](https://github.com/cdcabrera/changelog-light/commit/a4f58159f6f5869aa427283d492378e821678b14))
