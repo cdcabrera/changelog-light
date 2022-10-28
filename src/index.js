@@ -35,7 +35,10 @@ const commitChangelog = ({
   }
 
   const parsedCommits = parseCommits({ commitPath, prPath, remoteUrl }, { isAllowNonConventionalCommits });
-  const { bump, weight } = semverBump(parsedCommits, { isAllowNonConventionalCommits });
+  const { bump, weight } = semverBump(parsedCommits, {
+    isAllowNonConventionalCommits,
+    isOverrideVersion: overrideVersion !== undefined
+  });
   const { clean: cleanVersion, version } = (overrideVersion && getOverrideVersion(overrideVersion)) || getVersion(bump);
 
   if (isDryRun) {
@@ -46,7 +49,7 @@ const commitChangelog = ({
   }
 
   const changelog = updateChangelog(parsedCommits, cleanVersion, { comparePath, date, isDryRun, remoteUrl });
-  const packageJSON = updatePackage(bump, { isDryRun });
+  const packageJSON = updatePackage((overrideVersion && cleanVersion) || bump, { isDryRun });
 
   if (isCommit && !isDryRun) {
     commitFiles(cleanVersion);

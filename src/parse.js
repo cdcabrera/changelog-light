@@ -181,12 +181,18 @@ const parseCommits = (
  *
  * @param {{ feat: { commits: Array }, refactor: { commits: Array }, fix: { commits: Array } }} parsedCommits
  * @param {object} options
- * @param {boolean} isAllowNonConventionalCommits
+ * @param {Function} options.getCommitType
+ * @param {boolean} options.isAllowNonConventionalCommits
+ * @param {boolean} options.isOverrideVersion
  * @returns {{bump: ('major'|'minor'|'patch'), weight: number}}
  */
 const semverBump = (
   parsedCommits = {},
-  { getCommitType: getAliasCommitType = getCommitType, isAllowNonConventionalCommits = false } = {}
+  {
+    getCommitType: getAliasCommitType = getCommitType,
+    isAllowNonConventionalCommits = false,
+    isOverrideVersion = false
+  } = {}
 ) => {
   const commitType = getAliasCommitType({ isAllowNonConventionalCommits });
   let weight = 0;
@@ -207,7 +213,7 @@ const semverBump = (
   });
 
   return {
-    bump: (weight >= 100 && 'major') || (weight >= 10 && 'minor') || 'patch',
+    bump: (isOverrideVersion && 'override') || (weight >= 100 && 'major') || (weight >= 10 && 'minor') || 'patch',
     weight
   };
 };
