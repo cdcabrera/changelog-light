@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Commit Changelog should parse commits to produce a CHANGELOG.md with an override version: override 1`] = `
+{
+  "changelog": "# Changelog
+All notable changes to this project will be documented in this file.
+## <semverClean>["15.0.0"]</semverClean> (2022-10-01)
+
+",
+  "package": "Version bump: <semverClean>["15.0.0"]</semverClean>",
+  "parsedCommits": {},
+  "semverBump": "override",
+  "semverWeight": 0,
+  "version": "15.0.0",
+  "versionClean": "<semverClean>["15.0.0"]</semverClean>",
+}
+`;
+
 exports[`Commit Changelog should parse commits to produce a CHANGELOG.md: Commit Changelog 1`] = `
 {
   "changelog": "# Changelog
