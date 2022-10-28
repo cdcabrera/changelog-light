@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 
 
 
-## [0.2.1](https://github.com/cdcabrera/changelog-light/compare/953ed4f4b47cfbdd0b883c81df2c4c78869ead7a...215a34961a3b5d436c268981d1ad675f326926c2) (2022-10-14)
+
+## [0.2.2](https://github.com/cdcabrera/changelog-light/compare/2daa637d2c23405a84dcc2069a663a7bf760e2ee...610213e1ab21c6c98db63ca529cbbac51c4d22d5) (2022-10-28)
+
+### Builds
+* **deps-dev** npm updates  ([#8](https://github.com/cdcabrera/changelog-light/pull/8)) ([610213e](https://github.com/cdcabrera/changelog-light/commit/610213e1ab21c6c98db63ca529cbbac51c4d22d5))
+
+### Bug Fixes
+* **cli** override package version  ([#7](https://github.com/cdcabrera/changelog-light/pull/7)) ([d617632](https://github.com/cdcabrera/changelog-light/commit/d617632ce20a82c909fb1c8ba3a2ff73ecdf4d3b))
+
+##  [0.2.1](https://github.com/cdcabrera/changelog-light/compare/953ed4f4b47cfbdd0b883c81df2c4c78869ead7a...215a34961a3b5d436c268981d1ad675f326926c2) (2022-10-14)
 
 ### Chores
 * **build** codecov config  ([215a349](https://github.com/cdcabrera/changelog-light/commit/215a34961a3b5d436c268981d1ad675f326926c2))
