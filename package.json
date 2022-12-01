@@ -62,7 +62,7 @@
   "dependencies": {
     "conventional-commit-types": "^3.0.0",
     "semver": "^7.3.8",
-    "yargs": "^17.6.0"
+    "yargs": "^17.6.2"
   },
   "devDependencies": {
     "eslint": "^8.26.0",
