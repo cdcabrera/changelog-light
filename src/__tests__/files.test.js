@@ -1,3 +1,4 @@
+// spell-checker: disable
 const { updateChangelog, updatePackage } = require('../files');
 const { getComparisonCommitHashes, parseCommits } = require('../parse');
 
