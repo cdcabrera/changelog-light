@@ -28,7 +28,7 @@ or Yarn
     $ yarn add changelog-light
   ```
 
-#### Usage
+#### CLI Usage
 ```
   $ changelog --help
   Generate a CHANGELOG.md with conventional commit types.
@@ -63,19 +63,47 @@ or Yarn
     -v, --version       Show version number                              [boolean]
 ```
 ### Using within a project
-Using `changelog-light` within a project requires one thing... formatting your commit messages using [conventional commit types](https://www.conventionalcommits.org)
+Using `changelog-light` within a project requires one primary thing... formatting your commit messages using [conventional commit types](https://www.conventionalcommits.org)
 
 This project leverages this [conventional commit types resource](https://github.com/commitizen/conventional-commit-types/blob/master/index.json) to determine
 how `CHANGELOG.md` is generated.
+
+#### How it works
+`changelog-light` doesn't use tags. Focusing on tags to determine what gets generated works in some environments.
+
+Since handling tags was unnecessary for our purpose, we kept it simple. Instead, `changelog-light` looks for the
+last commit message, of a specific type, to determine the range of commits...
+
+   ```
+   chore(release): [semver version format]
+   ```
 
 #### Example NPM script
 Using within a project you could apply `changelog-light` as a NPM script in `package.json`
 
    ```js
-     "scripts": {
-       "release": "changelog"
-     }
+   "scripts": {
+     "release": "changelog"
+   }
    ```
+
+
+#### How to use
+Assuming you're using GitHub as your base. _If you're not using GitHub we do expose the url paths used to generate the log._
+
+1. First, git checkout the branch you want to run `changelog-light` on
+1. Next, run the CLI, either directly, or through a NPM script like the above example.
+
+   ```
+   $ changelog --dry-run --non-cc
+   ```
+   _We recommend you try the `--dry-run` and `--non-cc` options for your first run._
+
+1. Review the output, you have a few choices
+   - in your terminal only, see option `--dry-run`
+   - or as a commit with a `CHANGELOG.md` and `package.json` update. This is the default option `--commit`
+   - or as updated files `CHANGELOG.md` and `package.json`, if you opted to update without a commit, see option `--commit=false`
+1. That's it!
 
 ## Credit
 This project is influenced by the now deprecated project [Standard Version](https://github.com/conventional-changelog/standard-version). 
