@@ -67,6 +67,21 @@ describe('Files', () => {
         }
       )
     ).toMatchSnapshot('urls and paths, release commit');
+
+    expect(
+      updateChangelog(
+        commitObj,
+        '1.0.0',
+        {
+          date: '2022-10-01',
+          isBasic: true
+        },
+        {
+          getComparisonCommitHashes: () => comparisonObjReleaseCommit,
+          getRemoteUrls: () => urlObj
+        }
+      )
+    ).toMatchSnapshot('urls and paths, release commit, no markdown links');
   });
 
   it('should update a package.json', () => {

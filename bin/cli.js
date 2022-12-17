@@ -8,6 +8,7 @@ const { commitChangelog, OPTIONS } = require('../src');
  * Setup yargs
  */
 const {
+  basic: isBasic,
   commit: isCommit,
   'commit-path': commitPath,
   'compare-path': comparePath,
@@ -23,6 +24,12 @@ const {
   .alias('h', 'help')
   .version('version', packageJson.version)
   .alias('v', 'version')
+  .option('b', {
+    alias: 'basic',
+    default: false,
+    describe: 'Keep updates to CHANGELOG.md basic, skip all markdown link syntax',
+    type: 'boolean'
+  })
   .option('c', {
     alias: 'commit',
     default: true,
@@ -81,8 +88,8 @@ const {
  * Set global OPTIONS
  *
  * @type {{comparePath: string, date: string, commitPath: string, isOverrideVersion: boolean,
- *     isAllowNonConventionalCommits: boolean, isDryRun: boolean,
- *     remoteUrl: string, prPath: string, isCommit: boolean, overrideVersion: string|*}}
+ *     isAllowNonConventionalCommits: boolean, isDryRun: boolean, remoteUrl: string,
+ *     prPath: string, isCommit: boolean, overrideVersion: string|*, isBasic: boolean}}
  * @private
  */
 OPTIONS._set = {
@@ -90,6 +97,7 @@ OPTIONS._set = {
   comparePath,
   date,
   isAllowNonConventionalCommits,
+  isBasic,
   isDryRun,
   isCommit,
   isOverrideVersion: overrideVersion !== undefined,
