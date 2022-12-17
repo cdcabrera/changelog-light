@@ -36,3 +36,24 @@ exports[`Commands should attempt to run commands: commands 1`] = `
   },
 ]
 `;
+
+exports[`Commands should handle multiple formats for releaseTypeScope: releaseTypeScope, multi-list item 1`] = `
+{
+  "commitFiles": "<execSync>["git add ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md && git commit ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md -m \\"chore(release): undefined\\""]</execSync>",
+  "getReleaseCommit": "<execSync>["git log --grep=\\"dolor sit\\" --pretty=oneline -1"]</execSync>",
+}
+`;
+
+exports[`Commands should handle multiple formats for releaseTypeScope: releaseTypeScope, single list item 1`] = `
+{
+  "commitFiles": "<execSync>["git add ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md && git commit ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md -m \\"chore(release): undefined\\""]</execSync>",
+  "getReleaseCommit": "<execSync>["git log --grep=\\"chore(release)\\" --pretty=oneline -1"]</execSync>",
+}
+`;
+
+exports[`Commands should handle multiple formats for releaseTypeScope: releaseTypeScope, string 1`] = `
+{
+  "commitFiles": "<execSync>["git add ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md && git commit ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md -m \\"chore(release): undefined\\""]</execSync>",
+  "getReleaseCommit": "<execSync>["git log --grep=\\"chore(release)\\" --pretty=oneline -1"]</execSync>",
+}
+`;
