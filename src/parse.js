@@ -1,15 +1,15 @@
-const { generalCommitType, conventionalCommitType } = require('./global');
+const { generalCommitType, conventionalCommitType, OPTIONS } = require('./global');
 const { getGit, getReleaseCommit, getRemoteUrls } = require('./cmds');
 
 /**
  * Aggregate conventional commit types. Optionally allow non-conventional commit types.
  *
- * @param {object} params
- * @param {boolean} params.isAllowNonConventionalCommits
+ * @param {object} options
+ * @param {boolean} options.isAllowNonConventionalCommits
  * @return {{fix: {description: string, title: string, value: string}, chore: {description: string,
  *     title: string, value: string}, feat: {description: string, title: string, value: string}}}
  */
-const getCommitType = ({ isAllowNonConventionalCommits } = {}) => ({
+const getCommitType = ({ isAllowNonConventionalCommits } = OPTIONS) => ({
   ...conventionalCommitType,
   ...(isAllowNonConventionalCommits && generalCommitType)
 });
@@ -17,9 +17,10 @@ const getCommitType = ({ isAllowNonConventionalCommits } = {}) => ({
 /**
  * In the current context, get the first and last commits based on the last release commit message.
  *
- * @param {object} options
- * @param {Function} options.getGit
- * @return {{last: string, first: string}}
+ * @param {object} settings
+ * @param {Function} settings.getGit
+ * @param {Function} settings.getReleaseCommit
+ * @returns {{last: string, first: string}}
  */
 const getComparisonCommitHashes = ({
   getGit: getAliasGit = getGit,
@@ -42,16 +43,13 @@ const getComparisonCommitHashes = ({
  * Parse a commit message
  *
  * @param message
- * @param {object} options
- * @param {Function} options.getCommitType
- * @param {boolean} options.isAllowNonConventionalCommits
- * @returns {{description: string, type: string, prNumber: string, hash: *}|{scope: string, description: string, type: string, prNumber: string, hash: string, typeScope: string}}
+ * @param {object} settings
+ * @param {Function} settings.getCommitType
+ * @returns {{description: string, type: string, prNumber: string, hash: *}|{scope: string, description: string,
+ *     type: string, prNumber: string, hash: string, typeScope: string}}
  */
-const parseCommitMessage = (
-  message,
-  { getCommitType: getAliasCommitType = getCommitType, isAllowNonConventionalCommits } = {}
-) => {
-  const commitType = getAliasCommitType({ isAllowNonConventionalCommits });
+const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCommitType } = {}) => {
+  const commitType = getAliasCommitType();
   let output;
 
   const [hashTypeScope, ...descriptionEtAll] = message.trim().split(/:/);
@@ -93,18 +91,15 @@ const parseCommitMessage = (
  * @param {string} params.description
  * @param {string|number|*} params.prNumber
  * @param {string} params.hash
- * @param {object} options
- * @param {string} options.commitPath
- * @param {Function} options.getRemoteUrls
- * @param {string} options.prPath
- * @param {string} options.remoteUrl
+ * @param {object} settings
+ * @param {Function} settings.getRemoteUrls
  * @returns {string}
  */
 const formatChangelogMessage = (
   { scope, description, prNumber, hash } = {},
-  { commitPath, getRemoteUrls: getAliasRemoteUrls = getRemoteUrls, prPath, remoteUrl } = {}
+  { getRemoteUrls: getAliasRemoteUrls = getRemoteUrls } = {}
 ) => {
-  const { commitUrl, prUrl } = getAliasRemoteUrls({ commitPath, prPath, remoteUrl });
+  const { commitUrl, prUrl } = getAliasRemoteUrls();
   let output;
 
   const updatedScope = (scope && `**${scope}**`) || '';
@@ -127,35 +122,26 @@ const formatChangelogMessage = (
 /**
  * Return an object of commit groupings based on "conventional-commit-types"
  *
- * @param {object} params
- * @param {string} params.commitPath
- * @param {string} params.prPath
- * @param {string} params.remoteUrl
- * @param {object} options
- * @param {Function} options.getCommitType
- * @param {Function} options.getGit
- * @param {Function} options.formatChangelogMessage
- * @param {boolean} options.isAllowNonConventionalCommits
- * @param {Function} options.parseCommitMessage
+ * @param {object} settings
+ * @param {Function} settings.getCommitType
+ * @param {Function} settings.getGit
+ * @param {Function} settings.formatChangelogMessage
+ * @param {Function} settings.parseCommitMessage
  * @returns {{'Bug Fixes': {commits: string[], title: string}, Chores: {commits: string[],
  *     title: string}, Features: {commits: string[], title: string}}}
  */
-const parseCommits = (
-  { commitPath, prPath, remoteUrl } = {},
-  {
-    getCommitType: getAliasCommitType = getCommitType,
-    getGit: getAliasGit = getGit,
-    formatChangelogMessage: formatAliasChangelogMessage = formatChangelogMessage,
-    isAllowNonConventionalCommits = false,
-    parseCommitMessage: parseAliasCommitMessage = parseCommitMessage
-  } = {}
-) => {
-  const commitType = getAliasCommitType({ isAllowNonConventionalCommits });
+const parseCommits = ({
+  getCommitType: getAliasCommitType = getCommitType,
+  getGit: getAliasGit = getGit,
+  formatChangelogMessage: formatAliasChangelogMessage = formatChangelogMessage,
+  parseCommitMessage: parseAliasCommitMessage = parseCommitMessage
+} = {}) => {
+  const commitType = getAliasCommitType();
 
   return getAliasGit()
     .trim()
     .split(/\n/g)
-    .map(message => parseAliasCommitMessage(message, { isAllowNonConventionalCommits }))
+    .map(message => parseAliasCommitMessage(message))
     .filter(obj => obj.type in commitType)
     .map(obj => ({ ...obj, typeLabel: obj.type }))
     .reduce((groups, { typeLabel, ...messageProps }) => {
@@ -168,9 +154,7 @@ const parseCommits = (
         };
       }
 
-      updatedGroups[typeLabel].commits.push(
-        formatAliasChangelogMessage({ typeLabel, ...messageProps }, { commitPath, prPath, remoteUrl })
-      );
+      updatedGroups[typeLabel].commits.push(formatAliasChangelogMessage({ typeLabel, ...messageProps }));
 
       return updatedGroups;
     }, {});
@@ -181,20 +165,17 @@ const parseCommits = (
  *
  * @param {{ feat: { commits: Array }, refactor: { commits: Array }, fix: { commits: Array } }} parsedCommits
  * @param {object} options
- * @param {Function} options.getCommitType
- * @param {boolean} options.isAllowNonConventionalCommits
  * @param {boolean} options.isOverrideVersion
+ * @param {object} settings
+ * @param {Function} settings.getCommitType
  * @returns {{bump: ('major'|'minor'|'patch'), weight: number}}
  */
 const semverBump = (
   parsedCommits = {},
-  {
-    getCommitType: getAliasCommitType = getCommitType,
-    isAllowNonConventionalCommits = false,
-    isOverrideVersion = false
-  } = {}
+  { isOverrideVersion = false } = OPTIONS,
+  { getCommitType: getAliasCommitType = getCommitType } = {}
 ) => {
-  const commitType = getAliasCommitType({ isAllowNonConventionalCommits });
+  const commitType = getAliasCommitType();
   let weight = 0;
 
   Object.entries(parsedCommits).forEach(([key, { commits = [] }]) => {

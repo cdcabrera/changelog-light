@@ -2,14 +2,13 @@ const { execSync } = require('child_process');
 const { join } = require('path');
 const semverClean = require('semver/functions/clean');
 const semverInc = require('semver/functions/inc');
-const { color } = require('./global');
-const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
+const { color, OPTIONS } = require('./global');
 /**
  * Execute a command
  *
  * @param {string} cmd
- * @param {object} options
- * @param {string} options.errorMessage
+ * @param {object} settings
+ * @param {string} settings.errorMessage
  * @returns {string}
  */
 const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
@@ -33,7 +32,7 @@ const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
  * @param {string} options.releaseTypeScope
  * @returns {string}
  */
-const commitFiles = (version, { contextPath = CONTEXT_PATH, releaseTypeScope = 'chore(release)' } = {}) =>
+const commitFiles = (version, { contextPath, releaseTypeScope = 'chore(release)' } = OPTIONS) =>
   runCmd(
     `git add ${join(contextPath, 'package.json')} ${join(contextPath, 'CHANGELOG.md')} && git commit ${join(
       contextPath,
@@ -49,7 +48,7 @@ const commitFiles = (version, { contextPath = CONTEXT_PATH, releaseTypeScope = '
  * @param {string} options.contextPath
  * @returns {*}
  */
-const getCurrentVersion = ({ contextPath = CONTEXT_PATH } = {}) => {
+const getCurrentVersion = ({ contextPath } = OPTIONS) => {
   const { version } = require(join(contextPath, 'package.json'));
   return version;
 };
@@ -58,23 +57,23 @@ const getCurrentVersion = ({ contextPath = CONTEXT_PATH } = {}) => {
  * Get last release commit hash
  *
  * @param {object} options
- * @param {string} releaseTypeScope
+ * @param {string} options.releaseTypeScope
  * @returns {string}
  */
-const getReleaseCommit = ({ releaseTypeScope = 'chore(release)' } = {}) =>
+const getReleaseCommit = ({ releaseTypeScope = 'chore(release)' } = OPTIONS) =>
   runCmd(`git log --grep="${releaseTypeScope}" --pretty=oneline -1`, 'Skipping release commit check... {0}');
 
 /**
  * Get the repositories remote
  *
- * @param {object} params
- * @param {string} params.commitPath
- * @param {string} params.comparePath
- * @param {string} params.prPath
- * @param {string} params.remoteUrl
+ * @param {object} options
+ * @param {string} options.commitPath
+ * @param {string} options.comparePath
+ * @param {string} options.prPath
+ * @param {string} options.remoteUrl
  * @returns {{baseUrl: string, prUrl, commitUrl}}
  */
-const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = {}) => {
+const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = OPTIONS) => {
   const setUrl = remoteUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
   let updatedUrl;
   let commitUrl;
@@ -108,8 +107,8 @@ const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = {}) => {
 /**
  * Return output for a range of commits from a hash
  *
- * @param {object} options
- * @param {Function} options.getReleaseCommit
+ * @param {object} settings
+ * @param {Function} settings.getReleaseCommit
  * @returns {string}
  */
 const getGit = ({ getReleaseCommit: getAliasReleaseCommit = getReleaseCommit } = {}) => {
@@ -125,10 +124,11 @@ const getGit = ({ getReleaseCommit: getAliasReleaseCommit = getReleaseCommit } =
 /**
  * Determine if override version is valid semver and return
  *
- * @param {string|*} version
+ * @param {object} options
+ * @param {string|*} options.overrideVersion
  * @return {{clean: string, version: string}}
  */
-const getOverrideVersion = version => {
+const getOverrideVersion = ({ overrideVersion: version } = OPTIONS) => {
   let updatedVersion;
   let clean;
 
@@ -152,8 +152,8 @@ const getOverrideVersion = version => {
  * Set package.json version using npm version
  *
  * @param {'major'|'minor'|'patch'|*} versionBump
- * @param {object} options
- * @param {Function} options.getCurrentVersion
+ * @param {object} settings
+ * @param {Function} settings.getCurrentVersion
  * @returns {string}
  */
 const getVersion = (versionBump, { getCurrentVersion: getAliasCurrentVersion = getCurrentVersion } = {}) => {

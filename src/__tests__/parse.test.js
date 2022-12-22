@@ -7,6 +7,7 @@ const {
   semverBump,
   getComparisonCommitHashes
 } = require('../parse');
+const { OPTIONS } = require('../global');
 
 describe('Parse', () => {
   it('should return commit types', () => {
@@ -81,15 +82,22 @@ describe('Parse', () => {
       12345dd312345d421231231312312345dca11235 Initial commit
     `;
 
-    const commitObj = parseCommits(undefined, { getGit: () => commitLog });
-    const urlPathObj = parseCommits(
-      { commitPath: 'sit', prPath: 'dolor', remoteUrl: 'https://localhost/lorem/ipsum' },
-      { getGit: () => commitLog }
-    );
-    const generalCommitsObj = parseCommits(
-      { remoteUrl: 'https://localhost/lorem/ipsum' },
-      { getGit: () => commitLog, isAllowNonConventionalCommits: true }
-    );
+    const commitObj = parseCommits({ getGit: () => commitLog });
+
+    const { mockClear: urlPathObjClear } = mockObjectProperty(OPTIONS, {
+      commitPath: 'sit',
+      prPath: 'dolor',
+      remoteUrl: 'https://localhost/lorem/ipsum'
+    });
+    const urlPathObj = parseCommits({ getGit: () => commitLog });
+    urlPathObjClear();
+
+    const { mockClear: generalCommitsObjClear } = mockObjectProperty(OPTIONS, {
+      isAllowNonConventionalCommits: true,
+      remoteUrl: 'https://localhost/lorem/ipsum'
+    });
+    const generalCommitsObj = parseCommits({ getGit: () => commitLog });
+    generalCommitsObjClear();
 
     expect({
       default: parseCommits(),

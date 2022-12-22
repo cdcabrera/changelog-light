@@ -1,8 +1,8 @@
 const { existsSync, readFileSync, writeFileSync } = require('fs');
 const { join } = require('path');
+const { OPTIONS } = require('./global');
 const { getRemoteUrls, runCmd } = require('./cmds');
 const { getComparisonCommitHashes } = require('./parse');
-const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
 
 /**
  * ToDo: syntax for the comparison can include the use of caret
@@ -14,31 +14,31 @@ const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
  * @param {object} parsedCommits
  * @param {*|string} packageVersion
  * @param {object} options
- * @param {string} options.fallbackPackageVersion
- * @param {string} options.filePath
- * @param {string} options.headerMd
+ * @param {string} options.date
  * @param {boolean} options.isDryRun
+ * @param {object} settings
+ * @param {string} settings.fallbackPackageVersion
+ * @param {string} settings.filePath
+ * @param {string} settings.headerMd
+
  * @returns {string}
  */
 const updateChangelog = (
   parsedCommits = {},
   packageVersion,
+  { date, isDryRun = false } = OPTIONS,
   {
-    comparePath,
-    date,
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
-    filePath = join(CONTEXT_PATH, `/CHANGELOG.md`),
+    filePath = join(OPTIONS.contextPath, `/CHANGELOG.md`),
     getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
     getRemoteUrls: getAliasRemoteUrls = getRemoteUrls,
-    headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`,
-    isDryRun = false,
-    remoteUrl
+    headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`
   } = {}
 ) => {
   const systemTimestamp = ((date && new Date(date)) || new Date()).toLocaleDateString('fr-CA', {
     timeZone: 'UTC'
   });
-  const { compareUrl } = getAliasRemoteUrls({ comparePath, remoteUrl });
+  const { compareUrl } = getAliasRemoteUrls();
   let header = headerMd;
   let version = fallbackPackageVersion;
   let body = '';
@@ -86,7 +86,7 @@ const updateChangelog = (
  * @param {boolean} options.isDryRun
  * @returns {string}
  */
-const updatePackage = (versionBump, { isDryRun = false } = {}) => {
+const updatePackage = (versionBump, { isDryRun = false } = OPTIONS) => {
   const output = `Version bump: ${versionBump}`;
 
   if (!isDryRun) {

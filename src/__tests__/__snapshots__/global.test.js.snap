@@ -2,6 +2,10 @@
 
 exports[`Global should return specific properties: specific properties 1`] = `
 {
+  "OPTIONS": {
+    "_set": undefined,
+    "contextPath": "../src/__fixtures__",
+  },
   "color": {
     "BLACK": "[30m",
     "BLUE": "[34m",
@@ -79,5 +83,16 @@ exports[`Global should return specific properties: specific properties 1`] = `
       "value": "general",
     },
   },
+}
+`;
+
+exports[`Global should set a one-time mutable OPTIONS object: immutable 1`] = `
+{
+  "OPTIONS": {
+    "contextPath": "../src/__fixtures__",
+    "dolor": "magna",
+    "lorem": "ipsum",
+  },
+  "isFrozen": true,
 }
 `;

@@ -12,7 +12,7 @@ describe('Files', () => {
       12345dd312345d421231231312312345dca11235 Initial commit
     `;
 
-    const commitObj = parseCommits(undefined, { getGit: () => commitLog });
+    const commitObj = parseCommits({ getGit: () => commitLog });
     expect(updateChangelog(commitObj, undefined, { date: '2022-10-01' })).toMatchSnapshot('changelog');
   });
 
@@ -29,18 +29,24 @@ describe('Files', () => {
       compareUrl: 'https://localhost/lorem/ipsum/comparmock/'
     };
 
-    const commitObj = parseCommits(undefined, { getGit: () => commitLog });
+    const commitObj = parseCommits({ getGit: () => commitLog });
     const comparisonObjNoReleaseCommit = getComparisonCommitHashes({
       getGit: () => commitLog,
       getReleaseCommit: () => ''
     });
 
     expect(
-      updateChangelog(commitObj, '1.0.0', {
-        date: '2022-10-01',
-        getComparisonCommitHashes: () => comparisonObjNoReleaseCommit,
-        getRemoteUrls: () => urlObj
-      })
+      updateChangelog(
+        commitObj,
+        '1.0.0',
+        {
+          date: '2022-10-01'
+        },
+        {
+          getComparisonCommitHashes: () => comparisonObjNoReleaseCommit,
+          getRemoteUrls: () => urlObj
+        }
+      )
     ).toMatchSnapshot('urls and paths, no release commit');
 
     const comparisonObjReleaseCommit = getComparisonCommitHashes({
@@ -49,11 +55,17 @@ describe('Files', () => {
     });
 
     expect(
-      updateChangelog(commitObj, '1.0.0', {
-        date: '2022-10-01',
-        getComparisonCommitHashes: () => comparisonObjReleaseCommit,
-        getRemoteUrls: () => urlObj
-      })
+      updateChangelog(
+        commitObj,
+        '1.0.0',
+        {
+          date: '2022-10-01'
+        },
+        {
+          getComparisonCommitHashes: () => comparisonObjReleaseCommit,
+          getRemoteUrls: () => urlObj
+        }
+      )
     ).toMatchSnapshot('urls and paths, release commit');
   });
 
