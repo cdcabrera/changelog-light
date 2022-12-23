@@ -2,7 +2,7 @@
 
 const yargs = require('yargs');
 const packageJson = require('../package');
-const { commitChangelog } = require('../src');
+const { commitChangelog, OPTIONS } = require('../src');
 
 /**
  * Setup yargs
@@ -77,30 +77,32 @@ const {
     type: 'string'
   }).argv;
 
+/**
+ * Set global OPTIONS
+ *
+ * @type {{comparePath: string, date: string, commitPath: string, isOverrideVersion: boolean,
+ *     isAllowNonConventionalCommits: boolean, isDryRun: boolean,
+ *     remoteUrl: string, prPath: string, isCommit: boolean, overrideVersion: string|*}}
+ * @private
+ */
+OPTIONS._set = {
+  commitPath,
+  comparePath,
+  date,
+  isAllowNonConventionalCommits,
+  isDryRun,
+  isCommit,
+  isOverrideVersion: overrideVersion !== undefined,
+  overrideVersion,
+  prPath,
+  remoteUrl
+};
+
+/**
+ * If testing stop here, otherwise continue.
+ */
 if (process.env.NODE_ENV === 'test') {
-  process.stdout.write(
-    JSON.stringify({
-      commitPath,
-      comparePath,
-      date,
-      isAllowNonConventionalCommits,
-      isDryRun,
-      isCommit,
-      overrideVersion,
-      prPath,
-      remoteUrl
-    })
-  );
+  process.stdout.write(JSON.stringify(OPTIONS));
 } else {
-  commitChangelog({
-    commitPath,
-    comparePath,
-    date,
-    isAllowNonConventionalCommits,
-    isDryRun,
-    isCommit,
-    overrideVersion,
-    prPath,
-    remoteUrl
-  });
+  commitChangelog();
 }

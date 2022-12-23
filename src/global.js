@@ -26,10 +26,10 @@ const color = {
  * @type {string}
  * @private
  */
-const contextPath = (global._COMMIT_CHANGELOG_CONTEXT_PATH =
+const contextPath =
   (process.env.NODE_ENV === 'test' && join('..', 'src', '__fixtures__')) ||
   (process.env.NODE_ENV === 'development' && join(__dirname, './__fixtures__')) ||
-  process.cwd());
+  process.cwd();
 
 /**
  * Custom catch all commit type for use with the "isAllowNonConventionalCommits"
@@ -67,4 +67,18 @@ const conventionalCommitType = (types => {
   return updatedTypes;
 })(commitTypes.types);
 
-module.exports = { color, contextPath, conventionalCommitType, generalCommitType };
+/**
+ * Global options/settings. One time _set, then freeze.
+ *
+ * @type {{_set: *}}
+ */
+const OPTIONS = {
+  contextPath,
+  set _set(obj) {
+    Object.entries(obj).forEach(([key, value]) => (this[key] = value));
+    delete this._set;
+    Object.freeze(this);
+  }
+};
+
+module.exports = { color, contextPath, conventionalCommitType, generalCommitType, OPTIONS };

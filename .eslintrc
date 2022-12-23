@@ -15,16 +15,16 @@
       "plugins": ["jest"],
       "extends": [
         "plugin:jest/recommended"
-      ],
-      "globals": {
-        "_COMMIT_CHANGELOG_CONTEXT_ROOT": "readonly",
-        "generateFixture": "readonly",
-        "setMockResourceFunctions": "readonly"
-      }
+      ]
     }
   ],
   "parserOptions": {
     "ecmaVersion": 2022
+  },
+  "globals": {
+    "generateFixture": "readonly",
+    "mockObjectProperty": "readonly",
+    "setMockResourceFunctions": "readonly"
   },
   "rules": {
     "arrow-parens": ["error", "as-needed"],

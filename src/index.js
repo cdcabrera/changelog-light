@@ -1,45 +1,47 @@
-const { color } = require('./global');
+const { color, OPTIONS } = require('./global');
 const { commitFiles, getOverrideVersion, getVersion } = require('./cmds');
 const { parseCommits, semverBump } = require('./parse');
 const { updateChangelog, updatePackage } = require('./files');
-const { _COMMIT_CHANGELOG_CONTEXT_PATH: CONTEXT_PATH } = global;
 
 /**
  * Set changelog and package.
  *
- * @param {object} params
- * @param {string} params.commitPath
- * @param {string} params.comparePath
- * @param {string} params.contextPath
- * @param {string} params.date
- * @param {boolean} params.isCommit
- * @param {boolean} params.isDryRun
- * @param {string} params.overrideVersion
- * @param {string} params.prPath
- * @param {string} params.remoteUrl
+ * @param {object} options
+ * @param {string} options.contextPath
+ * @param {boolean} options.isCommit
+ * @param {boolean} options.isDryRun
+ * @param {string} options.overrideVersion
+ * @param {object} settings
+ * @param {Function} settings.commitFiles
+ * @param {Function} settings.getOverrideVersion
+ * @param {Function} settings.getVersion
+ * @param {Function} settings.parseCommits
+ * @param {Function} settings.semverBump
+ * @param {Function} settings.updateChangelog
+ * @param {Function} settings.updatePackage
+ * @returns {{parsedCommits: {"Bug Fixes": {commits: string[], title: string}, Chores: {commits: string[],
+ *     title: string}, Features: {commits: string[], title: string}}, semverBump: ("major"|"minor"|"patch"),
+ *     package: string, versionClean: *, changelog: string, semverWeight: number, version: *}}
  */
-const commitChangelog = ({
-  commitPath,
-  comparePath,
-  contextPath = CONTEXT_PATH,
-  date,
-  isCommit,
-  isDryRun,
-  isAllowNonConventionalCommits,
-  overrideVersion,
-  prPath,
-  remoteUrl
-} = {}) => {
+const commitChangelog = (
+  { contextPath, isCommit, isDryRun, overrideVersion } = OPTIONS,
+  {
+    commitFiles: commitAliasFiles = commitFiles,
+    getOverrideVersion: getAliasOverrideVersion = getOverrideVersion,
+    getVersion: getAliasVersion = getVersion,
+    parseCommits: parseAliasCommits = parseCommits,
+    semverBump: semverAliasBump = semverBump,
+    updateChangelog: updateAliasChangelog = updateChangelog,
+    updatePackage: updateAliasPackage = updatePackage
+  } = {}
+) => {
   if (process.env.NODE_ENV !== 'test') {
     process.chdir(contextPath);
   }
 
-  const parsedCommits = parseCommits({ commitPath, prPath, remoteUrl }, { isAllowNonConventionalCommits });
-  const { bump, weight } = semverBump(parsedCommits, {
-    isAllowNonConventionalCommits,
-    isOverrideVersion: overrideVersion !== undefined
-  });
-  const { clean: cleanVersion, version } = (overrideVersion && getOverrideVersion(overrideVersion)) || getVersion(bump);
+  const parsedCommits = parseAliasCommits();
+  const { bump, weight } = semverAliasBump(parsedCommits);
+  const { clean: cleanVersion, version } = (overrideVersion && getAliasOverrideVersion()) || getAliasVersion(bump);
 
   if (isDryRun) {
     console.info(
@@ -48,11 +50,11 @@ const commitChangelog = ({
     );
   }
 
-  const changelog = updateChangelog(parsedCommits, cleanVersion, { comparePath, date, isDryRun, remoteUrl });
-  const packageJSON = updatePackage((overrideVersion && cleanVersion) || bump, { isDryRun });
+  const changelog = updateAliasChangelog(parsedCommits, cleanVersion);
+  const packageJSON = updateAliasPackage((overrideVersion && cleanVersion) || bump);
 
   if (isCommit && !isDryRun) {
-    commitFiles(cleanVersion);
+    commitAliasFiles(cleanVersion);
   }
 
   if (isDryRun) {
@@ -70,4 +72,4 @@ const commitChangelog = ({
   };
 };
 
-module.exports = { commitChangelog };
+module.exports = { commitChangelog, OPTIONS };
