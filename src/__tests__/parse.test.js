@@ -55,12 +55,16 @@ describe('Parse', () => {
     const commitMessageNonCC = '1f12345b597123453031234555b6d25574ccacee Initial commit';
 
     expect({
-      refactor: formatChangelogMessage(parseCommitMessage(commitMessageRefactor), {
-        getRemoteUrls: () => ({
-          commitUrl: 'https://localhost/lorem/ipsum/commitsmock/',
-          prUrl: 'https://localhost/lorem/ipsum/prmock/'
-        })
-      }),
+      refactor: formatChangelogMessage(
+        parseCommitMessage(commitMessageRefactor),
+        {},
+        {
+          getRemoteUrls: () => ({
+            commitUrl: 'https://localhost/lorem/ipsum/commitsmock/',
+            prUrl: 'https://localhost/lorem/ipsum/prmock/'
+          })
+        }
+      ),
       feat: formatChangelogMessage(parseCommitMessage(commitMessageFeature)),
       general: formatChangelogMessage(parseCommitMessage(commitMessageNonCC))
     }).toMatchSnapshot('formatChangelogMessages');
@@ -82,8 +86,10 @@ describe('Parse', () => {
       12345dd312345d421231231312312345dca11235 Initial commit
     `;
 
+    // Basic
     const commitObj = parseCommits({ getGit: () => commitLog });
 
+    // Url path
     const { mockClear: urlPathObjClear } = mockObjectProperty(OPTIONS, {
       commitPath: 'sit',
       prPath: 'dolor',
@@ -92,6 +98,17 @@ describe('Parse', () => {
     const urlPathObj = parseCommits({ getGit: () => commitLog });
     urlPathObjClear();
 
+    // No markdown links
+    const { mockClear: basicCommitsNoMarkdownLinksObjClear } = mockObjectProperty(OPTIONS, {
+      commitPath: 'sit',
+      isBasic: true,
+      prPath: 'dolor',
+      remoteUrl: 'https://localhost/lorem/ipsum'
+    });
+    const basicCommitsNoMarkdownLinksObj = parseCommits({ getGit: () => commitLog });
+    basicCommitsNoMarkdownLinksObjClear();
+
+    // Allow general commit messages
     const { mockClear: generalCommitsObjClear } = mockObjectProperty(OPTIONS, {
       isAllowNonConventionalCommits: true,
       remoteUrl: 'https://localhost/lorem/ipsum'
@@ -103,6 +120,7 @@ describe('Parse', () => {
       default: parseCommits(),
       commits: commitObj,
       urls: urlPathObj,
+      basicCommitsNoMarkdownLinks: basicCommitsNoMarkdownLinksObj,
       generalCommits: generalCommitsObj
     }).toMatchSnapshot('parsed commits');
     expect({ default: semverBump(), commits: semverBump(commitObj) }).toMatchSnapshot('semver bump');

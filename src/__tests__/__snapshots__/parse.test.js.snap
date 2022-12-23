@@ -24,6 +24,54 @@ exports[`Parse should get the first, last commits: first and last, release commi
 
 exports[`Parse should parse a commit listing using conventional commit types and semver: parsed commits 1`] = `
 {
+  "basicCommitsNoMarkdownLinks": {
+    "build": {
+      "commits": [
+        "* **deps** bump codecov/codecov-action from 1.1.0 to 1.1.1  (#19) (fe7d312)",
+        "* **deps** bump actions/cache from 1 to 2  (#12) (112345c)",
+        "* **deps** bump actions/checkout from 1 to 2  (#11) (512345d)",
+        "* **deps** aggregated checks, updates  (#10) (12345d7)",
+        "* **deps** bump actions/github-script from 5 to 6  (#9) (1412345)",
+      ],
+      "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+      "title": "Builds",
+      "value": "build",
+    },
+    "chore": {
+      "commits": [
+        "* **build** npm packages  (#15) (e5c456e)",
+        "* **build** npm packages  (#15) (6f0f55d)",
+      ],
+      "description": "Other changes that don't modify src or test files",
+      "title": "Chores",
+      "value": "chore",
+    },
+    "feat": {
+      "commits": [
+        "* **dolor** issues/20 sit enhancements  (#8) (53a1234)",
+      ],
+      "description": "A new feature",
+      "title": "Features",
+      "value": "feat",
+    },
+    "fix": {
+      "commits": [
+        "* **build** npm packages  (#18) (6112345)",
+        "* **build** eslint, jsdoc updates  (#16) (d123453)",
+      ],
+      "description": "A bug fix",
+      "title": "Bug Fixes",
+      "value": "fix",
+    },
+    "refactor": {
+      "commits": [
+        "* **file** lorem updates  (#8) (1f12345)",
+      ],
+      "description": "A code change that neither fixes a bug nor adds a feature",
+      "title": "Code Refactoring",
+      "value": "refactor",
+    },
+  },
   "commits": {
     "build": {
       "commits": [

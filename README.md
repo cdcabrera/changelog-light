@@ -34,8 +34,10 @@ or Yarn
   Generate a CHANGELOG.md with conventional commit types.
 
   Usage: changelog [options]
-  
+
   Options:
+    -b, --basic         Keep updates to CHANGELOG.md basic, skip all markdown link
+                        syntax                          [boolean] [default: false]
     -c, --commit        Commit CHANGELOG.md and package.json with a release commit
                                                          [boolean] [default: true]
     -d, --date          CHANGELOG.md release date in the form of a valid date

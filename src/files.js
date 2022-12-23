@@ -15,6 +15,7 @@ const { getComparisonCommitHashes } = require('./parse');
  * @param {*|string} packageVersion
  * @param {object} options
  * @param {string} options.date
+ * @param {boolean} options.isBasic
  * @param {boolean} options.isDryRun
  * @param {object} settings
  * @param {string} settings.fallbackPackageVersion
@@ -26,7 +27,7 @@ const { getComparisonCommitHashes } = require('./parse');
 const updateChangelog = (
   parsedCommits = {},
   packageVersion,
-  { date, isDryRun = false } = OPTIONS,
+  { date, isBasic = false, isDryRun = false } = OPTIONS,
   {
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     filePath = join(OPTIONS.contextPath, `/CHANGELOG.md`),
@@ -58,7 +59,7 @@ const updateChangelog = (
   if (packageVersion) {
     version = packageVersion;
 
-    if (compareUrl) {
+    if (!isBasic && compareUrl) {
       const { first, last } = getAliasComparisonCommitHashes();
       if (first && last) {
         version = `[${version}](${compareUrl}${first}...${last})`;
