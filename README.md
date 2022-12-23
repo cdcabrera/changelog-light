@@ -36,33 +36,39 @@ or Yarn
   Usage: changelog [options]
 
   Options:
-    -b, --basic         Keep updates to CHANGELOG.md basic, skip all markdown link
-                        syntax                          [boolean] [default: false]
-    -c, --commit        Commit CHANGELOG.md and package.json with a release commit
-                                                         [boolean] [default: true]
-    -d, --date          CHANGELOG.md release date in the form of a valid date
-                        string. Uses system new Date([your date])
-                                    [string] [default: "2022-10-13T17:51:29.464Z"]
-    -n, --non-cc        Allow non-conventional commits to apply a semver weight
-                        and appear in CHANGELOG.md under a general type
-                        description.                    [boolean] [default: false]
-    -o, --override      Use a version you define.                         [string]
-    -r, --dry-run       Generate CHANGELOG.md sample output
+    -b, --basic            Keep updates to CHANGELOG.md basic, skip all markdown
+                           link syntax                  [boolean] [default: false]
+    -c, --commit           Commit CHANGELOG.md and package.json with a release
+                           commit                        [boolean] [default: true]
+    -d, --date             CHANGELOG.md release date in the form of a valid date
+                           string. Uses system new Date([your date])
+                                    [string] [default: "2022-12-17T02:28:23.456Z"]
+    -n, --non-cc           Allow non-conventional commits to apply a semver weight
+                           and appear in CHANGELOG.md under a general type
+                           description.                 [boolean] [default: false]
+    -o, --override         Use a version you define.                      [string]
+    -r, --dry-run          Generate CHANGELOG.md sample output
                                                         [boolean] [default: false]
-        --commit-path   CHANGELOG.md path used for commits. This will be "joined"
-                        with "remote-url". Defaults to the commits path for
-                        GitHub.                      [string] [default: "commit/"]
-        --compare-path  CHANGELOG.md path used for version comparison. This will
-                        be "joined" with "remote-url". Defaults to the comparison
-                        path for GitHub.            [string] [default: "compare/"]
-        --pr-path       CHANGELOG.md path used for PRs/MRs. This will be "joined"
-                        with "remote-url". Defaults to the PR path for GitHub.
-                                                       [string] [default: "pull/"]
-        --remote-url    Git remote get-url for updating CHANGELOG.md base urls.
-                        This should start with "http". Defaults to "$ git remote
-                        get-url origin"                                   [string]
-    -h, --help          Show help                                        [boolean]
-    -v, --version       Show version number                              [boolean]
+        --commit-path      CHANGELOG.md path used for commits. This will be
+                           "joined" with "remote-url". Defaults to the commits
+                           path for GitHub.          [string] [default: "commit/"]
+        --compare-path     CHANGELOG.md path used for version comparison. This
+                           will be "joined" with "remote-url". Defaults to the
+                           comparison path for GitHub.
+                                                    [string] [default: "compare/"]
+        --pr-path          CHANGELOG.md path used for PRs/MRs. This will be
+                           "joined" with "remote-url". Defaults to the PR path for
+                           GitHub.                     [string] [default: "pull/"]
+        --release-message  A list of prefix release scope commit messages. First
+                           list item is the new commit message prefix, the second
+                           list item searches for the prior release message prefix
+                           for range. [write new, search old]
+                                               [array] [default: "chore(release)"]
+        --remote-url       Git remote get-url for updating CHANGELOG.md base urls.
+                           This should start with "http". Defaults to "$ git
+                           remote get-url origin"                         [string]
+    -h, --help             Show help                                     [boolean]
+    -v, --version          Show version number                           [boolean]
 ```
 ### Using within a project
 Using `changelog-light` within a project requires one primary thing... formatting your commit messages using [conventional commit types](https://www.conventionalcommits.org)

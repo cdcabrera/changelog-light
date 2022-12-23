@@ -17,6 +17,7 @@ const {
   'non-cc': isAllowNonConventionalCommits,
   override: overrideVersion,
   'pr-path': prPath,
+  'release-message': releaseTypeScope,
   'remote-url': remoteUrl
 } = yargs
   .usage('Generate a CHANGELOG.md with conventional commit types.\n\nUsage: changelog [options]')
@@ -78,6 +79,12 @@ const {
       'CHANGELOG.md path used for PRs/MRs. This will be "joined" with "remote-url". Defaults to the PR path for GitHub.',
     type: 'string'
   })
+  .option('release-message', {
+    default: 'chore(release)',
+    describe:
+      'A list of prefix release scope commit messages. First list item is the new commit message prefix, the second list item searches for the prior release message prefix for range. [write new, search old]',
+    type: 'array'
+  })
   .option('remote-url', {
     describe:
       'Git remote get-url for updating CHANGELOG.md base urls. This should start with "http". Defaults to "$ git remote get-url origin"',
@@ -88,8 +95,9 @@ const {
  * Set global OPTIONS
  *
  * @type {{comparePath: string, date: string, commitPath: string, isOverrideVersion: boolean,
- *     isAllowNonConventionalCommits: boolean, isDryRun: boolean, remoteUrl: string,
- *     prPath: string, isCommit: boolean, overrideVersion: string|*, isBasic: boolean}}
+ *     isAllowNonConventionalCommits: boolean, releaseTypeScope: string[], isDryRun: boolean,
+ *     remoteUrl: string, prPath: string, isCommit: boolean, overrideVersion: string|*,
+ *     isBasic: boolean}}
  * @private
  */
 OPTIONS._set = {
@@ -103,6 +111,7 @@ OPTIONS._set = {
   isOverrideVersion: overrideVersion !== undefined,
   overrideVersion,
   prPath,
+  releaseTypeScope,
   remoteUrl
 };
 

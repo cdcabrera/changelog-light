@@ -29,17 +29,20 @@ const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
  * @param {*|string} version
  * @param {object} options
  * @param {string} options.contextPath
- * @param {string} options.releaseTypeScope
+ * @param {string[]|string} options.releaseTypeScope
  * @returns {string}
  */
-const commitFiles = (version, { contextPath, releaseTypeScope = 'chore(release)' } = OPTIONS) =>
-  runCmd(
+const commitFiles = (version, { contextPath, releaseTypeScope } = OPTIONS) => {
+  const isArray = Array.isArray(releaseTypeScope);
+
+  return runCmd(
     `git add ${join(contextPath, 'package.json')} ${join(contextPath, 'CHANGELOG.md')} && git commit ${join(
       contextPath,
       'package.json'
-    )} ${join(contextPath, 'CHANGELOG.md')} -m "${releaseTypeScope}: ${version}"`,
+    )} ${join(contextPath, 'CHANGELOG.md')} -m "${(isArray && releaseTypeScope?.[0]) || releaseTypeScope}: ${version}"`,
     'Skipping release commit... {0}'
   );
+};
 
 /**
  * Get current package.json version
@@ -57,11 +60,19 @@ const getCurrentVersion = ({ contextPath } = OPTIONS) => {
  * Get last release commit hash
  *
  * @param {object} options
- * @param {string} options.releaseTypeScope
+ * @param {string[]|string} options.releaseTypeScope
  * @returns {string}
  */
-const getReleaseCommit = ({ releaseTypeScope = 'chore(release)' } = OPTIONS) =>
-  runCmd(`git log --grep="${releaseTypeScope}" --pretty=oneline -1`, 'Skipping release commit check... {0}');
+const getReleaseCommit = ({ releaseTypeScope } = OPTIONS) => {
+  const isArray = Array.isArray(releaseTypeScope);
+
+  return runCmd(
+    `git log --grep="${
+      (isArray && releaseTypeScope?.[1]) || (isArray && releaseTypeScope?.[0]) || releaseTypeScope
+    }" --pretty=oneline -1`,
+    'Skipping release commit check... {0}'
+  );
+};
 
 /**
  * Get the repositories remote
