@@ -1,8 +1,20 @@
 // spell-checker: disable
+const { join } = require('path');
 const { updateChangelog, updatePackage } = require('../files');
 const { getComparisonCommitHashes, parseCommits } = require('../parse');
+const { OPTIONS } = require('../global');
 
 describe('Files', () => {
+  const { mockClear } = mockObjectProperty(OPTIONS, {
+    date: new Date('2022-10-01').toISOString(),
+    changelogPath: join(OPTIONS.contextPath, 'CHANGELOG.md'),
+    packagePath: join(OPTIONS.contextPath, 'package.json')
+  });
+
+  afterAll(() => {
+    mockClear();
+  });
+
   it('should create, and update a basic CHANGELOG.md', () => {
     const commitLog = `
       1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)
@@ -13,7 +25,7 @@ describe('Files', () => {
     `;
 
     const commitObj = parseCommits({ getGit: () => commitLog });
-    expect(updateChangelog(commitObj, undefined, { date: '2022-10-01' })).toMatchSnapshot('changelog');
+    expect(updateChangelog(commitObj, undefined)).toMatchSnapshot('changelog');
   });
 
   it('should create, and update CHANGELOG.md version with a comparison urls', () => {
@@ -36,17 +48,10 @@ describe('Files', () => {
     });
 
     expect(
-      updateChangelog(
-        commitObj,
-        '1.0.0',
-        {
-          date: '2022-10-01'
-        },
-        {
-          getComparisonCommitHashes: () => comparisonObjNoReleaseCommit,
-          getRemoteUrls: () => urlObj
-        }
-      )
+      updateChangelog(commitObj, '1.0.0', undefined, {
+        getComparisonCommitHashes: () => comparisonObjNoReleaseCommit,
+        getRemoteUrls: () => urlObj
+      })
     ).toMatchSnapshot('urls and paths, no release commit');
 
     const comparisonObjReleaseCommit = getComparisonCommitHashes({
@@ -55,17 +60,10 @@ describe('Files', () => {
     });
 
     expect(
-      updateChangelog(
-        commitObj,
-        '1.0.0',
-        {
-          date: '2022-10-01'
-        },
-        {
-          getComparisonCommitHashes: () => comparisonObjReleaseCommit,
-          getRemoteUrls: () => urlObj
-        }
-      )
+      updateChangelog(commitObj, '1.0.0', undefined, {
+        getComparisonCommitHashes: () => comparisonObjReleaseCommit,
+        getRemoteUrls: () => urlObj
+      })
     ).toMatchSnapshot('urls and paths, release commit');
 
     expect(
@@ -73,7 +71,7 @@ describe('Files', () => {
         commitObj,
         '1.0.0',
         {
-          date: '2022-10-01',
+          ...OPTIONS,
           isBasic: true
         },
         {

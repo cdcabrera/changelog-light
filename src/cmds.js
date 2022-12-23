@@ -28,18 +28,18 @@ const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
  *
  * @param {*|string} version
  * @param {object} options
- * @param {string} options.contextPath
+ * @param {string} options.changelogPath
+ * @param {string} options.packagePath
  * @param {string[]|string} options.releaseTypeScope
  * @returns {string}
  */
-const commitFiles = (version, { contextPath, releaseTypeScope } = OPTIONS) => {
+const commitFiles = (version, { changelogPath, packagePath, releaseTypeScope } = OPTIONS) => {
   const isArray = Array.isArray(releaseTypeScope);
 
   return runCmd(
-    `git add ${join(contextPath, 'package.json')} ${join(contextPath, 'CHANGELOG.md')} && git commit ${join(
-      contextPath,
-      'package.json'
-    )} ${join(contextPath, 'CHANGELOG.md')} -m "${(isArray && releaseTypeScope?.[0]) || releaseTypeScope}: ${version}"`,
+    `git add ${packagePath} ${changelogPath} && git commit ${packagePath} ${changelogPath} -m "${
+      (isArray && releaseTypeScope?.[0]) || releaseTypeScope
+    }: ${version}"`,
     'Skipping release commit... {0}'
   );
 };
@@ -48,11 +48,11 @@ const commitFiles = (version, { contextPath, releaseTypeScope } = OPTIONS) => {
  * Get current package.json version
  *
  * @param {object} options
- * @param {string} options.contextPath
+ * @param {string} options.packagePath
  * @returns {*}
  */
-const getCurrentVersion = ({ contextPath } = OPTIONS) => {
-  const { version } = require(join(contextPath, 'package.json'));
+const getCurrentVersion = ({ packagePath } = OPTIONS) => {
+  const { version } = require(packagePath);
   return version;
 };
 

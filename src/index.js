@@ -7,6 +7,7 @@ const { updateChangelog, updatePackage } = require('./files');
  * Set changelog and package.
  *
  * @param {object} options
+ * @param {string} options.changelogFile
  * @param {string} options.contextPath
  * @param {boolean} options.isCommit
  * @param {boolean} options.isDryRun
@@ -24,7 +25,7 @@ const { updateChangelog, updatePackage } = require('./files');
  *     package: string, versionClean: *, changelog: string, semverWeight: number, version: *}}
  */
 const commitChangelog = (
-  { contextPath, isCommit, isDryRun, overrideVersion } = OPTIONS,
+  { changelogFile, contextPath, isCommit, isDryRun, overrideVersion } = OPTIONS,
   {
     commitFiles: commitAliasFiles = commitFiles,
     getOverrideVersion: getAliasOverrideVersion = getOverrideVersion,
@@ -46,7 +47,7 @@ const commitChangelog = (
   if (isDryRun) {
     console.info(
       color.CYAN,
-      `\nDry run CHANGELOG.md output...\nVersion: ${version}\nSemver bump: ${bump}\nSemver weight: ${weight}`
+      `\nDry run ${changelogFile} output...\nVersion: ${version}\nSemver bump: ${bump}\nSemver weight: ${weight}`
     );
   }
 

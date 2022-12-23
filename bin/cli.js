@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const { join } = require('path');
 const yargs = require('yargs');
 const packageJson = require('../package');
 const { commitChangelog, OPTIONS } = require('../src');
@@ -9,6 +10,7 @@ const { commitChangelog, OPTIONS } = require('../src');
  */
 const {
   basic: isBasic,
+  changelog: changelogFile,
   commit: isCommit,
   'commit-path': commitPath,
   'compare-path': comparePath,
@@ -16,6 +18,7 @@ const {
   'dry-run': isDryRun,
   'non-cc': isAllowNonConventionalCommits,
   override: overrideVersion,
+  package: packageFile,
   'pr-path': prPath,
   'release-message': releaseTypeScope,
   'remote-url': remoteUrl
@@ -28,26 +31,26 @@ const {
   .option('b', {
     alias: 'basic',
     default: false,
-    describe: 'Keep updates to CHANGELOG.md basic, skip all markdown link syntax',
+    describe: 'Keep updates to [CHANGELOG.md] basic, skip all markdown link syntax',
     type: 'boolean'
   })
   .option('c', {
     alias: 'commit',
     default: true,
-    describe: 'Commit CHANGELOG.md and package.json with a release commit',
+    describe: 'Commit [CHANGELOG.md] and package.json with a release commit',
     type: 'boolean'
   })
   .option('d', {
     alias: 'date',
     default: new Date().toISOString(),
-    describe: 'CHANGELOG.md release date in the form of a valid date string. Uses system new Date([your date])',
+    describe: '[CHANGELOG.md] release date in the form of a valid date string. Uses system new Date([your date])',
     type: 'string'
   })
   .option('n', {
     alias: 'non-cc',
     default: false,
     describe:
-      'Allow non-conventional commits to apply a semver weight and appear in CHANGELOG.md under a general type description.',
+      'Allow non-conventional commits to apply a semver weight and appear in [CHANGELOG.md] under a general type description.',
     type: 'boolean'
   })
   .option('o', {
@@ -58,25 +61,35 @@ const {
   .option('r', {
     alias: 'dry-run',
     default: false,
-    describe: 'Generate CHANGELOG.md sample output',
+    describe: 'Generate [CHANGELOG.md] sample output',
     type: 'boolean'
+  })
+  .option('changelog', {
+    default: './CHANGELOG.md',
+    describe: 'Changelog output filename and relative path',
+    type: 'string'
   })
   .option('commit-path', {
     default: 'commit/',
     describe:
-      'CHANGELOG.md path used for commits. This will be "joined" with "remote-url". Defaults to the commits path for GitHub.',
+      '[CHANGELOG.md] path used for commits. This will be "joined" with "remote-url". Defaults to the commits path for GitHub.',
     type: 'string'
   })
   .option('compare-path', {
     default: 'compare/',
     describe:
-      'CHANGELOG.md path used for version comparison. This will be "joined" with "remote-url". Defaults to the comparison path for GitHub.',
+      '[CHANGELOG.md] path used for version comparison. This will be "joined" with "remote-url". Defaults to the comparison path for GitHub.',
+    type: 'string'
+  })
+  .option('package', {
+    default: './package.json',
+    describe: 'package.json read, output and relative path',
     type: 'string'
   })
   .option('pr-path', {
     default: 'pull/',
     describe:
-      'CHANGELOG.md path used for PRs/MRs. This will be "joined" with "remote-url". Defaults to the PR path for GitHub.',
+      '[CHANGELOG.md] path used for PRs/MRs. This will be "joined" with "remote-url". Defaults to the PR path for GitHub.',
     type: 'string'
   })
   .option('release-message', {
@@ -87,20 +100,24 @@ const {
   })
   .option('remote-url', {
     describe:
-      'Git remote get-url for updating CHANGELOG.md base urls. This should start with "http". Defaults to "$ git remote get-url origin"',
+      'Git remote get-url for updating [CHANGELOG.md] base urls. This should start with "http". Defaults to "$ git remote get-url origin"',
     type: 'string'
   }).argv;
 
 /**
  * Set global OPTIONS
  *
- * @type {{comparePath: string, date: string, commitPath: string, isOverrideVersion: boolean,
- *     isAllowNonConventionalCommits: boolean, releaseTypeScope: string[], isDryRun: boolean,
- *     remoteUrl: string, prPath: string, isCommit: boolean, overrideVersion: string|*,
- *     isBasic: boolean}}
+ * @type {{comparePath: string, date: string, packagePath: Function, isOverrideVersion: boolean,
+ *     packageFile: string, isAllowNonConventionalCommits: boolean, prPath: string, isCommit: boolean,
+ *     overrideVersion: string|*, changelogPath: Function, commitPath: string, changelogFile: string,
+ *     releaseTypeScope: string[]|string, isDryRun: boolean, remoteUrl: string, isBasic: boolean}}
  * @private
  */
 OPTIONS._set = {
+  changelogFile,
+  changelogPath: function () {
+    return join(this.contextPath, changelogFile);
+  },
   commitPath,
   comparePath,
   date,
@@ -110,6 +127,10 @@ OPTIONS._set = {
   isCommit,
   isOverrideVersion: overrideVersion !== undefined,
   overrideVersion,
+  packageFile,
+  packagePath: function () {
+    return join(this.contextPath, packageFile);
+  },
   prPath,
   releaseTypeScope,
   remoteUrl
