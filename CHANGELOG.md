@@ -5,7 +5,25 @@ All notable changes to this project will be documented in this file.
 
 
 
-## [0.2.2](https://github.com/cdcabrera/changelog-light/compare/2daa637d2c23405a84dcc2069a663a7bf760e2ee...610213e1ab21c6c98db63ca529cbbac51c4d22d5) (2022-10-28)
+
+## [0.2.3](https://github.com/cdcabrera/changelog-light/compare/c183644936474e29adcbd45d8ae5ddc3fb404347...46de44a2e1845bb66ed978fc094eaeb31103a591) (2022-12-23)
+
+### Documentation
+* **readme** expand how it works, use  ([2455751](https://github.com/cdcabrera/changelog-light/commit/2455751bd61199ce1e2a32f47d7433c1f7b4fe8b))
+
+### Builds
+* **deps-dev** npm updates  ([#22](https://github.com/cdcabrera/changelog-light/pull/22)) ([46de44a](https://github.com/cdcabrera/changelog-light/commit/46de44a2e1845bb66ed978fc094eaeb31103a591))
+* **deps-dev** npm-check-updates from 16.3.16 to 16.6.2  ([#21](https://github.com/cdcabrera/changelog-light/pull/21)) ([1e23919](https://github.com/cdcabrera/changelog-light/commit/1e239196adca88b08b00f06b7a90617e2e6faa62))
+* **node** expand nodejs checks  ([5e9db21](https://github.com/cdcabrera/changelog-light/commit/5e9db21d4b5a283a7eb2b647c72d589e84e9d276))
+* **cspell** spelling checks  ([2e5e4a9](https://github.com/cdcabrera/changelog-light/commit/2e5e4a9fb58dc7a6e8b928d5bcedd33b8b09e402))
+* **deps-dev** bump prettier from 2.7.1 to 2.8.1  ([#17](https://github.com/cdcabrera/changelog-light/pull/17)) ([f6db517](https://github.com/cdcabrera/changelog-light/commit/f6db517b4ae12a501b8cdb8943f932f017c836dc))
+* **deps-dev** bump jest from 29.2.2 to 29.3.1  ([#15](https://github.com/cdcabrera/changelog-light/pull/15)) ([f5281c8](https://github.com/cdcabrera/changelog-light/commit/f5281c860e52ffc23c0ae0486dd869f8b0ff1680))
+* **deps-dev** eslint-plugin-jsdoc from 39.6.2 to 39.6.4  ([#14](https://github.com/cdcabrera/changelog-light/pull/14)) ([70ebcb8](https://github.com/cdcabrera/changelog-light/commit/70ebcb854c7bccea81fa160ae5e779fb25d358ad))
+* **deps** bump yargs from 17.6.0 to 17.6.2  ([#12](https://github.com/cdcabrera/changelog-light/pull/12)) ([976a521](https://github.com/cdcabrera/changelog-light/commit/976a52164295c9cb39073a1c540f46923b71a3cd))
+* **deps-dev** eslint-plugin-jsdoc from 39.3.25 to 39.6.2  ([#11](https://github.com/cdcabrera/changelog-light/pull/11)) ([38555fe](https://github.com/cdcabrera/changelog-light/commit/38555fe0eac682e4d965b260448caab4d3f00d0f))
+* **deps-dev** npm-check-updates from 16.3.15 to 16.3.16  ([#9](https://github.com/cdcabrera/changelog-light/pull/9)) ([7896c10](https://github.com/cdcabrera/changelog-light/commit/7896c106caae1fc3759a4501b0f19fd3e1596ef3))
+
+##  [0.2.2](https://github.com/cdcabrera/changelog-light/compare/2daa637d2c23405a84dcc2069a663a7bf760e2ee...610213e1ab21c6c98db63ca529cbbac51c4d22d5) (2022-10-28)
 
 ### Builds
 * **deps-dev** npm updates  ([#8](https://github.com/cdcabrera/changelog-light/pull/8)) ([610213e](https://github.com/cdcabrera/changelog-light/commit/610213e1ab21c6c98db63ca529cbbac51c4d22d5))
