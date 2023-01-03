@@ -1,5 +1,5 @@
+const { dirname } = require('path');
 const { existsSync, readFileSync, writeFileSync } = require('fs');
-const { join } = require('path');
 const { OPTIONS } = require('./global');
 const { getRemoteUrls, runCmd } = require('./cmds');
 const { getComparisonCommitHashes } = require('./parse');
@@ -14,12 +14,12 @@ const { getComparisonCommitHashes } = require('./parse');
  * @param {object} parsedCommits
  * @param {*|string} packageVersion
  * @param {object} options
+ * @param {string} options.changelogPath
  * @param {string} options.date
  * @param {boolean} options.isBasic
  * @param {boolean} options.isDryRun
  * @param {object} settings
  * @param {string} settings.fallbackPackageVersion
- * @param {string} settings.filePath
  * @param {string} settings.headerMd
 
  * @returns {string}
@@ -27,10 +27,9 @@ const { getComparisonCommitHashes } = require('./parse');
 const updateChangelog = (
   parsedCommits = {},
   packageVersion,
-  { date, isBasic = false, isDryRun = false } = OPTIONS,
+  { date, changelogPath, isBasic = false, isDryRun = false } = OPTIONS,
   {
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
-    filePath = join(OPTIONS.contextPath, `/CHANGELOG.md`),
     getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
     getRemoteUrls: getAliasRemoteUrls = getRemoteUrls,
     headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`
@@ -44,12 +43,12 @@ const updateChangelog = (
   let version = fallbackPackageVersion;
   let body = '';
 
-  if (existsSync(filePath)) {
-    const [tempHeader, ...tempBody] = readFileSync(filePath, 'utf-8').split('##');
+  if (existsSync(changelogPath)) {
+    const [tempHeader, ...tempBody] = readFileSync(changelogPath, 'utf-8').split('##');
     header = tempHeader;
     body = (tempBody.length && `## ${tempBody.join('##')}`) || body;
-  } else {
-    writeFileSync(filePath, '');
+  } else if (!isDryRun) {
+    writeFileSync(changelogPath, '');
   }
 
   const displayCommits = Object.values(parsedCommits)
@@ -73,7 +72,7 @@ const updateChangelog = (
   if (isDryRun) {
     console.info(`\n${updatedBody}`);
   } else {
-    writeFileSync(filePath, output);
+    writeFileSync(changelogPath, output);
   }
 
   return output;
@@ -85,13 +84,18 @@ const updateChangelog = (
  * @param {'major'|'minor'|'patch'|*} versionBump
  * @param {object} options
  * @param {boolean} options.isDryRun
+ * @param {string} options.packagePath
  * @returns {string}
  */
-const updatePackage = (versionBump, { isDryRun = false } = OPTIONS) => {
+const updatePackage = (versionBump, { isDryRun = false, packagePath } = OPTIONS) => {
   const output = `Version bump: ${versionBump}`;
+  const directory = dirname(packagePath);
 
   if (!isDryRun) {
-    runCmd(`npm version ${versionBump} --git-tag-version=false`, 'Skipping package.json version... {0}');
+    runCmd(
+      `(cd ${directory} && npm version ${versionBump} --git-tag-version=false)`,
+      'Skipping package.json version... {0}'
+    );
   }
 
   return output;

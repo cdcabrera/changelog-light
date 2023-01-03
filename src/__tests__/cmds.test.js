@@ -1,7 +1,18 @@
+const { join } = require('path');
 const cmds = require('../cmds');
 const { OPTIONS } = require('../global');
 
 describe('Commands', () => {
+  const { mockClear } = mockObjectProperty(OPTIONS, {
+    date: '2022-10-01',
+    changelogPath: join(OPTIONS.contextPath, 'CHANGELOG.md'),
+    packagePath: join(OPTIONS.contextPath, 'package.json')
+  });
+
+  afterAll(() => {
+    mockClear();
+  });
+
   it('should attempt to run commands', () => {
     const { mockClear } = mockObjectProperty(OPTIONS, {
       releaseTypeScope: 'chore(release)'
