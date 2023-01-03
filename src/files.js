@@ -47,7 +47,7 @@ const updateChangelog = (
     const [tempHeader, ...tempBody] = readFileSync(changelogPath, 'utf-8').split('##');
     header = tempHeader;
     body = (tempBody.length && `## ${tempBody.join('##')}`) || body;
-  } else {
+  } else if (!isDryRun) {
     writeFileSync(changelogPath, '');
   }
 
