@@ -76,11 +76,12 @@ const OPTIONS = {
   contextPath,
   set _set(obj) {
     Object.entries(obj).forEach(([key, value]) => {
-      this[key] = value;
-
       if (typeof value === 'function') {
         this[key] = value.call(this);
+        return;
       }
+
+      this[key] = value;
     });
     delete this._set;
     Object.freeze(this);

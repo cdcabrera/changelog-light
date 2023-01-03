@@ -9,7 +9,12 @@ describe('Global', () => {
     const { OPTIONS } = global;
     OPTIONS.lorem = 'et all';
     OPTIONS.dolor = 'magna';
-    OPTIONS._set = { lorem: 'ipsum' };
+    OPTIONS._set = {
+      lorem: 'ipsum',
+      sit: function () {
+        return `function test ${this.contextPath}`;
+      }
+    };
     OPTIONS.lorem = 'hello world';
     OPTIONS.dolor = 'sit';
 
