@@ -3,6 +3,7 @@
 exports[`Files should create, and update CHANGELOG.md version with a comparison urls: urls and paths, no release commit 1`] = `
 "# Changelog
 All notable changes to this project will be documented in this file.
+
 ## 1.0.0 (2022-10-01)
 
 ### Features
@@ -23,6 +24,7 @@ All notable changes to this project will be documented in this file.
 exports[`Files should create, and update CHANGELOG.md version with a comparison urls: urls and paths, release commit 1`] = `
 "# Changelog
 All notable changes to this project will be documented in this file.
+
 ## [1.0.0](https://localhost/lorem/ipsum/comparmock/REALFIRST2345d421231231312312345dca11235...LASTg45b597123453031234555b6d25574ccacee) (2022-10-01)
 
 ### Features
@@ -43,6 +45,7 @@ All notable changes to this project will be documented in this file.
 exports[`Files should create, and update CHANGELOG.md version with a comparison urls: urls and paths, release commit, no markdown links 1`] = `
 "# Changelog
 All notable changes to this project will be documented in this file.
+
 ## 1.0.0 (2022-10-01)
 
 ### Features
@@ -63,6 +66,7 @@ All notable changes to this project will be documented in this file.
 exports[`Files should create, and update a basic CHANGELOG.md: changelog 1`] = `
 "# Changelog
 All notable changes to this project will be documented in this file.
+
 ## ¯\\_(ツ)_/¯ (2022-10-01)
 
 ### Features
