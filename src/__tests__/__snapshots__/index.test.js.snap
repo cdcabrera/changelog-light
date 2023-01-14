@@ -4,6 +4,7 @@ exports[`Commit Changelog should parse commits to produce a CHANGELOG.md with an
 {
   "changelog": "# Changelog
 All notable changes to this project will be documented in this file.
+
 ## <semverClean>["15.0.0"]</semverClean> (2022-10-01)
 
 ",
@@ -20,6 +21,7 @@ exports[`Commit Changelog should parse commits to produce a CHANGELOG.md: Commit
 {
   "changelog": "# Changelog
 All notable changes to this project will be documented in this file.
+
 ## <semverClean>["<semverInc>[\\"0.0.100\\",\\"patch\\"]</semverInc>"]</semverClean> (2022-10-01)
 
 ",

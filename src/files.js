@@ -45,8 +45,8 @@ const updateChangelog = (
 
   if (existsSync(changelogPath)) {
     const [tempHeader, ...tempBody] = readFileSync(changelogPath, 'utf-8').split('##');
-    header = tempHeader;
-    body = (tempBody.length && `## ${tempBody.join('##')}`) || body;
+    header = tempHeader.trim();
+    body = (tempBody.length && `## ${tempBody.join('##').trim()}`) || body;
   } else if (!isDryRun) {
     writeFileSync(changelogPath, '');
   }
@@ -67,7 +67,7 @@ const updateChangelog = (
   }
 
   const updatedBody = `## ${version} (${systemTimestamp})\n${displayCommits}`;
-  const output = `${header}\n${updatedBody}\n${body}`;
+  const output = `${header}\n\n${updatedBody}\n${body}`;
 
   if (isDryRun) {
     console.info(`\n${updatedBody}`);
