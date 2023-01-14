@@ -2,9 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0](https://github.com/cdcabrera/changelog-light/compare/64b13abc035a3336b3ac3828f09cc285071a41bb...24313ac337aa95b0359f291d6a9fd15ec799ca0e) (2023-01-14)
 
+### Features
+* **cli** changelog, package, expose output  ([#29](https://github.com/cdcabrera/changelog-light/pull/29)) ([7106ec7](https://github.com/cdcabrera/changelog-light/commit/7106ec7d3e1a7c1009a11baf7b4b31a805d11d43))
+* **cli** release-message, expose default  ([#25](https://github.com/cdcabrera/changelog-light/pull/25)) ([17f6dda](https://github.com/cdcabrera/changelog-light/commit/17f6dda07bdecd7629ec620d80f90ae587c4f40e))
+* **cli** basic, changelog without md links  ([#24](https://github.com/cdcabrera/changelog-light/pull/24)) ([61347ce](https://github.com/cdcabrera/changelog-light/commit/61347cedd363cd65af5753d3612b374e62b9e07c))
 
+### Code Refactoring
+* **cli** global options  ([#23](https://github.com/cdcabrera/changelog-light/pull/23)) ([b9d6aeb](https://github.com/cdcabrera/changelog-light/commit/b9d6aeb66b40919854a93f9193678160e81c6b17))
 
+### Builds
+* **deps-dev** bump eslint from 8.30.0 to 8.31.0  ([#28](https://github.com/cdcabrera/changelog-light/pull/28)) ([52f1a1c](https://github.com/cdcabrera/changelog-light/commit/52f1a1c158687fbb20ec862b61b814f838b0e8ee))
+* **deps-dev** eslint-plugin-jest from 27.1.7 to 27.2.0  ([#27](https://github.com/cdcabrera/changelog-light/pull/27)) ([9a6ea08](https://github.com/cdcabrera/changelog-light/commit/9a6ea087e18bebdef44cea4f6e3845707a978239))
+* **deps-dev** bump cspell from 6.18.0 to 6.18.1  ([#26](https://github.com/cdcabrera/changelog-light/pull/26)) ([8ed80d4](https://github.com/cdcabrera/changelog-light/commit/8ed80d4d055f73a69dadf57e0021ec0b434372b1))
+
+### Bug Fixes
+* **files** trim changelog content  ([#30](https://github.com/cdcabrera/changelog-light/pull/30)) ([24313ac](https://github.com/cdcabrera/changelog-light/commit/24313ac337aa95b0359f291d6a9fd15ec799ca0e))
 
 ## [0.2.3](https://github.com/cdcabrera/changelog-light/compare/c183644936474e29adcbd45d8ae5ddc3fb404347...46de44a2e1845bb66ed978fc094eaeb31103a591) (2022-12-23)
 
@@ -71,4 +85,3 @@ All notable changes to this project will be documented in this file.
 * **cmds,parse** join for url strings  ([c3017ab](https://github.com/cdcabrera/changelog-light/commit/c3017ab8043510a36e3aee389b9be9283343f0f5))
 * **parse** nested values optional chain  ([a9147eb](https://github.com/cdcabrera/changelog-light/commit/a9147eba8155cfbd3b0932ab3f395d2bc6e49a04))
 * **build,testing** lint build, console instances  ([3827018](https://github.com/cdcabrera/changelog-light/commit/3827018b0ed79847d92c0f80c10ffd48d43ac920))
-
