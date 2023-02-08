@@ -67,7 +67,7 @@ const updateChangelog = (
   }
 
   const updatedBody = `## ${version} (${systemTimestamp})\n${displayCommits}`;
-  const output = `${header}\n\n${updatedBody}\n${body}`;
+  const output = `${header}\n\n${updatedBody}\n${body}${(body && '\n') || ''}`;
 
   if (isDryRun) {
     console.info(`\n${updatedBody}`);
