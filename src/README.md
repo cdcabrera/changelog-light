@@ -247,6 +247,8 @@ Update CHANGELOG.md with commit output.
     </tr><tr>
     <td>options.isDryRun</td><td><code>boolean</code></td>
     </tr><tr>
+    <td>options.releaseDescription</td><td><code>string</code></td>
+    </tr><tr>
     <td>settings</td><td><code>object</code></td>
     </tr><tr>
     <td>settings.fallbackPackageVersion</td><td><code>string</code></td>

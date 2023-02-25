@@ -68,6 +68,8 @@ or Yarn
                            list item searches for the prior release message prefix
                            for range. [write new, search old]
                                                [array] [default: "chore(release)"]
+        --release-desc     Add a description under the release version header
+                           copy. Example, "⚠ BREAKING CHANGES"            [string]
         --remote-url       Git remote get-url for updating [CHANGELOG.md] base
                            urls. This should start with "http". Defaults to "$ git
                            remote get-url origin"                         [string]
