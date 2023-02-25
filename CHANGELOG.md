@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.1](https://github.com/cdcabrera/changelog-light/compare/9c56686dc5bfaf6338c0947bf83f2d9915796058...8e6070f4b1693545604c0ecf43e6d0b618b1cfcd) (2023-02-25)
+
+### Documentation
+* **build** jsdoc annotations  ([#38](https://github.com/cdcabrera/changelog-light/pull/38)) ([8e6070f](https://github.com/cdcabrera/changelog-light/commit/8e6070f4b1693545604c0ecf43e6d0b618b1cfcd))
+
+### Builds
+* **deps** npm updates  ([#38](https://github.com/cdcabrera/changelog-light/pull/38)) ([dc71f71](https://github.com/cdcabrera/changelog-light/commit/dc71f719f38c856e4a24ff80908fa71a78de263d))
+* **deps-dev** bump jest from 29.3.1 to 29.4.2  ([#36](https://github.com/cdcabrera/changelog-light/pull/36)) ([0a6f143](https://github.com/cdcabrera/changelog-light/commit/0a6f143c749e601e047019f7ad94352555941958))
+* **deps-dev** bump eslint from 8.31.0 to 8.33.0  ([#32](https://github.com/cdcabrera/changelog-light/pull/32)) ([d8b3a9d](https://github.com/cdcabrera/changelog-light/commit/d8b3a9d276f0596d94e3b9b47e1524f61762f120))
+* **deps-dev** eslint-plugin-import from 2.26.0 to 2.27.5  ([#35](https://github.com/cdcabrera/changelog-light/pull/35)) ([171b37f](https://github.com/cdcabrera/changelog-light/commit/171b37fbdb170ef666f5cad96d60b772c140a705))
+* **deps-dev** bump prettier from 2.8.1 to 2.8.3  ([#31](https://github.com/cdcabrera/changelog-light/pull/31)) ([968cdab](https://github.com/cdcabrera/changelog-light/commit/968cdabb9624346c17e5bbe281cefaa447083441))
+* **deps-dev** eslint-config-prettier from 8.5.0 to 8.6.0  ([#33](https://github.com/cdcabrera/changelog-light/pull/33)) ([87c794d](https://github.com/cdcabrera/changelog-light/commit/87c794d51c167c307d948652a8f384a22f2dd39f))
+
+### Bug Fixes
+* **files** content closing  ([#37](https://github.com/cdcabrera/changelog-light/pull/37)) ([9982516](https://github.com/cdcabrera/changelog-light/commit/99825167c9af35c329f1219c157258ae095479ab))
+
 ## [0.3.0](https://github.com/cdcabrera/changelog-light/compare/64b13abc035a3336b3ac3828f09cc285071a41bb...24313ac337aa95b0359f291d6a9fd15ec799ca0e) (2023-01-14)
 
 ### Features
