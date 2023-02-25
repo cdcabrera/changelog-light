@@ -72,7 +72,8 @@ describe('Files', () => {
         '1.0.0',
         {
           ...OPTIONS,
-          isBasic: true
+          isBasic: true,
+          releaseDescription: '### ⚠ **lorem ipsum**\n- `dolor` (#1234)\n- `sit` (#5678)'
         },
         {
           getComparisonCommitHashes: () => comparisonObjReleaseCommit,

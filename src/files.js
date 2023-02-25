@@ -24,6 +24,7 @@ const { getComparisonCommitHashes } = require('./parse');
  * @param {string} options.date
  * @param {boolean} options.isBasic
  * @param {boolean} options.isDryRun
+ * @param {string} options.releaseDescription
  * @param {object} settings
  * @param {string} settings.fallbackPackageVersion
  * @param {Function} settings.getComparisonCommitHashes
@@ -34,7 +35,7 @@ const { getComparisonCommitHashes } = require('./parse');
 const updateChangelog = (
   parsedCommits = {},
   packageVersion,
-  { date, changelogPath, isBasic = false, isDryRun = false } = OPTIONS,
+  { date, changelogPath, isBasic = false, isDryRun = false, releaseDescription } = OPTIONS,
   {
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
@@ -46,6 +47,7 @@ const updateChangelog = (
     timeZone: 'UTC'
   });
   const { compareUrl } = getAliasRemoteUrls();
+  const updatedReleaseDescription = releaseDescription || '';
   let header = headerMd;
   let version = fallbackPackageVersion;
   let body = '';
@@ -73,7 +75,7 @@ const updateChangelog = (
     }
   }
 
-  const updatedBody = `## ${version} (${systemTimestamp})\n${displayCommits}`;
+  const updatedBody = `## ${version} (${systemTimestamp})\n${updatedReleaseDescription}\n${displayCommits}`;
   const output = `${header}\n\n${updatedBody}\n${body}${(body && '\n') || ''}`;
 
   if (isDryRun) {

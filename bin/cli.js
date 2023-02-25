@@ -21,6 +21,7 @@ const {
   package: packageFile,
   'pr-path': prPath,
   'release-message': releaseTypeScope,
+  'release-desc': releaseDescription,
   'remote-url': remoteUrl
 } = yargs
   .usage('Generate a CHANGELOG.md with conventional commit types.\n\nUsage: changelog [options]')
@@ -98,6 +99,10 @@ const {
       'A list of prefix release scope commit messages. First list item is the new commit message prefix, the second list item searches for the prior release message prefix for range. [write new, search old]',
     type: 'array'
   })
+  .option('release-desc', {
+    describe: 'Add a description under the release version header copy. Example, "⚠ BREAKING CHANGES"',
+    type: 'string'
+  })
   .option('remote-url', {
     describe:
       'Git remote get-url for updating [CHANGELOG.md] base urls. This should start with "http". Defaults to "$ git remote get-url origin"',
@@ -108,9 +113,10 @@ const {
  * Set global OPTIONS
  *
  * @type {{comparePath: string, date: string, packagePath: Function, isOverrideVersion: boolean,
- *     packageFile: string, isAllowNonConventionalCommits: boolean, prPath: string, isCommit: boolean,
- *     overrideVersion: string|*, changelogPath: Function, commitPath: string, changelogFile: string,
- *     releaseTypeScope: string[]|string, isDryRun: boolean, remoteUrl: string, isBasic: boolean}}
+ *     packageFile: string, releaseDescription: string, isAllowNonConventionalCommits: boolean, prPath: string,
+ *     isCommit: boolean, overrideVersion: string|*, changelogPath: Function, commitPath: string,
+ *     changelogFile: string, releaseTypeScope: string[]|string, isDryRun: boolean, remoteUrl: string,
+ *     isBasic: boolean}}
  * @private
  */
 OPTIONS._set = {
@@ -132,6 +138,7 @@ OPTIONS._set = {
     return join(this.contextPath, packageFile);
   },
   prPath,
+  releaseDescription,
   releaseTypeScope,
   remoteUrl
 };
