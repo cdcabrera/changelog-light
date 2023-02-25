@@ -22,11 +22,14 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "files": ["src/*.js"],
   "bin": {
     "changelog": "./bin/cli.js"
   },
   "scripts": {
     "build:deps": "bash ./scripts/dependencies.sh --doctor -u --doctorInstall \"yarn\" --doctorTest \"yarn test:deps\"",
+    "build:docs": "run-s -l test:docs docs:md",
+    "docs:md": "node ./scripts/readme.docs.js",
     "release": "node ./bin/cli.js",
     "start": "./bin/cli.js",
     "test": "run-s -l test:lint test:spell* test:ci",
@@ -34,6 +37,7 @@
     "test:clearCache": "jest --clearCache",
     "test:deps": "run-s test",
     "test:dev": "eslint ./src ./bin; run-s test:spell test:local",
+    "test:docs": "run-s test:spell test:lint",
     "test:integration": "jest --roots=./tests",
     "test:integration-dev": "jest --roots=./tests --watchAll",
     "test:lint": "eslint ./src ./bin",
@@ -78,6 +82,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.4.3",
+    "jsdoc-to-markdown": "^8.0.0",
     "npm-check-updates": "^16.7.9",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.4"

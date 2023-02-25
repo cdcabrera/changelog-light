@@ -2,6 +2,10 @@ const { join } = require('path');
 const commitTypes = require('conventional-commit-types');
 
 /**
+ * @module Global
+ */
+
+/**
  * Console output colors
  *
  * @type {{RED: string, WHITE: string, BLUE: string, NOCOLOR: string, BLACK: string, MAGENTA: string,

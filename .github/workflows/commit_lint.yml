@@ -1,6 +1,8 @@
 name: Commit lint
 on:
-  pull_request
+  push:
+    branches: [ main ]
+  pull_request:
 env:
   BRANCH: ${{ github.base_ref }}
 
@@ -9,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
     steps:
       - uses: actions/checkout@v3
         with:

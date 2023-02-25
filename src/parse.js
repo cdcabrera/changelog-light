@@ -2,11 +2,17 @@ const { generalCommitType, conventionalCommitType, OPTIONS } = require('./global
 const { getGit, getReleaseCommit, getRemoteUrls } = require('./cmds');
 
 /**
+ * Parse and format commit messages
+ *
+ * @module Parse
+ */
+
+/**
  * Aggregate conventional commit types. Optionally allow non-conventional commit types.
  *
  * @param {object} options
  * @param {boolean} options.isAllowNonConventionalCommits
- * @return {{fix: {description: string, title: string, value: string}, chore: {description: string,
+ * @returns {{fix: {description: string, title: string, value: string}, chore: {description: string,
  *     title: string, value: string}, feat: {description: string, title: string, value: string}}}
  */
 const getCommitType = ({ isAllowNonConventionalCommits } = OPTIONS) => ({
@@ -42,7 +48,7 @@ const getComparisonCommitHashes = ({
 /**
  * Parse a commit message
  *
- * @param message
+ * @param {string} message
  * @param {object} settings
  * @param {Function} settings.getCommitType
  * @returns {{description: string, type: string, prNumber: string, hash: *}|{scope: string, description: string,

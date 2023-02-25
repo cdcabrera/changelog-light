@@ -3,6 +3,13 @@ const { join } = require('path');
 const semverClean = require('semver/functions/clean');
 const semverInc = require('semver/functions/inc');
 const { color, OPTIONS } = require('./global');
+
+/**
+ * Functions for `git`, `package.json` version, and more
+ *
+ * @module Commands
+ */
+
 /**
  * Execute a command
  *
@@ -137,7 +144,7 @@ const getGit = ({ getReleaseCommit: getAliasReleaseCommit = getReleaseCommit } =
  *
  * @param {object} options
  * @param {string|*} options.overrideVersion
- * @return {{clean: string, version: string}}
+ * @returns {{clean: string, version: string}}
  */
 const getOverrideVersion = ({ overrideVersion: version } = OPTIONS) => {
   let updatedVersion;
