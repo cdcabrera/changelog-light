@@ -5,6 +5,12 @@ const { getRemoteUrls, runCmd } = require('./cmds');
 const { getComparisonCommitHashes } = require('./parse');
 
 /**
+ * Update `changelog` and `package.json`
+ *
+ * @module Files
+ */
+
+/**
  * ToDo: syntax for the comparison can include the use of caret
  * Review using caret vs a release commit for determining range
  */
@@ -20,8 +26,9 @@ const { getComparisonCommitHashes } = require('./parse');
  * @param {boolean} options.isDryRun
  * @param {object} settings
  * @param {string} settings.fallbackPackageVersion
+ * @param {Function} settings.getComparisonCommitHashes
+ * @param {Function} settings.getRemoteUrls
  * @param {string} settings.headerMd
-
  * @returns {string}
  */
 const updateChangelog = (

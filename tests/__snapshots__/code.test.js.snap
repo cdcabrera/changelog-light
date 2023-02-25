@@ -2,11 +2,11 @@
 
 exports[`General code checks should only have specific console.[warn|log|info|error] methods: console methods 1`] = `
 [
-  "cmds.js:20:    console.error(color.RED, errorMessage.replace('{0}', e.message), color.NOCOLOR)",
-  "cmds.js:149:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
-  "cmds.js:179:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
-  "files.js:73:    console.info(\` \${updatedBody}\`)",
-  "global.js:64:    console.error(color.RED, \`Conventional commit types: \${e.message}\`, color.NOCOLOR)",
-  "index.js:48:    console.info( index.js:62:    console.info(color.NOCOLOR)",
+  "cmds.js:27:    console.error(color.RED, errorMessage.replace('{0}', e.message), color.NOCOLOR)",
+  "cmds.js:156:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
+  "cmds.js:186:    console.error(color.RED, \`Semver: \${e.message}\`, color.NOCOLOR)",
+  "files.js:80:    console.info(\` \${updatedBody}\`)",
+  "global.js:68:    console.error(color.RED, \`Conventional commit types: \${e.message}\`, color.NOCOLOR)",
+  "index.js:54:    console.info( index.js:68:    console.info(color.NOCOLOR)",
 ]
 `;

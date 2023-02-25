@@ -4,6 +4,12 @@ const { parseCommits, semverBump } = require('./parse');
 const { updateChangelog, updatePackage } = require('./files');
 
 /**
+ * Start `changelog` updates
+ *
+ * @module Init
+ */
+
+/**
  * Set changelog and package.
  *
  * @param {object} options
