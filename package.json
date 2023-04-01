@@ -74,7 +74,7 @@
     "yargs": "^17.7.1"
   },
   "devDependencies": {
-    "cspell": "^6.28.0",
+    "cspell": "^6.31.1",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-babel": "^5.3.1",
