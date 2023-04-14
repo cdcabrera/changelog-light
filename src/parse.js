@@ -67,12 +67,12 @@ const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCo
     hash,
     typeScope,
     type: commitType?.[type]?.value,
-    scope: scope.split(')')[0],
+    scope: scope.split(')')[0] || undefined,
     description: description,
     prNumber: (partialPr.join('(#').trim() || '').replace(/\D/g, '')
   };
 
-  if (!output.typeScope || !output.type || !output.scope) {
+  if (!output.type || (output.type && !descriptionEtAll?.length)) {
     const [hash, ...descriptionEtAll] = message.trim().split(/\s/);
     const [description, ...partialPr] = descriptionEtAll.join(' ').trim().split(/\(#/);
 

@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 * **build** eslint, jsdoc updates  (#16) (d123453)
+*  missing semicolon  (1f1x345)
 
 "
 `;
@@ -40,6 +41,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 * **build** eslint, jsdoc updates  (#16) (d123453)
+*  missing semicolon  (1f1x345)
 
 "
 `;
@@ -64,6 +66,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 * **build** eslint, jsdoc updates  (#16) (d123453)
+*  missing semicolon  (1f1x345)
 
 "
 `;
@@ -86,6 +89,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 * **build** eslint, jsdoc updates  (#16) (d123453)
+*  missing semicolon  (1f1x345)
 
 "
 `;
