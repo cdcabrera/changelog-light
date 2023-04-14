@@ -38,21 +38,36 @@ describe('Parse', () => {
   });
 
   it('should parse a commit message', () => {
-    const commitMessageRefactor = '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)';
-    const commitMessageFeature = '1f12345b597123453031234555b6d25574ccacee feat(dolor): issues/20 sit enhancements';
-    const commitMessageNonCC = '1f12345b597123453031234555b6d25574ccacee Initial commit';
+    const commitMessageRefactor = '1f1x345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)';
+    const commitMessageFeature = '1f72345b597123453031234555b6d25574ccacee feat(dolor): issues/20 sit enhancements';
+    const commitMessageNoScope = '1f12p45b597123453031234555b6dl2401ccacee fix: missing semicolon';
+    const commitMessageNonCC = '1f12s45b597123453031234555b6d25574ccacee Initial commit';
 
     expect({
       refactor: parseCommitMessage(commitMessageRefactor),
       feat: parseCommitMessage(commitMessageFeature),
-      general: parseCommitMessage(commitMessageNonCC)
+      general: parseCommitMessage(commitMessageNonCC),
+      fix: parseCommitMessage(commitMessageNoScope)
     }).toMatchSnapshot('parseCommitMessages');
   });
 
+  it('should parse a non-conforming commit message', () => {
+    const commitMessageNoScopeNoSemicolon = '1f1x345b597123453031234555b6d25574ccacee refactor lorem updates (#8)';
+    const commitMessageNoTypeWithScope = '1f72345b597123453031234555b6d25574ccacee (dolor): issues/20 sit enhancements';
+    const commitMessageMisplacedScope = '1f12p45b597123453031234555b6dl2401ccacee missing fix: semicolon';
+
+    expect({
+      noScopeNoSemicolon: parseCommitMessage(commitMessageNoScopeNoSemicolon),
+      noTypeWithScope: parseCommitMessage(commitMessageNoTypeWithScope),
+      misplacedScope: parseCommitMessage(commitMessageMisplacedScope)
+    }).toMatchSnapshot('parseNonConformingCommitMessages');
+  });
+
   it('should format a changelog commit message', () => {
-    const commitMessageRefactor = '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)';
-    const commitMessageFeature = '1f12345b597123453031234555b6d25574ccacee feat(dolor): issues/20 sit enhancements';
-    const commitMessageNonCC = '1f12345b597123453031234555b6d25574ccacee Initial commit';
+    const commitMessageRefactor = '1f1x345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)';
+    const commitMessageFeature = '1f72345b597123453031234555b6d25574ccacee feat(dolor): issues/20 sit enhancements';
+    const commitMessageNoScope = '1f12p45b597123453031234555b6dl2401ccacee fix: missing semicolon';
+    const commitMessageNonCC = '1f12s45b597123453031234555b6d25574ccacee Initial commit';
 
     expect({
       refactor: formatChangelogMessage(
@@ -66,7 +81,8 @@ describe('Parse', () => {
         }
       ),
       feat: formatChangelogMessage(parseCommitMessage(commitMessageFeature)),
-      general: formatChangelogMessage(parseCommitMessage(commitMessageNonCC))
+      general: formatChangelogMessage(parseCommitMessage(commitMessageNonCC)),
+      fix: formatChangelogMessage(parseCommitMessage(commitMessageNoScope))
     }).toMatchSnapshot('formatChangelogMessages');
   });
 
@@ -75,6 +91,7 @@ describe('Parse', () => {
       1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)
       53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)
       611234511234543c39c1234536dc01234521549c fix(build): npm packages (#18)
+      1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon
       fe7d312345xe604d8328d025612345925123457b build(deps): bump codecov/codecov-action from 1.1.0 to 1.1.1 (#19)
       d1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)
       e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)
