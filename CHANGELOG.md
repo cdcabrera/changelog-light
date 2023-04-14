@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0](https://github.com/cdcabrera/changelog-light/compare/dc8a202fe2e9c6fc2ab23f42cb6829e6b08df42e...0c88c9280e8370b184f745d7d611305b0be1fa16) (2023-04-14)
+
+
+### Features
+* **cli** release version description  ([#39](https://github.com/cdcabrera/changelog-light/pull/39)) ([7fcfae9](https://github.com/cdcabrera/changelog-light/commit/7fcfae997bcef124ef4333dcf96d8e52947ec828))
+
+### Builds
+* **deps-dev** jest from 29.4.3 to 29.5.0  ([#46](https://github.com/cdcabrera/changelog-light/pull/46)) ([c2ad900](https://github.com/cdcabrera/changelog-light/commit/c2ad900ae045dac4733ebad0130a3f2f5edfce7a))
+* **deps-dev** npm-check-updates from 16.7.10 to 16.10.8  ([#49](https://github.com/cdcabrera/changelog-light/pull/49)) ([646ecde](https://github.com/cdcabrera/changelog-light/commit/646ecdee3b172c5bed1215f47a6f02ce1d3da990))
+* **deps-dev** eslint-config-prettier from 8.6.0 to 8.8.0  ([#47](https://github.com/cdcabrera/changelog-light/pull/47)) ([bb28b14](https://github.com/cdcabrera/changelog-light/commit/bb28b1486a2d2d10c353c94e3959a58600e3fb62))
+* **deps-dev** eslint-plugin-jsdoc from 40.0.0 to 41.1.1  ([#50](https://github.com/cdcabrera/changelog-light/pull/50)) ([ef6274b](https://github.com/cdcabrera/changelog-light/commit/ef6274ba58061c141b5541055da0abd0fe5be827))
+* **deps-dev** bump cspell from 6.28.0 to 6.31.1  ([#48](https://github.com/cdcabrera/changelog-light/pull/48)) ([d049877](https://github.com/cdcabrera/changelog-light/commit/d049877a034fe300a5d33744521e85dbdfe09f77))
+* **deps-dev** bump cspell from 6.26.3 to 6.28.0  ([#43](https://github.com/cdcabrera/changelog-light/pull/43)) ([f9ae644](https://github.com/cdcabrera/changelog-light/commit/f9ae644682d616e59d5062c6b8a4d9d4d23daad7))
+* **deps-dev** bump eslint from 8.34.0 to 8.35.0  ([#42](https://github.com/cdcabrera/changelog-light/pull/42)) ([3e6b267](https://github.com/cdcabrera/changelog-light/commit/3e6b26786dbb86b981da8ad16fbfea7a2c26a600))
+* **deps-dev** bump npm-check-updates from 16.7.9 to 16.7.10  ([#40](https://github.com/cdcabrera/changelog-light/pull/40)) ([8152867](https://github.com/cdcabrera/changelog-light/commit/8152867edbf86749e7d68dc0f9fae7230770c074))
+
+### Bug Fixes
+* **parse** allow missing scope  ([#51](https://github.com/cdcabrera/changelog-light/pull/51)) ([0c88c92](https://github.com/cdcabrera/changelog-light/commit/0c88c9280e8370b184f745d7d611305b0be1fa16))
+
 ## [0.3.1](https://github.com/cdcabrera/changelog-light/compare/9c56686dc5bfaf6338c0947bf83f2d9915796058...8e6070f4b1693545604c0ecf43e6d0b618b1cfcd) (2023-02-25)
 
 ### Documentation
