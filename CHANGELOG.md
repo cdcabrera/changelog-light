@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.1](https://github.com/cdcabrera/changelog-light/compare/2378c98a018e0f43751acbe1f35ef7e5ae90c6f6...72fbd24f72e5f9262a1b44c1fd3834f8a06b4f31) (2023-05-02)
+
+
+### Builds
+* **deps-dev** npm-check-updates from 16.10.8 to 16.10.9  ([#56](https://github.com/cdcabrera/changelog-light/pull/56)) ([72fbd24](https://github.com/cdcabrera/changelog-light/commit/72fbd24f72e5f9262a1b44c1fd3834f8a06b4f31))
+* **deps-dev** bump prettier from 2.8.7 to 2.8.8  ([#57](https://github.com/cdcabrera/changelog-light/pull/57)) ([d6ec5d8](https://github.com/cdcabrera/changelog-light/commit/d6ec5d8c871ec1e477bcf25a4238a031236706ae))
+* **deps-dev** bump eslint from 8.38.0 to 8.39.0  ([#55](https://github.com/cdcabrera/changelog-light/pull/55)) ([fffad9a](https://github.com/cdcabrera/changelog-light/commit/fffad9a44e75b936d549bb476fac60f11b8bfcb3))
+* **deps** bump yargs from 17.7.1 to 17.7.2  ([#54](https://github.com/cdcabrera/changelog-light/pull/54)) ([e5a523c](https://github.com/cdcabrera/changelog-light/commit/e5a523c0fda6353dfebd25cb06ff562ab9e13dc3))
+* **deps** codecov/codecov-action from 3.1.1 to 3.1.3  ([#53](https://github.com/cdcabrera/changelog-light/pull/53)) ([897297e](https://github.com/cdcabrera/changelog-light/commit/897297e3e163bdb8bf53d4a40b93fafc902de0b2))
+* **deps** npm updates  ([#52](https://github.com/cdcabrera/changelog-light/pull/52)) ([5974edf](https://github.com/cdcabrera/changelog-light/commit/5974edf7a60916e0dc3bb843d433a195b928f1dc))
+
 ## [0.4.0](https://github.com/cdcabrera/changelog-light/compare/dc8a202fe2e9c6fc2ab23f42cb6829e6b08df42e...0c88c9280e8370b184f745d7d611305b0be1fa16) (2023-04-14)
 
 
