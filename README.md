@@ -7,9 +7,9 @@ Generate a changelog with [conventional commit types](https://www.conventionalco
 
 ## Requirements
 The basic requirements:
- * [NodeJS version 14+](https://nodejs.org/)
+ * [NodeJS version 16+](https://nodejs.org/)
  * Optionally your system could be running
-    - [Yarn 1.22+](https://yarnpkg.com), otherwise NPM should be adequate.
+    - [Yarn](https://yarnpkg.com), otherwise NPM should be adequate.
  
 
 ## Use
