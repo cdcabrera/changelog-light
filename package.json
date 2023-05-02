@@ -71,7 +71,7 @@
   "dependencies": {
     "conventional-commit-types": "^3.0.0",
     "semver": "^7.4.0",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "cspell": "^6.31.1",
