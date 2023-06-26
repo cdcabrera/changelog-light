@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0](https://github.com/cdcabrera/changelog-light/compare/3a00958126b5c30574d87fcf5a1c8e7b2dbdf56f...17751187ae0e0da52bb5c1c336494e84fe2a773c) (2023-06-26)
+
+
+### Builds
+* **deps** npm updates  ([#69](https://github.com/cdcabrera/changelog-light/pull/69)) ([1775118](https://github.com/cdcabrera/changelog-light/commit/17751187ae0e0da52bb5c1c336494e84fe2a773c))
+* **deps-dev** eslint-plugin-jsdoc from 43.1.1 to 46.2.1  ([#67](https://github.com/cdcabrera/changelog-light/pull/67)) ([ba14a02](https://github.com/cdcabrera/changelog-light/commit/ba14a02be43f292bf385c02501d7f0ab27b37be3))
+* **deps-dev** bump eslint from 8.39.0 to 8.42.0  ([#68](https://github.com/cdcabrera/changelog-light/pull/68)) ([e0199cd](https://github.com/cdcabrera/changelog-light/commit/e0199cd13a42a8461b3c427a9c7c28d6d24e38a4))
+* **deps-dev** npm-check-updates from 16.10.9 to 16.10.12  ([#63](https://github.com/cdcabrera/changelog-light/pull/63)) ([96b19ed](https://github.com/cdcabrera/changelog-light/commit/96b19ed4a6a8460bc89aecedc0251cc746c7f95a))
+* **deps** codecov/codecov-action from 3.1.3 to 3.1.4  ([#62](https://github.com/cdcabrera/changelog-light/pull/62)) ([6d24ed6](https://github.com/cdcabrera/changelog-light/commit/6d24ed6e007fc7adf8ebc7588106e720ae56abd3))
+* **nodejs** expand 20 checks  ([#61](https://github.com/cdcabrera/changelog-light/pull/61)) ([53d202a](https://github.com/cdcabrera/changelog-light/commit/53d202aabd387d829e98c4932aa26084fb3d14ee))
+* **deps-dev** eslint-plugin-jsdoc from 41.1.1 to 43.1.1  ([#60](https://github.com/cdcabrera/changelog-light/pull/60)) ([7a5c303](https://github.com/cdcabrera/changelog-light/commit/7a5c3039abc97cb5184662339ebe345433ac0056))
+* **nodejs** remove 14 support  ([#59](https://github.com/cdcabrera/changelog-light/pull/59)) ([8c18c16](https://github.com/cdcabrera/changelog-light/commit/8c18c16c5e3002c710630f8119c31f042b53c406))
+
 ## [0.4.1](https://github.com/cdcabrera/changelog-light/compare/2378c98a018e0f43751acbe1f35ef7e5ae90c6f6...72fbd24f72e5f9262a1b44c1fd3834f8a06b4f31) (2023-05-02)
 
 
