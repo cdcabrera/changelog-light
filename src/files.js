@@ -67,7 +67,7 @@ const updateChangelog = (
   if (packageVersion) {
     version = packageVersion;
 
-    if (!isBasic && compareUrl) {
+    if (isBasic === false && compareUrl) {
       const { first, last } = getAliasComparisonCommitHashes();
       if (first && last) {
         version = `[${version}](${compareUrl}${first}...${last})`;

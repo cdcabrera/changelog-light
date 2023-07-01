@@ -105,7 +105,7 @@ const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCo
  */
 const formatChangelogMessage = (
   { scope, description, prNumber, hash } = {},
-  { isBasic } = OPTIONS,
+  { isBasic = false } = OPTIONS,
   { getRemoteUrls: getAliasRemoteUrls = getRemoteUrls } = {}
 ) => {
   const { commitUrl, prUrl } = getAliasRemoteUrls();
@@ -115,11 +115,11 @@ const formatChangelogMessage = (
   let updatedPr = (prNumber && `(#${prNumber})`) || '';
   let updatedHash = (hash && `(${hash.substring(0, 7)})`) || '';
 
-  if (!isBasic && prUrl && updatedPr) {
+  if (isBasic === false && prUrl && updatedPr) {
     updatedPr = `([#${prNumber}](${new URL(prNumber, prUrl).href}))`;
   }
 
-  if (!isBasic && commitUrl && updatedHash) {
+  if (isBasic === false && commitUrl && updatedHash) {
     updatedHash = `([${hash.substring(0, 7)}](${new URL(hash, commitUrl).href}))`;
   }
 

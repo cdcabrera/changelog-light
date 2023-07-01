@@ -85,6 +85,76 @@ describe('Files', () => {
     ).toMatchSnapshot('urls and paths, release commit, no markdown links');
   });
 
+  it('should create, and update CHANGELOG.md version WITHOUT comparison urls', () => {
+    const commitLog = `
+      LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)
+      53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)
+      d1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)
+      1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon
+      e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)
+      FIRSTdd312345d421231231312312345dca11235 Initial-like commit
+    `;
+
+    const urlObj = {
+      compareUrl: 'https://localhost/lorem/ipsum/comparmock/'
+    };
+
+    const commitObj = parseCommits({ getGit: () => commitLog });
+
+    const comparisonObjReleaseCommit = getComparisonCommitHashes({
+      getGit: () => `${commitLog}\nREALFIRST2345d421231231312312345dca11235 chore(release): 0.1.0`,
+      getReleaseCommit: () => 'REALFIRST2345d421231231312312345dca11235'
+    });
+
+    expect(
+      updateChangelog(
+        commitObj,
+        '1.0.0',
+        {
+          ...OPTIONS,
+          isBasic: true,
+          releaseDescription: '### ⚠ **lorem ipsum**\n- `dolor` (#1234)\n- `sit` (#5678)'
+        },
+        {
+          getComparisonCommitHashes: () => comparisonObjReleaseCommit,
+          getRemoteUrls: () => urlObj
+        }
+      )
+    ).toMatchSnapshot('urls and paths, release commit, no markdown links, isBasic true');
+
+    expect(
+      updateChangelog(
+        commitObj,
+        '1.0.0',
+        {
+          ...OPTIONS,
+          isBasic: undefined,
+          releaseDescription: '### ⚠ **lorem ipsum**\n- `dolor` (#1234)\n- `sit` (#5678)'
+        },
+        {
+          getComparisonCommitHashes: () => comparisonObjReleaseCommit,
+          getRemoteUrls: () => urlObj
+        }
+      )
+    ).toMatchSnapshot('urls and paths, release commit, no markdown links, isBasic undefined');
+
+    expect(
+      updateChangelog(
+        commitObj,
+        '1.0.0',
+        {
+          ...OPTIONS,
+          isBasic: false,
+          releaseDescription: '### ⚠ **lorem ipsum**\n- `dolor` (#1234)\n- `sit` (#5678)'
+        },
+        {
+          getComparisonCommitHashes: () => comparisonObjReleaseCommit,
+          getRemoteUrls: () => urlObj
+        }
+      )
+    ).toMatchSnapshot('urls and paths, release commit, with markdown links, isBasic false');
+  });
+
   it('should update a package.json', () => {
     expect(updatePackage('lorem ipsum')).toMatchSnapshot('package');
   });
