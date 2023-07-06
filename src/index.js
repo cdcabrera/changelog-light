@@ -17,6 +17,7 @@ const { updateChangelog, updatePackage } = require('./files');
  * @param {string} options.contextPath
  * @param {boolean} options.isCommit
  * @param {boolean} options.isDryRun
+ * @param {boolean} options.isGuide
  * @param {string} options.overrideVersion
  * @param {object} settings
  * @param {Function} settings.commitFiles
@@ -32,7 +33,7 @@ const { updateChangelog, updatePackage } = require('./files');
  *     package: string, versionClean: *, changelog: string, semverWeight: number, version: *}}
  */
 const commitChangelog = (
-  { changelogFile, contextPath, isCommit, isDryRun, overrideVersion } = OPTIONS,
+  { changelogFile, contextPath, isCommit, isDryRun, isGuide, overrideVersion } = OPTIONS,
   {
     commitFiles: commitAliasFiles = commitFiles,
     getOverrideVersion: getAliasOverrideVersion = getOverrideVersion,
@@ -65,6 +66,11 @@ const commitChangelog = (
 
   if (isDryRun) {
     consoleMessage.info(loggerAlias.messages);
+  }
+
+  if (isGuide) {
+    consoleMessage.warn(`Recommendation guide`);
+    consoleMessage.warn(loggerAlias.guides || '* No recommendations');
   }
 
   return {

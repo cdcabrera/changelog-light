@@ -46,8 +46,8 @@ const consoleMessage = (() => {
 /**
  * Basic message logging.
  *
- * @type {{log: Function, _log: object, readonly messages: Array, error: Function,
- *     message: Function, readonly logs: Array, readonly errors: Array}}
+ * @type {{readonly guides: Array, log: Function, _log: object, readonly messages: Array, error: Function,
+ *     message: Function, readonly logs: Array, readonly errors: Array, guide: Function}}
  */
 const logger = {
   _log: {},
@@ -56,6 +56,13 @@ const logger = {
     return Object.values(this._log)
       .filter(({ type }) => type === 'error')
       .map(({ message }) => message)
+      .join('\n');
+  },
+
+  get guides() {
+    return Object.values(this._log)
+      .filter(({ type }) => type === 'guide')
+      .map(({ message }) => `* ${message}`)
       .join('\n');
   },
 
@@ -78,6 +85,14 @@ const logger = {
 
     if (displayNow) {
       consoleMessage.error(updatedParam.message);
+    }
+  },
+  guide: function (param, { displayNow = false } = {}) {
+    const updatedParam = (typeof param === 'string' && { message: param }) || param;
+    this.log({ ...updatedParam, type: 'guide' });
+
+    if (displayNow) {
+      consoleMessage.warn(updatedParam.message);
     }
   },
   log: function ({ message, type, displayNow, ...rest }) {

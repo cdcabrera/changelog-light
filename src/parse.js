@@ -49,12 +49,19 @@ const getComparisonCommitHashes = ({
  * Parse a commit message
  *
  * @param {string} message
+ * @param {object} options
+ * @param {boolean} options.isAllowNonConventionalCommits
  * @param {object} settings
  * @param {Function} settings.getCommitType
+ * @param {object} settings.logger
  * @returns {{description: string, type: string, prNumber: string, hash: *}|{scope: string, description: string,
  *     type: string, prNumber: string, hash: string, typeScope: string}}
  */
-const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCommitType } = {}) => {
+const parseCommitMessage = (
+  message,
+  { isAllowNonConventionalCommits } = OPTIONS,
+  { getCommitType: getAliasCommitType = getCommitType, logger: loggerAlias = logger } = {}
+) => {
   const commitType = getAliasCommitType();
   let output;
 
@@ -73,6 +80,11 @@ const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCo
   };
 
   if (!output.type || (output.type && !descriptionEtAll?.length)) {
+    if (isAllowNonConventionalCommits === false) {
+      loggerAlias.guide(
+        `Skipping commit. Consider using option --non-cc. Using "${generalCommitType.general.value}" type for:  "${message}".`
+      );
+    }
     const [hash, ...descriptionEtAll] = message.trim().split(/\s/);
     const [description, ...partialPr] = descriptionEtAll.join(' ').trim().split(/\(#/);
 
@@ -203,6 +215,12 @@ const semverBump = (
         break;
     }
   });
+
+  if (parsedCommitsArr.length > 5 && weight < 10 && isOverrideVersion === false) {
+    loggerAlias.guide(
+      'Semver bump may need override. If breaking changes are included consider using option --override "X.X.X" with minor increment.'
+    );
+  }
 
   return {
     bump: (isOverrideVersion && 'override') || (weight >= 100 && 'major') || (weight >= 10 && 'minor') || 'patch',

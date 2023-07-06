@@ -16,6 +16,7 @@ const {
   'compare-path': comparePath,
   date,
   'dry-run': isDryRun,
+  guide: isGuide,
   'non-cc': isAllowNonConventionalCommits,
   override: overrideVersion,
   package: packageFile,
@@ -82,6 +83,11 @@ const {
       '[CHANGELOG.md] path used for version comparison. This will be "joined" with "remote-url". Defaults to the comparison path for GitHub.',
     type: 'string'
   })
+  .option('guide', {
+    default: false,
+    describe: 'Turn on option guide messaging recommendations for common issues.',
+    type: 'boolean'
+  })
   .option('package', {
     default: './package.json',
     describe: 'package.json read, output and relative path',
@@ -129,8 +135,9 @@ OPTIONS._set = {
   date,
   isAllowNonConventionalCommits,
   isBasic,
-  isDryRun,
   isCommit,
+  isDryRun,
+  isGuide,
   isOverrideVersion: overrideVersion !== undefined,
   overrideVersion,
   packageFile,

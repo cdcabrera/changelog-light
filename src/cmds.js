@@ -120,6 +120,24 @@ const getRemoteUrls = (
     prUrl = generateUrl(prPath);
   }
 
+  if (!commitUrl || !compareUrl || !prUrl) {
+    loggerAlias.guide(
+      'Unable to determine remote. Consider using the option --remote-url "http[remote path].git" to apply a path.'
+    );
+  }
+
+  if (!commitUrl) {
+    loggerAlias.guide('Unable to determine commit url. See option --remote-url');
+  }
+
+  if (!compareUrl) {
+    loggerAlias.guide('Unable to determine version comparison url. See option --remote-url');
+  }
+
+  if (!prUrl) {
+    loggerAlias.guide('Unable to determine PR url. See option --remote-url');
+  }
+
   return {
     baseUrl: updatedUrl,
     commitUrl,

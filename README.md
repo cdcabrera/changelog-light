@@ -58,6 +58,8 @@ or Yarn
                            will be "joined" with "remote-url". Defaults to the
                            comparison path for GitHub.
                                                     [string] [default: "compare/"]
+        --guide            Turn on option guide messaging recommendations for
+                           common issues.               [boolean] [default: false]
         --package          package.json read, output and relative path
                                               [string] [default: "./package.json"]
         --pr-path          [CHANGELOG.md] path used for PRs/MRs. This will be
@@ -109,15 +111,21 @@ Assuming you're using GitHub as your base. _If you're not using GitHub we do exp
 1. Next, run the CLI, either directly, or through a NPM script like the above example.
 
    ```
-   $ changelog --dry-run --non-cc
+   $ changelog --dry-run --non-cc --guide
    ```
-   _We recommend you try the `--dry-run` and `--non-cc` options for your first run._
+   _We recommend you try the `--dry-run`, `--non-cc`, and `--guide` options for your first run._
 
-1. Review the output, you have a few choices
-   - in your terminal only, see option `--dry-run`
-   - or as a commit with a `CHANGELOG.md` and `package.json` update. This is the default option `--commit`
-   - or as updated files `CHANGELOG.md` and `package.json`, if you opted to update without a commit, see option `--commit=false`
+1. Next, review the terminal output from `--dry-run`, you have a couple of paths
+   - Run `$ changelog --non-cc` to commit with `CHANGELOG.md` and `package.json` updates. The default option `--commit` is used behind the scenes.
+   - Run `$ changelog --non-cc --commit=false` to update `CHANGELOG.md` and `package.json` WITHOUT an automatic commit.
+      > If you use a custom release commit message, `changelog-light` looks for specific commit messages to determine the release commit range. An override is available see `--release-message`.
 1. That's it!
+
+> If you're having issues with `changelog-light` you can try running the tool with the `--dry-run` and `--guide` options active.
+> `--guide` displays option recommendations for common discovered issues.
+> 
+> If you come across an issue that is solvable by adjusting an existing option, and there is no guide recommendation, consider opening
+> an issue or pull request to help expand the recommendations.
 
 ## Credit
 This project is influenced by the now deprecated project [Standard Version](https://github.com/conventional-changelog/standard-version). 
