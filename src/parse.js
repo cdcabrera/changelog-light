@@ -1,4 +1,4 @@
-const { generalCommitType, conventionalCommitType, OPTIONS } = require('./global');
+const { generalCommitType, conventionalCommitType, logger, OPTIONS } = require('./global');
 const { getGit, getReleaseCommit, getRemoteUrls } = require('./cmds');
 
 /**
@@ -177,17 +177,19 @@ const parseCommits = ({
  * @param {boolean} options.isOverrideVersion
  * @param {object} settings
  * @param {Function} settings.getCommitType
+ * @param {Function} settings.logger
  * @returns {{bump: ('major'|'minor'|'patch'), weight: number}}
  */
 const semverBump = (
   parsedCommits = {},
   { isOverrideVersion = false } = OPTIONS,
-  { getCommitType: getAliasCommitType = getCommitType } = {}
+  { getCommitType: getAliasCommitType = getCommitType, logger: loggerAlias = logger } = {}
 ) => {
   const commitType = getAliasCommitType();
+  const parsedCommitsArr = Object.entries(parsedCommits);
   let weight = 0;
 
-  Object.entries(parsedCommits).forEach(([key, { commits = [] }]) => {
+  parsedCommitsArr.forEach(([key, { commits = [] }]) => {
     switch (key) {
       case commitType?.feat?.value:
       case commitType?.['revert']?.value:

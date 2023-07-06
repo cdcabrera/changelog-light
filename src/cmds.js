@@ -2,7 +2,7 @@ const { execSync } = require('child_process');
 const { join } = require('path');
 const semverClean = require('semver/functions/clean');
 const semverInc = require('semver/functions/inc');
-const { color, OPTIONS } = require('./global');
+const { logger, OPTIONS } = require('./global');
 
 /**
  * Functions for `git`, `package.json` version, and more
@@ -16,15 +16,16 @@ const { color, OPTIONS } = require('./global');
  * @param {string} cmd
  * @param {object} settings
  * @param {string} settings.errorMessage
+ * @param {object} settings.logger
  * @returns {string}
  */
-const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
+const runCmd = (cmd, { errorMessage = 'Skipping... {0}', logger: loggerAlias = logger } = {}) => {
   let stdout = '';
 
   try {
     stdout = execSync(cmd);
   } catch (e) {
-    console.error(color.RED, errorMessage.replace('{0}', e.message), color.NOCOLOR);
+    loggerAlias.error(errorMessage.replace('{0}', e.message), { displayNow: true });
   }
 
   return stdout.toString();
@@ -89,9 +90,14 @@ const getReleaseCommit = ({ releaseTypeScope } = OPTIONS) => {
  * @param {string} options.comparePath
  * @param {string} options.prPath
  * @param {string} options.remoteUrl
+ * @param {object} settings
+ * @param {object} settings.logger
  * @returns {{baseUrl: string, prUrl, commitUrl}}
  */
-const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = OPTIONS) => {
+const getRemoteUrls = (
+  { commitPath, comparePath, prPath, remoteUrl } = OPTIONS,
+  { logger: loggerAlias = logger } = {}
+) => {
   const setUrl = remoteUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
   let updatedUrl;
   let commitUrl;
@@ -144,16 +150,18 @@ const getGit = ({ getReleaseCommit: getAliasReleaseCommit = getReleaseCommit } =
  *
  * @param {object} options
  * @param {string|*} options.overrideVersion
+ * @param {object} settings
+ * @param {object} settings.logger
  * @returns {{clean: string, version: string}}
  */
-const getOverrideVersion = ({ overrideVersion: version } = OPTIONS) => {
+const getOverrideVersion = ({ overrideVersion: version } = OPTIONS, { logger: loggerAlias = logger } = {}) => {
   let updatedVersion;
   let clean;
 
   try {
     clean = semverClean(version);
   } catch (e) {
-    console.error(color.RED, `Semver: ${e.message}`, color.NOCOLOR);
+    loggerAlias.error(`getOverrideVersion: ${e.message}`, { displayNow: true });
   }
 
   if (clean) {
@@ -172,9 +180,13 @@ const getOverrideVersion = ({ overrideVersion: version } = OPTIONS) => {
  * @param {'major'|'minor'|'patch'|*} versionBump
  * @param {object} settings
  * @param {Function} settings.getCurrentVersion
+ * @param {object} settings.logger
  * @returns {string}
  */
-const getVersion = (versionBump, { getCurrentVersion: getAliasCurrentVersion = getCurrentVersion } = {}) => {
+const getVersion = (
+  versionBump,
+  { getCurrentVersion: getAliasCurrentVersion = getCurrentVersion, logger: loggerAlias = logger } = {}
+) => {
   const currentVersion = getAliasCurrentVersion() || '';
   let version;
   let clean;
@@ -183,7 +195,7 @@ const getVersion = (versionBump, { getCurrentVersion: getAliasCurrentVersion = g
     version = semverInc(currentVersion, versionBump || '');
     clean = semverClean(version);
   } catch (e) {
-    console.error(color.RED, `Semver: ${e.message}`, color.NOCOLOR);
+    loggerAlias.error(`getVersion: ${e.message}`, { displayNow: true });
   }
 
   return {

@@ -1,4 +1,4 @@
-const { color, OPTIONS } = require('./global');
+const { consoleMessage, logger, OPTIONS } = require('./global');
 const { commitFiles, getOverrideVersion, getVersion } = require('./cmds');
 const { parseCommits, semverBump } = require('./parse');
 const { updateChangelog, updatePackage } = require('./files');
@@ -22,6 +22,7 @@ const { updateChangelog, updatePackage } = require('./files');
  * @param {Function} settings.commitFiles
  * @param {Function} settings.getOverrideVersion
  * @param {Function} settings.getVersion
+ * @param {object} settings.logger
  * @param {Function} settings.parseCommits
  * @param {Function} settings.semverBump
  * @param {Function} settings.updateChangelog
@@ -36,6 +37,7 @@ const commitChangelog = (
     commitFiles: commitAliasFiles = commitFiles,
     getOverrideVersion: getAliasOverrideVersion = getOverrideVersion,
     getVersion: getAliasVersion = getVersion,
+    logger: loggerAlias = logger,
     parseCommits: parseAliasCommits = parseCommits,
     semverBump: semverAliasBump = semverBump,
     updateChangelog: updateAliasChangelog = updateChangelog,
@@ -50,12 +52,9 @@ const commitChangelog = (
   const { bump, weight } = semverAliasBump(parsedCommits);
   const { clean: cleanVersion, version } = (overrideVersion && getAliasOverrideVersion()) || getAliasVersion(bump);
 
-  if (isDryRun) {
-    console.info(
-      color.CYAN,
-      `\nDry run ${changelogFile} output...\nVersion: ${version}\nSemver bump: ${bump}\nSemver weight: ${weight}`
-    );
-  }
+  loggerAlias.message(
+    `\n${changelogFile} output...\nVersion: ${version}\nSemver bump: ${bump}\nSemver weight: ${weight}`
+  );
 
   const changelog = updateAliasChangelog(parsedCommits, cleanVersion);
   const packageJSON = updateAliasPackage((overrideVersion && cleanVersion) || bump);
@@ -65,7 +64,7 @@ const commitChangelog = (
   }
 
   if (isDryRun) {
-    console.info(color.NOCOLOR);
+    consoleMessage.info(loggerAlias.messages);
   }
 
   return {

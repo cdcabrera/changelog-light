@@ -1,6 +1,6 @@
 const { dirname } = require('path');
 const { existsSync, readFileSync, writeFileSync } = require('fs');
-const { OPTIONS } = require('./global');
+const { logger, OPTIONS } = require('./global');
 const { getRemoteUrls, runCmd } = require('./cmds');
 const { getComparisonCommitHashes } = require('./parse');
 
@@ -30,6 +30,7 @@ const { getComparisonCommitHashes } = require('./parse');
  * @param {Function} settings.getComparisonCommitHashes
  * @param {Function} settings.getRemoteUrls
  * @param {string} settings.headerMd
+ * @param {object} settings.logger
  * @returns {string}
  */
 const updateChangelog = (
@@ -40,7 +41,8 @@ const updateChangelog = (
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
     getRemoteUrls: getAliasRemoteUrls = getRemoteUrls,
-    headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`
+    headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`,
+    logger: loggerAlias = logger
   } = {}
 ) => {
   const systemTimestamp = ((date && new Date(date)) || new Date()).toLocaleDateString('fr-CA', {
@@ -78,9 +80,9 @@ const updateChangelog = (
   const updatedBody = `## ${version} (${systemTimestamp})\n${updatedReleaseDescription}\n${displayCommits}`;
   const output = `${header}\n\n${updatedBody}\n${body}${(body && '\n') || ''}`;
 
-  if (isDryRun) {
-    console.info(`\n${updatedBody}`);
-  } else {
+  loggerAlias.message(`\n${updatedBody}`);
+
+  if (isDryRun === false) {
     writeFileSync(changelogPath, output);
   }
 

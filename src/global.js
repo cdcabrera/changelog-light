@@ -25,6 +25,79 @@ const color = {
 };
 
 /**
+ * Convenience wrapper for preset console messaging and colors.
+ *
+ * @type {{warn: (function(...[*]): void), log: (function(...[*]): void), success: (function(...[*]): void),
+ *    error: (function(...[*]): void), info: (function(...[*]): void)}}
+ */
+const consoleMessage = (() => {
+  const applyColor = (method, passedColor, ...args) =>
+    console[method](`${passedColor}${args.join('\n')}${color.NOCOLOR}`);
+
+  return {
+    error: (...args) => applyColor('error', color.RED, ...args),
+    success: (...args) => applyColor('log', color.GREEN, ...args),
+    info: (...args) => applyColor('info', color.BLUE, ...args),
+    log: (...args) => applyColor('log', color.NOCOLOR, ...args),
+    warn: (...args) => applyColor('warn', color.YELLOW, ...args)
+  };
+})();
+
+/**
+ * Basic message logging.
+ *
+ * @type {{log: Function, _log: object, readonly messages: Array, error: Function,
+ *     message: Function, readonly logs: Array, readonly errors: Array}}
+ */
+const logger = {
+  _log: {},
+
+  get errors() {
+    return Object.values(this._log)
+      .filter(({ type }) => type === 'error')
+      .map(({ message }) => message)
+      .join('\n');
+  },
+
+  get logs() {
+    return Object.values(this._log)
+      .map(({ message }) => message)
+      .join('\n');
+  },
+
+  get messages() {
+    return Object.values(this._log)
+      .filter(({ type }) => type === 'message')
+      .map(({ message }) => message)
+      .join('\n');
+  },
+
+  error: function (param, { displayNow = false } = {}) {
+    const updatedParam = (typeof param === 'string' && { message: param }) || param;
+    this.log({ ...updatedParam, type: 'error' });
+
+    if (displayNow) {
+      consoleMessage.error(updatedParam.message);
+    }
+  },
+  log: function ({ message, type, displayNow, ...rest }) {
+    this._log[message] = { message, type: type || 'message', ...rest };
+
+    if (displayNow) {
+      consoleMessage.log(message);
+    }
+  },
+  message: function (param, { displayNow = false } = {}) {
+    const updatedParam = (typeof param === 'string' && { message: param }) || param;
+    this.log({ ...updatedParam, type: 'message' });
+
+    if (displayNow) {
+      consoleMessage.info(updatedParam.message);
+    }
+  }
+};
+
+/**
  * Set context path
  *
  * @type {string}
@@ -54,7 +127,7 @@ const generalCommitType = {
  * @type {{feat: {description: string, title: string, value: string}, fix: {description: string, title: string, value: string},
  *     chore: {description: string, title: string, value: string}}}
  */
-const conventionalCommitType = (types => {
+const conventionalCommitType = ((types, { logger: loggerAlias = logger } = {}) => {
   const updatedTypes = {};
 
   try {
@@ -65,7 +138,7 @@ const conventionalCommitType = (types => {
       };
     });
   } catch (e) {
-    console.error(color.RED, `Conventional commit types: ${e.message}`, color.NOCOLOR);
+    loggerAlias.error(`Conventional commit types: ${e.message}`, { displayNow: true });
   }
 
   return updatedTypes;
@@ -92,4 +165,4 @@ const OPTIONS = {
   }
 };
 
-module.exports = { color, contextPath, conventionalCommitType, generalCommitType, OPTIONS };
+module.exports = { color, consoleMessage, contextPath, conventionalCommitType, generalCommitType, logger, OPTIONS };
