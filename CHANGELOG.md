@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.1](https://github.com/cdcabrera/changelog-light/compare/5df64f41af4a0403ac76133e5d2ce874256f6749...7605b14eb580c33a47e95c85ec153cd176ea549a) (2023-09-09)
+
+
+### Builds
+* **deps-dev** eslint-plugin-jsdoc from 46.4.6 to 46.5.1  ([#80](https://github.com/cdcabrera/changelog-light/pull/80)) ([7605b14](https://github.com/cdcabrera/changelog-light/commit/7605b14eb580c33a47e95c85ec153cd176ea549a))
+* **deps-dev** bump jest from 29.6.2 to 29.6.4  ([#79](https://github.com/cdcabrera/changelog-light/pull/79)) ([9541190](https://github.com/cdcabrera/changelog-light/commit/95411905157e0be2147edc2e6fb1cac2095fb6eb))
+* **deps-dev** eslint-plugin-import from 2.28.0 to 2.28.1  ([#83](https://github.com/cdcabrera/changelog-light/pull/83)) ([bfadfd8](https://github.com/cdcabrera/changelog-light/commit/bfadfd8d5afa32b111a849a682ccaccb0ec7b8c4))
+* **deps** npm updates  ([#78](https://github.com/cdcabrera/changelog-light/pull/78)) ([1388922](https://github.com/cdcabrera/changelog-light/commit/13889222f1d770e2ffd18d384b756f18e95a6f20))
+
 ## [0.5.0](https://github.com/cdcabrera/changelog-light/compare/3a00958126b5c30574d87fcf5a1c8e7b2dbdf56f...17751187ae0e0da52bb5c1c336494e84fe2a773c) (2023-06-26)
 
 
