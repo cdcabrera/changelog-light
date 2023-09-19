@@ -17,8 +17,10 @@ const { getComparisonCommitHashes } = require('./parse');
 /**
  * Update CHANGELOG.md with commit output.
  *
- * @param {object} parsedCommits
- * @param {*|string} packageVersion
+ * @param {object} params
+ * @param {{ feat: { commits: Array }, refactor: { commits: Array }, fix: { commits: Array } }} params.commits
+ * @param {boolean} params.isBreakingChanges Apply a 'major' weight if true
+ * @param {*|string} params.packageVersion
  * @param {object} options
  * @param {string} options.changelogPath
  * @param {string} options.date
@@ -26,6 +28,7 @@ const { getComparisonCommitHashes } = require('./parse');
  * @param {boolean} options.isDryRun
  * @param {string} options.releaseDescription
  * @param {object} settings
+ * @param {string} settings.breakingChangeReleaseDesc
  * @param {string} settings.fallbackPackageVersion
  * @param {Function} settings.getComparisonCommitHashes
  * @param {Function} settings.getRemoteUrls
@@ -33,10 +36,10 @@ const { getComparisonCommitHashes } = require('./parse');
  * @returns {string}
  */
 const updateChangelog = (
-  parsedCommits = {},
-  packageVersion,
+  { commits: parsedCommits = {}, isBreakingChanges = false, packageVersion } = {},
   { date, changelogPath, isBasic = false, isDryRun = false, releaseDescription } = OPTIONS,
   {
+    breakingChangeReleaseDesc = `\u26A0 BREAKING CHANGES`,
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
     getRemoteUrls: getAliasRemoteUrls = getRemoteUrls,
@@ -47,7 +50,7 @@ const updateChangelog = (
     timeZone: 'UTC'
   });
   const { compareUrl } = getAliasRemoteUrls();
-  const updatedReleaseDescription = releaseDescription || '';
+  const updatedReleaseDescription = releaseDescription || (isBreakingChanges && breakingChangeReleaseDesc) || '';
   let header = headerMd;
   let version = fallbackPackageVersion;
   let body = '';
