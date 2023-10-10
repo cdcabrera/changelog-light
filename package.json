@@ -1,6 +1,6 @@
 {
   "name": "changelog-light",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Generate a changelog from commits.",
   "author": "cdcabrera",
   "license": "MIT",

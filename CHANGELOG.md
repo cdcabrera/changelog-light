@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.0](https://github.com/cdcabrera/changelog-light/compare/a581d144908c237cb3dca94ce339ff6dac254068...f2a0d06089e3287f5d73af0e70219d619e1cf0a5) (2023-10-10)
+
+
+### Features
+* **cli** breaking change commit syntax ([#91](https://github.com/cdcabrera/changelog-light/pull/91)) ([4e92f4e](https://github.com/cdcabrera/changelog-light/commit/4e92f4ef318b0f8e009dd5a11a1df5eb87d634e5))
+
+### Code Refactoring
+* **cli** example to escape sequence ([#92](https://github.com/cdcabrera/changelog-light/pull/92)) ([f2a0d06](https://github.com/cdcabrera/changelog-light/commit/f2a0d06089e3287f5d73af0e70219d619e1cf0a5))
+
+### Builds
+* **deps** bump actions/checkout from 3 to 4 ([#85](https://github.com/cdcabrera/changelog-light/pull/85)) ([31a1a44](https://github.com/cdcabrera/changelog-light/commit/31a1a4473e524e8f723d1b05b3f7d8d8d82928ef))
+* **deps-dev** bump jest from 29.6.4 to 29.7.0 ([#87](https://github.com/cdcabrera/changelog-light/pull/87)) ([3b39b06](https://github.com/cdcabrera/changelog-light/commit/3b39b0654329710c345675d7fa79e8e0f2b80da1))
+* **deps-dev** cspell from 6.31.3 to 7.3.7 ([#88](https://github.com/cdcabrera/changelog-light/pull/88)) ([225b7fe](https://github.com/cdcabrera/changelog-light/commit/225b7fe54814caf1bd211fabf9e15318a1911006))
+
 ## [0.5.1](https://github.com/cdcabrera/changelog-light/compare/5df64f41af4a0403ac76133e5d2ce874256f6749...7605b14eb580c33a47e95c85ec153cd176ea549a) (2023-09-09)
 
 
