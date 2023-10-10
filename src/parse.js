@@ -34,9 +34,7 @@ const getComparisonCommitHashes = ({
 } = {}) => {
   const releaseCommitHash = getAliasReleaseCommit().split(/\s/)[0];
   const rest = getAliasGit()
-    .trim()
-    .split(/\n/g)
-    .map(value => value.trim().split(/\s/)[0])
+    .map(({ commit }) => commit.trim().split(/\s/)[0])
     .reverse();
 
   return {
@@ -48,19 +46,24 @@ const getComparisonCommitHashes = ({
 /**
  * Parse a commit message
  *
- * @param {string} message
+ * @param {object} params
+ * @param {string} params.message
+ * @param {boolean} params.isBreaking
  * @param {object} settings
  * @param {Function} settings.getCommitType
  * @returns {{description: string, type: string, prNumber: string, hash: *}|{scope: string, description: string,
  *     type: string, prNumber: string, hash: string, typeScope: string}}
  */
-const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCommitType } = {}) => {
+const parseCommitMessage = (
+  { message, isBreaking = false } = {},
+  { getCommitType: getAliasCommitType = getCommitType } = {}
+) => {
   const commitType = getAliasCommitType();
   let output;
 
   const [hashTypeScope, ...descriptionEtAll] = message.trim().split(/:/);
   const [description, ...partialPr] = descriptionEtAll.join(' ').trim().split(/\(#/);
-  const [hash, typeScope = ''] = hashTypeScope.trim().split(/\s/);
+  const [hash, typeScope = ''] = hashTypeScope.replace(/!$/, '').trim().split(/\s/);
   const [type, scope = ''] = typeScope.split('(');
 
   output = {
@@ -68,8 +71,9 @@ const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCo
     typeScope,
     type: commitType?.[type]?.value,
     scope: scope.split(')')[0] || undefined,
-    description: description,
-    prNumber: (partialPr.join('(#').trim() || '').replace(/\D/g, '')
+    description: description.trim(),
+    prNumber: (partialPr.join('(#').trim() || '').replace(/\D/g, ''),
+    isBreaking
   };
 
   if (!output.type || (output.type && !descriptionEtAll?.length)) {
@@ -81,8 +85,9 @@ const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCo
       typeScope: undefined,
       type: generalCommitType.general.value,
       scope: undefined,
-      description: description,
-      prNumber: (partialPr.join('(#').trim() || '').replace(/\D/g, '')
+      description: description.trim(),
+      prNumber: (partialPr.join('(#').trim() || '').replace(/\D/g, ''),
+      isBreaking
     };
   }
 
@@ -97,6 +102,7 @@ const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCo
  * @param {string} params.description
  * @param {string|number|*} params.prNumber
  * @param {string} params.hash
+ * @param {boolean} params.isBreaking
  * @param {object} options
  * @param {boolean} options.isBasic
  * @param {object} settings
@@ -104,13 +110,14 @@ const parseCommitMessage = (message, { getCommitType: getAliasCommitType = getCo
  * @returns {string}
  */
 const formatChangelogMessage = (
-  { scope, description, prNumber, hash } = {},
+  { scope, description, prNumber, hash, isBreaking } = {},
   { isBasic } = OPTIONS,
   { getRemoteUrls: getAliasRemoteUrls = getRemoteUrls } = {}
 ) => {
   const { commitUrl, prUrl } = getAliasRemoteUrls();
   let output;
 
+  const updatedBreaking = (isBreaking && '\u26A0 ') || '';
   const updatedScope = (scope && `**${scope}**`) || '';
   let updatedPr = (prNumber && `(#${prNumber})`) || '';
   let updatedHash = (hash && `(${hash.substring(0, 7)})`) || '';
@@ -123,7 +130,7 @@ const formatChangelogMessage = (
     updatedHash = `([${hash.substring(0, 7)}](${new URL(hash, commitUrl).href}))`;
   }
 
-  output = `* ${updatedScope} ${description} ${updatedPr} ${updatedHash}`;
+  output = `* ${updatedBreaking}${updatedScope} ${description} ${updatedPr} ${updatedHash}`;
 
   return output;
 };
@@ -146,11 +153,15 @@ const parseCommits = ({
   parseCommitMessage: parseAliasCommitMessage = parseCommitMessage
 } = {}) => {
   const commitType = getAliasCommitType();
+  let isBreakingChanges = false;
 
-  return getAliasGit()
-    .trim()
-    .split(/\n/g)
-    .map(message => parseAliasCommitMessage(message))
+  const commits = getAliasGit()
+    .map(({ commit: message, isBreaking }) => {
+      if (isBreaking === true) {
+        isBreakingChanges = true;
+      }
+      return parseAliasCommitMessage({ message, isBreaking });
+    })
     .filter(obj => obj.type in commitType)
     .map(obj => ({ ...obj, typeLabel: obj.type }))
     .reduce((groups, { typeLabel, ...messageProps }) => {
@@ -167,12 +178,19 @@ const parseCommits = ({
 
       return updatedGroups;
     }, {});
+
+  return {
+    commits,
+    isBreakingChanges
+  };
 };
 
 /**
  * Apply a clear weight to commit types, determine MAJOR, MINOR, PATCH
  *
- * @param {{ feat: { commits: Array }, refactor: { commits: Array }, fix: { commits: Array } }} parsedCommits
+ * @param {object} params
+ * @param {{ feat: { commits: Array }, refactor: { commits: Array }, fix: { commits: Array } }} params.commits
+ * @param {boolean} params.isBreakingChanges Apply a 'major' weight if true
  * @param {object} options
  * @param {boolean} options.isOverrideVersion
  * @param {object} settings
@@ -180,12 +198,16 @@ const parseCommits = ({
  * @returns {{bump: ('major'|'minor'|'patch'), weight: number}}
  */
 const semverBump = (
-  parsedCommits = {},
+  { commits: parsedCommits = {}, isBreakingChanges = false } = {},
   { isOverrideVersion = false } = OPTIONS,
   { getCommitType: getAliasCommitType = getCommitType } = {}
 ) => {
   const commitType = getAliasCommitType();
   let weight = 0;
+
+  if (isBreakingChanges === true) {
+    weight += 100;
+  }
 
   Object.entries(parsedCommits).forEach(([key, { commits = [] }]) => {
     switch (key) {

@@ -29,7 +29,8 @@ Functions for `git`, `package.json` version, and more
     * [~getCurrentVersion(options)](#module_Commands..getCurrentVersion) ⇒ <code>\*</code>
     * [~getReleaseCommit(options)](#module_Commands..getReleaseCommit) ⇒ <code>string</code>
     * [~getRemoteUrls(options)](#module_Commands..getRemoteUrls) ⇒ <code>Object</code>
-    * [~getGit(settings)](#module_Commands..getGit) ⇒ <code>string</code>
+    * [~getGit(settings)](#module_Commands..getGit) ⇒ <code>Array</code>
+        * [~getGitLog(commitHash, searchFilter)](#module_Commands..getGit..getGitLog) ⇒ <code>string</code>
     * [~getOverrideVersion(options)](#module_Commands..getOverrideVersion) ⇒ <code>Object</code>
     * [~getVersion(versionBump, settings)](#module_Commands..getVersion) ⇒ <code>string</code>
 
@@ -149,7 +150,7 @@ Get the repositories remote
 
 <a name="module_Commands..getGit"></a>
 
-### Commands~getGit(settings) ⇒ <code>string</code>
+### Commands~getGit(settings) ⇒ <code>Array</code>
 Return output for a range of commits from a hash
 
 **Kind**: inner method of [<code>Commands</code>](#module_Commands)  
@@ -164,6 +165,35 @@ Return output for a range of commits from a hash
     <td>settings</td><td><code>object</code></td>
     </tr><tr>
     <td>settings.getReleaseCommit</td><td><code>function</code></td>
+    </tr><tr>
+    <td>settings.breakingChangeMessageFilter</td><td><code>Array</code></td>
+    </tr><tr>
+    <td>settings.breakingChangeScopeTypeFilter</td><td><code>Array</code></td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_Commands..getGit..getGitLog"></a>
+
+#### getGit~getGitLog(commitHash, searchFilter) ⇒ <code>string</code>
+Build git log command
+
+- Filter a range of commits since the last release if it exists
+- Filter breaking change commits with message body syntax
+- Filter breaking change commits with scope type syntax. And apply an additional check to help filter out
+    commits with message body scope type syntax used unintentionally.
+
+**Kind**: inner method of [<code>getGit</code>](#module_Commands..getGit)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>commitHash</td><td><code>string</code></td>
+    </tr><tr>
+    <td>searchFilter</td><td><code>Array</code></td>
     </tr>  </tbody>
 </table>
 
@@ -216,48 +246,55 @@ Update `changelog` and `package.json`
 
 
 * [Files](#module_Files)
-    * [~updateChangelog(parsedCommits, packageVersion, options, settings)](#module_Files..updateChangelog) ⇒ <code>string</code>
+    * [~updateChangelog(params, options, settings)](#module_Files..updateChangelog) ⇒ <code>string</code>
     * [~updatePackage(versionBump, options)](#module_Files..updatePackage) ⇒ <code>string</code>
 
 <a name="module_Files..updateChangelog"></a>
 
-### Files~updateChangelog(parsedCommits, packageVersion, options, settings) ⇒ <code>string</code>
+### Files~updateChangelog(params, options, settings) ⇒ <code>string</code>
 Update CHANGELOG.md with commit output.
 
 **Kind**: inner method of [<code>Files</code>](#module_Files)  
 <table>
   <thead>
     <tr>
-      <th>Param</th><th>Type</th>
+      <th>Param</th><th>Type</th><th>Description</th>
     </tr>
   </thead>
   <tbody>
 <tr>
-    <td>parsedCommits</td><td><code>object</code></td>
+    <td>params</td><td><code>object</code></td><td></td>
     </tr><tr>
-    <td>packageVersion</td><td><code>*</code> | <code>string</code></td>
+    <td>params.commits</td><td><code>Object</code></td><td></td>
     </tr><tr>
-    <td>options</td><td><code>object</code></td>
+    <td>params.isBreakingChanges</td><td><code>boolean</code></td><td><p>Apply a &#39;major&#39; weight if true</p>
+</td>
     </tr><tr>
-    <td>options.changelogPath</td><td><code>string</code></td>
+    <td>params.packageVersion</td><td><code>*</code> | <code>string</code></td><td></td>
     </tr><tr>
-    <td>options.date</td><td><code>string</code></td>
+    <td>options</td><td><code>object</code></td><td></td>
     </tr><tr>
-    <td>options.isBasic</td><td><code>boolean</code></td>
+    <td>options.changelogPath</td><td><code>string</code></td><td></td>
     </tr><tr>
-    <td>options.isDryRun</td><td><code>boolean</code></td>
+    <td>options.date</td><td><code>string</code></td><td></td>
     </tr><tr>
-    <td>options.releaseDescription</td><td><code>string</code></td>
+    <td>options.isBasic</td><td><code>boolean</code></td><td></td>
     </tr><tr>
-    <td>settings</td><td><code>object</code></td>
+    <td>options.isDryRun</td><td><code>boolean</code></td><td></td>
     </tr><tr>
-    <td>settings.fallbackPackageVersion</td><td><code>string</code></td>
+    <td>options.releaseDescription</td><td><code>string</code></td><td></td>
     </tr><tr>
-    <td>settings.getComparisonCommitHashes</td><td><code>function</code></td>
+    <td>settings</td><td><code>object</code></td><td></td>
     </tr><tr>
-    <td>settings.getRemoteUrls</td><td><code>function</code></td>
+    <td>settings.breakingChangeReleaseDesc</td><td><code>string</code></td><td></td>
     </tr><tr>
-    <td>settings.headerMd</td><td><code>string</code></td>
+    <td>settings.fallbackPackageVersion</td><td><code>string</code></td><td></td>
+    </tr><tr>
+    <td>settings.getComparisonCommitHashes</td><td><code>function</code></td><td></td>
+    </tr><tr>
+    <td>settings.getRemoteUrls</td><td><code>function</code></td><td></td>
+    </tr><tr>
+    <td>settings.headerMd</td><td><code>string</code></td><td></td>
     </tr>  </tbody>
 </table>
 
@@ -377,10 +414,10 @@ Parse and format commit messages
 * [Parse](#module_Parse)
     * [~getCommitType(options)](#module_Parse..getCommitType) ⇒ <code>Object</code>
     * [~getComparisonCommitHashes(settings)](#module_Parse..getComparisonCommitHashes) ⇒ <code>Object</code>
-    * [~parseCommitMessage(message, settings)](#module_Parse..parseCommitMessage) ⇒ <code>Object</code> \| <code>Object</code>
+    * [~parseCommitMessage(params, settings)](#module_Parse..parseCommitMessage) ⇒ <code>Object</code> \| <code>Object</code>
     * [~formatChangelogMessage(params, options, settings)](#module_Parse..formatChangelogMessage) ⇒ <code>string</code>
     * [~parseCommits(settings)](#module_Parse..parseCommits) ⇒ <code>Object</code>
-    * [~semverBump(parsedCommits, options, settings)](#module_Parse..semverBump) ⇒ <code>Object</code>
+    * [~semverBump(params, options, settings)](#module_Parse..semverBump) ⇒ <code>Object</code>
 
 <a name="module_Parse..getCommitType"></a>
 
@@ -426,7 +463,7 @@ In the current context, get the first and last commits based on the last release
 
 <a name="module_Parse..parseCommitMessage"></a>
 
-### Parse~parseCommitMessage(message, settings) ⇒ <code>Object</code> \| <code>Object</code>
+### Parse~parseCommitMessage(params, settings) ⇒ <code>Object</code> \| <code>Object</code>
 Parse a commit message
 
 **Kind**: inner method of [<code>Parse</code>](#module_Parse)  
@@ -438,7 +475,11 @@ Parse a commit message
   </thead>
   <tbody>
 <tr>
-    <td>message</td><td><code>string</code></td>
+    <td>params</td><td><code>object</code></td>
+    </tr><tr>
+    <td>params.message</td><td><code>string</code></td>
+    </tr><tr>
+    <td>params.isBreaking</td><td><code>boolean</code></td>
     </tr><tr>
     <td>settings</td><td><code>object</code></td>
     </tr><tr>
@@ -469,6 +510,8 @@ Format commit message for CHANGELOG.md
     <td>params.prNumber</td><td><code>string</code> | <code>number</code> | <code>*</code></td>
     </tr><tr>
     <td>params.hash</td><td><code>string</code></td>
+    </tr><tr>
+    <td>params.isBreaking</td><td><code>boolean</code></td>
     </tr><tr>
     <td>options</td><td><code>object</code></td>
     </tr><tr>
@@ -508,27 +551,32 @@ Return an object of commit groupings based on "conventional-commit-types"
 
 <a name="module_Parse..semverBump"></a>
 
-### Parse~semverBump(parsedCommits, options, settings) ⇒ <code>Object</code>
+### Parse~semverBump(params, options, settings) ⇒ <code>Object</code>
 Apply a clear weight to commit types, determine MAJOR, MINOR, PATCH
 
 **Kind**: inner method of [<code>Parse</code>](#module_Parse)  
 <table>
   <thead>
     <tr>
-      <th>Param</th><th>Type</th>
+      <th>Param</th><th>Type</th><th>Description</th>
     </tr>
   </thead>
   <tbody>
 <tr>
-    <td>parsedCommits</td><td><code>Object</code></td>
+    <td>params</td><td><code>object</code></td><td></td>
     </tr><tr>
-    <td>options</td><td><code>object</code></td>
+    <td>params.commits</td><td><code>Object</code></td><td></td>
     </tr><tr>
-    <td>options.isOverrideVersion</td><td><code>boolean</code></td>
+    <td>params.isBreakingChanges</td><td><code>boolean</code></td><td><p>Apply a &#39;major&#39; weight if true</p>
+</td>
     </tr><tr>
-    <td>settings</td><td><code>object</code></td>
+    <td>options</td><td><code>object</code></td><td></td>
     </tr><tr>
-    <td>settings.getCommitType</td><td><code>function</code></td>
+    <td>options.isOverrideVersion</td><td><code>boolean</code></td><td></td>
+    </tr><tr>
+    <td>settings</td><td><code>object</code></td><td></td>
+    </tr><tr>
+    <td>settings.getCommitType</td><td><code>function</code></td><td></td>
     </tr>  </tbody>
 </table>
 

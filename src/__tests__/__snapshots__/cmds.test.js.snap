@@ -6,7 +6,12 @@ exports[`Commands should attempt to run commands: commands 1`] = `
     "commitFiles": "<execSync>["git add ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md && git commit ../src/__fixtures__/package.json ../src/__fixtures__/CHANGELOG.md -m \\"chore(release): undefined\\""]</execSync>",
   },
   {
-    "getGit": "<execSync>["git log <execSync>[\\"git..HEAD --pretty=oneline"]</execSync>",
+    "getGit": [
+      {
+        "commit": "<execSync>["git log <execSync>[\\"git..HEAD --pretty=oneline"]</execSync>",
+        "isBreaking": false,
+      },
+    ],
   },
   {
     "getOverrideVersion": {

@@ -46,8 +46,8 @@ const commitChangelog = (
     process.chdir(contextPath);
   }
 
-  const parsedCommits = parseAliasCommits();
-  const { bump, weight } = semverAliasBump(parsedCommits);
+  const { commits, isBreakingChanges } = parseAliasCommits();
+  const { bump, weight } = semverAliasBump({ commits, isBreakingChanges });
   const { clean: cleanVersion, version } = (overrideVersion && getAliasOverrideVersion()) || getAliasVersion(bump);
 
   if (isDryRun) {
@@ -57,7 +57,7 @@ const commitChangelog = (
     );
   }
 
-  const changelog = updateAliasChangelog(parsedCommits, cleanVersion);
+  const changelog = updateAliasChangelog({ commits, packageVersion: cleanVersion, isBreakingChanges });
   const packageJSON = updateAliasPackage((overrideVersion && cleanVersion) || bump);
 
   if (isCommit && !isDryRun) {
@@ -71,7 +71,7 @@ const commitChangelog = (
   return {
     changelog,
     package: packageJSON,
-    parsedCommits,
+    parsedCommits: commits,
     semverBump: bump,
     semverWeight: weight,
     version,

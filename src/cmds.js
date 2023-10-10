@@ -127,16 +127,78 @@ const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = OPTIONS)
  *
  * @param {object} settings
  * @param {Function} settings.getReleaseCommit
- * @returns {string}
+ * @param {Array} settings.breakingChangeMessageFilter
+ * @param {Array} settings.breakingChangeScopeTypeFilter
+ * @returns {Array}
  */
-const getGit = ({ getReleaseCommit: getAliasReleaseCommit = getReleaseCommit } = {}) => {
+const getGit = ({
+  getReleaseCommit: getAliasReleaseCommit = getReleaseCommit,
+  breakingChangeMessageFilter = ['BREAKING CHANGE:', 'BREAKING CHANGES:'],
+  breakingChangeScopeTypeFilter = [')!:', '!:']
+} = {}) => {
   const releaseCommitHash = getAliasReleaseCommit().split(/\s/)[0];
+  let breakingChangeMessageCommits;
+  let breakingChangeScopeTypeCommits;
+  let commits;
 
-  if (!releaseCommitHash) {
-    return runCmd(`git log --pretty=oneline`, 'Skipping commit "get" check... {0}');
-  }
+  /**
+   * Build git log command
+   *
+   * - Filter a range of commits since the last release if it exists
+   * - Filter breaking change commits with message body syntax
+   * - Filter breaking change commits with scope type syntax. And apply an additional check to help filter out
+   *     commits with message body scope type syntax used unintentionally.
+   *
+   * @param {string} commitHash
+   * @param {Array} searchFilter
+   * @returns {string}
+   */
+  const getGitLog = (commitHash, searchFilter) => {
+    const releaseCommitHashRange = (commitHash && ` ${commitHash}..HEAD`) || '';
+    const searchFilterCommits = searchFilter?.map(value => ` --grep="${value}"`).join(' ') || '';
 
-  return runCmd(`git log ${releaseCommitHash}..HEAD --pretty=oneline`, 'Skipping commit "get" check... {0}');
+    return runCmd(
+      `git log${releaseCommitHashRange} --pretty=oneline${searchFilterCommits}`,
+      'Skipping commit "get" check... {0}'
+    );
+  };
+
+  breakingChangeMessageCommits = getGitLog(releaseCommitHash, breakingChangeMessageFilter);
+  breakingChangeScopeTypeCommits = getGitLog(releaseCommitHash, breakingChangeScopeTypeFilter);
+  commits = getGitLog(releaseCommitHash);
+
+  breakingChangeMessageCommits = breakingChangeMessageCommits
+    .trim()
+    .split(/\n/g)
+    ?.filter(value => value !== '');
+
+  breakingChangeScopeTypeCommits = breakingChangeScopeTypeCommits
+    .trim()
+    .split(/\n/g)
+    .filter(oneLineGitLogMessage => {
+      let isBreaking = false;
+
+      breakingChangeScopeTypeFilter?.forEach(filter => {
+        if (oneLineGitLogMessage.indexOf(filter) > -1) {
+          isBreaking = true;
+        }
+      });
+
+      return isBreaking;
+    })
+    ?.filter(value => value !== '');
+
+  return commits
+    .trim()
+    .split(/\n/g)
+    .filter(value => value !== '')
+    .map(commit => ({
+      commit,
+      isBreaking:
+        [...breakingChangeMessageCommits, ...breakingChangeScopeTypeCommits].find(
+          breakingChangeCommit => breakingChangeCommit === commit
+        ) !== undefined
+    }));
 };
 
 /**

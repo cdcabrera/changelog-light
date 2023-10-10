@@ -8,16 +8,16 @@ All notable changes to this project will be documented in this file.
 
 
 ### Features
-* **dolor** issues/20 sit enhancements  (#8) (53a1234)
+* **dolor** issues/20 sit enhancements (#8) (53a1234)
 
 ### Code Refactoring
-* **file** lorem updates  (#8) (LASTg45)
+* **file** lorem updates (#8) (LASTg45)
 
 ### Chores
-* **build** npm packages  (#15) (e5c456e)
+* **build** npm packages (#15) (e5c456e)
 
 ### Bug Fixes
-* **build** eslint, jsdoc updates  (#16) (d123453)
+* **build** eslint, jsdoc updates (#16) (d123453)
 *  missing semicolon  (1f1x345)
 
 "
@@ -31,16 +31,16 @@ All notable changes to this project will be documented in this file.
 
 
 ### Features
-* **dolor** issues/20 sit enhancements  (#8) (53a1234)
+* **dolor** issues/20 sit enhancements (#8) (53a1234)
 
 ### Code Refactoring
-* **file** lorem updates  (#8) (LASTg45)
+* **file** lorem updates (#8) (LASTg45)
 
 ### Chores
-* **build** npm packages  (#15) (e5c456e)
+* **build** npm packages (#15) (e5c456e)
 
 ### Bug Fixes
-* **build** eslint, jsdoc updates  (#16) (d123453)
+* **build** eslint, jsdoc updates (#16) (d123453)
 *  missing semicolon  (1f1x345)
 
 "
@@ -56,16 +56,16 @@ All notable changes to this project will be documented in this file.
 - \`sit\` (#5678)
 
 ### Features
-* **dolor** issues/20 sit enhancements  (#8) (53a1234)
+* **dolor** issues/20 sit enhancements (#8) (53a1234)
 
 ### Code Refactoring
-* **file** lorem updates  (#8) (LASTg45)
+* **file** lorem updates (#8) (LASTg45)
 
 ### Chores
-* **build** npm packages  (#15) (e5c456e)
+* **build** npm packages (#15) (e5c456e)
 
 ### Bug Fixes
-* **build** eslint, jsdoc updates  (#16) (d123453)
+* **build** eslint, jsdoc updates (#16) (d123453)
 *  missing semicolon  (1f1x345)
 
 "
@@ -76,19 +76,20 @@ exports[`Files should create, and update a basic CHANGELOG.md: changelog 1`] = `
 All notable changes to this project will be documented in this file.
 
 ## ¯\\_(ツ)_/¯ (2022-10-01)
-
+⚠ BREAKING CHANGES
 
 ### Features
-* **dolor** issues/20 sit enhancements  (#8) (53a1234)
+* ⚠ **lorem** lorem dolor sit (#12) (1f12345)
+* **dolor** issues/20 sit enhancements (#8) (53a1234)
 
 ### Code Refactoring
-* **file** lorem updates  (#8) (1f12345)
+* **file** lorem updates (#8) (1f12345)
 
 ### Chores
-* **build** npm packages  (#15) (e5c456e)
+* **build** npm packages (#15) (e5c456e)
 
 ### Bug Fixes
-* **build** eslint, jsdoc updates  (#16) (d123453)
+* **build** eslint, jsdoc updates (#16) (d123453)
 *  missing semicolon  (1f1x345)
 
 "
