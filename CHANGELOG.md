@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.1](https://github.com/cdcabrera/changelog-light/compare/dacbefd9c043e76cc601d0d330f982766626a35d...1375886b0247ff6e6870a3ec969b72cb91ab4a26) (2024-01-10)
+
+
+### Builds
+* **deps-dev** npm updates ([#113](https://github.com/cdcabrera/changelog-light/pull/113)) ([1375886](https://github.com/cdcabrera/changelog-light/commit/1375886b0247ff6e6870a3ec969b72cb91ab4a26))
+* **deps-dev** npm-check-updates from 16.14.6 to 16.14.11 ([#103](https://github.com/cdcabrera/changelog-light/pull/103)) ([9648b1b](https://github.com/cdcabrera/changelog-light/commit/9648b1be84e96cd5c15769fb6fcb49551a5a8f79))
+* **deps** bump actions/github-script from 6 to 7 ([#106](https://github.com/cdcabrera/changelog-light/pull/106)) ([5d43ade](https://github.com/cdcabrera/changelog-light/commit/5d43adeb37577c9cb237dd4b330762faedd9c7dc))
+* **deps-dev** eslint-plugin-jest from 27.4.2 to 27.6.0 ([#98](https://github.com/cdcabrera/changelog-light/pull/98)) ([a186ba8](https://github.com/cdcabrera/changelog-light/commit/a186ba80903369dcd9aba8230c3bbade745cdc89))
+* **deps-dev** eslint-plugin-prettier from 5.0.0 to 5.0.1 ([#99](https://github.com/cdcabrera/changelog-light/pull/99)) ([b68a4b3](https://github.com/cdcabrera/changelog-light/commit/b68a4b398e6fefdf385310292715bf0c02bfce8f))
+* **deps-dev** bump cspell from 7.3.7 to 7.3.8 ([#96](https://github.com/cdcabrera/changelog-light/pull/96)) ([db9ef99](https://github.com/cdcabrera/changelog-light/commit/db9ef9912836bf0cafeba7a694919b9b51a28c00))
+* **deps** bump actions/setup-node from 3 to 4 ([#95](https://github.com/cdcabrera/changelog-light/pull/95)) ([3b2e6f0](https://github.com/cdcabrera/changelog-light/commit/3b2e6f0c8e7443b944f28210e74a1d8e58e2ce68))
+* **deps-dev** npm-check-updates from 16.14.5 to 16.14.6 ([#100](https://github.com/cdcabrera/changelog-light/pull/100)) ([4ae8188](https://github.com/cdcabrera/changelog-light/commit/4ae818804f476e7251493101918139af0e5225b2))
+* **deps-dev** npm-check-updates from 16.10.18 to 16.14.5 ([#94](https://github.com/cdcabrera/changelog-light/pull/94)) ([e9a5eed](https://github.com/cdcabrera/changelog-light/commit/e9a5eedd739b4aade3027816c5deee9e17e58716))
+* **deps-dev** eslint-plugin-jest from 27.2.3 to 27.4.2 ([#90](https://github.com/cdcabrera/changelog-light/pull/90)) ([e320028](https://github.com/cdcabrera/changelog-light/commit/e320028774cd321fb529fdaca45fc07aa1abee59))
+* **deps-dev** eslint from 8.46.0 to 8.51.0 ([#93](https://github.com/cdcabrera/changelog-light/pull/93)) ([3124cbd](https://github.com/cdcabrera/changelog-light/commit/3124cbd02e71837941b7c7c81fafac3b3ceace56))
+
 ## [0.6.0](https://github.com/cdcabrera/changelog-light/compare/a581d144908c237cb3dca94ce339ff6dac254068...f2a0d06089e3287f5d73af0e70219d619e1cf0a5) (2023-10-10)
 
 
