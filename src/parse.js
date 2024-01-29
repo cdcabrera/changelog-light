@@ -63,16 +63,16 @@ const parseCommitMessage = (
 
   const [hashTypeScope, ...descriptionEtAll] = message.trim().split(/:/);
   const [description, ...partialPr] = descriptionEtAll.join(' ').trim().split(/\(#/);
-  const [hash, typeScope = ''] = hashTypeScope.replace(/!$/, '').trim().split(/\s/);
-  const [type, scope = ''] = typeScope.split('(');
+  const [hash, ...typeScope] = hashTypeScope.replace(/!$/, '').trim().split(/\s/);
+  const [type, scope = ''] = typeScope.join(' ').trim().split('(');
 
   output = {
     hash,
-    typeScope,
-    type: commitType?.[type]?.value,
+    typeScope: typeScope.join(' ').trim() || undefined,
+    type: commitType?.[type]?.value || undefined,
     scope: scope.split(')')[0] || undefined,
-    description: description.trim(),
-    prNumber: (partialPr.join('(#').trim() || '').replace(/\D/g, ''),
+    description: description.trim() || undefined,
+    prNumber: (partialPr.join('(#').trim() || '').replace(/\D/g, '') || undefined,
     isBreaking
   };
 
