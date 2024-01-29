@@ -14,6 +14,14 @@ exports[`Commands should attempt to run commands: commands 1`] = `
     ],
   },
   {
+    "getLinkUrls": {
+      "baseUrl": undefined,
+      "commitUrl": undefined,
+      "compareUrl": undefined,
+      "prUrl": undefined,
+    },
+  },
+  {
     "getOverrideVersion": {
       "clean": "<semverClean>[null]</semverClean>",
       "version": undefined,
@@ -21,14 +29,6 @@ exports[`Commands should attempt to run commands: commands 1`] = `
   },
   {
     "getReleaseCommit": "<execSync>["git log HEAD --grep=\\"chore(release)\\" --pretty=oneline -1"]</execSync>",
-  },
-  {
-    "getRemoteUrls": {
-      "baseUrl": undefined,
-      "commitUrl": undefined,
-      "compareUrl": undefined,
-      "prUrl": undefined,
-    },
   },
   {
     "getVersion": {

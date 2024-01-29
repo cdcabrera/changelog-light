@@ -1,5 +1,5 @@
 const { generalCommitType, conventionalCommitType, OPTIONS } = require('./global');
-const { getGit, getReleaseCommit, getRemoteUrls } = require('./cmds');
+const { getGit, getReleaseCommit, getLinkUrls } = require('./cmds');
 
 /**
  * Parse and format commit messages
@@ -106,15 +106,15 @@ const parseCommitMessage = (
  * @param {object} options
  * @param {boolean} options.isBasic
  * @param {object} settings
- * @param {Function} settings.getRemoteUrls
+ * @param {Function} settings.getLinkUrls
  * @returns {string}
  */
 const formatChangelogMessage = (
   { scope, description, prNumber, hash, isBreaking } = {},
   { isBasic } = OPTIONS,
-  { getRemoteUrls: getAliasRemoteUrls = getRemoteUrls } = {}
+  { getLinkUrls: getAliasLinkUrls = getLinkUrls } = {}
 ) => {
-  const { commitUrl, prUrl } = getAliasRemoteUrls();
+  const { commitUrl, prUrl } = getAliasLinkUrls();
   let output;
 
   const updatedBreaking = (isBreaking && '\u26A0 ') || '';

@@ -23,7 +23,7 @@ const {
   'pr-path': prPath,
   'release-message': releaseTypeScope,
   'release-desc': releaseDescription,
-  'remote-url': remoteUrl
+  'link-url': linkUrl
 } = yargs
   .usage('Generate a CHANGELOG.md with conventional commit types.\n\nUsage: changelog [options]')
   .help('help')
@@ -80,13 +80,18 @@ const {
   .option('commit-path', {
     default: 'commit/',
     describe:
-      '[CHANGELOG.md] path used for commits. This will be "joined" with "remote-url". Defaults to the commits path for GitHub.',
+      '[CHANGELOG.md] path used for commits. This will be "joined" with "link-url". Defaults to the commits path for GitHub.',
     type: 'string'
   })
   .option('compare-path', {
     default: 'compare/',
     describe:
-      '[CHANGELOG.md] path used for version comparison. This will be "joined" with "remote-url". Defaults to the comparison path for GitHub.',
+      '[CHANGELOG.md] path used for version comparison. This will be "joined" with "link-url". Defaults to the comparison path for GitHub.',
+    type: 'string'
+  })
+  .option('link-url', {
+    describe:
+      'Url override for updating all [CHANGELOG.md] base urls. This should start with "http". Attempts to use "$ git remote get-url origin", if it starts with "http"',
     type: 'string'
   })
   .option('package', {
@@ -97,7 +102,7 @@ const {
   .option('pr-path', {
     default: 'pull/',
     describe:
-      '[CHANGELOG.md] path used for PRs/MRs. This will be "joined" with "remote-url". Defaults to the PR path for GitHub.',
+      '[CHANGELOG.md] path used for PRs/MRs. This will be "joined" with "link-url". Defaults to the PR path for GitHub.',
     type: 'string'
   })
   .option('release-message', {
@@ -109,11 +114,6 @@ const {
   .option('release-desc', {
     describe: 'Add a description under the release version header copy. Example, "\u26A0 BREAKING CHANGES"',
     type: 'string'
-  })
-  .option('remote-url', {
-    describe:
-      'Git remote get-url for updating [CHANGELOG.md] base urls. This should start with "http". Defaults to "$ git remote get-url origin"',
-    type: 'string'
   }).argv;
 
 /**
@@ -123,7 +123,7 @@ const {
  *     packageFile: string, releaseDescription: string, isAllowNonConventionalCommits: boolean,
  *     releaseBranch: string, prPath: string, isCommit: boolean, overrideVersion: string|*,
  *     changelogPath: Function, commitPath: string, changelogFile: string,
- *     releaseTypeScope: string[]|string, isDryRun: boolean, remoteUrl: string,
+ *     releaseTypeScope: string[]|string, isDryRun: boolean, linkUrl: string,
  *     isBasic: boolean}}
  * @private
  */
@@ -140,6 +140,7 @@ OPTIONS._set = {
   isDryRun,
   isCommit,
   isOverrideVersion: overrideVersion !== undefined,
+  linkUrl,
   overrideVersion,
   packageFile,
   packagePath: function () {
@@ -148,8 +149,7 @@ OPTIONS._set = {
   prPath,
   releaseBranch,
   releaseDescription,
-  releaseTypeScope,
-  remoteUrl
+  releaseTypeScope
 };
 
 /**
