@@ -1,7 +1,7 @@
 const { dirname } = require('path');
 const { existsSync, readFileSync, writeFileSync } = require('fs');
 const { OPTIONS } = require('./global');
-const { getRemoteUrls, runCmd } = require('./cmds');
+const { getLinkUrls, runCmd } = require('./cmds');
 const { getComparisonCommitHashes } = require('./parse');
 
 /**
@@ -31,7 +31,7 @@ const { getComparisonCommitHashes } = require('./parse');
  * @param {string} settings.breakingChangeReleaseDesc
  * @param {string} settings.fallbackPackageVersion
  * @param {Function} settings.getComparisonCommitHashes
- * @param {Function} settings.getRemoteUrls
+ * @param {Function} settings.getLinkUrls
  * @param {string} settings.headerMd
  * @returns {string}
  */
@@ -42,14 +42,14 @@ const updateChangelog = (
     breakingChangeReleaseDesc = `\u26A0 BREAKING CHANGES`,
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
-    getRemoteUrls: getAliasRemoteUrls = getRemoteUrls,
+    getLinkUrls: getAliasLinkUrls = getLinkUrls,
     headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`
   } = {}
 ) => {
   const systemTimestamp = ((date && new Date(date)) || new Date()).toLocaleDateString('fr-CA', {
     timeZone: 'UTC'
   });
-  const { compareUrl } = getAliasRemoteUrls();
+  const { compareUrl } = getAliasLinkUrls();
   const updatedReleaseDescription = releaseDescription || (isBreakingChanges && breakingChangeReleaseDesc) || '';
   let header = headerMd;
   let version = fallbackPackageVersion;

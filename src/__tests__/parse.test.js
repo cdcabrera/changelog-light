@@ -83,7 +83,7 @@ describe('Parse', () => {
         parseCommitMessage({ message: commitMessageRefactor }),
         {},
         {
-          getRemoteUrls: () => ({
+          getLinkUrls: () => ({
             commitUrl: 'https://localhost/lorem/ipsum/commitsmock/',
             prUrl: 'https://localhost/lorem/ipsum/prmock/'
           })
@@ -140,7 +140,7 @@ describe('Parse', () => {
     const { mockClear: urlPathObjClear } = mockObjectProperty(OPTIONS, {
       commitPath: 'sit',
       prPath: 'dolor',
-      remoteUrl: 'https://localhost/lorem/ipsum'
+      linkUrl: 'https://localhost/lorem/ipsum'
     });
     const urlPathObj = parseCommits({ getGit: () => commitLog });
     urlPathObjClear();
@@ -150,7 +150,7 @@ describe('Parse', () => {
       commitPath: 'sit',
       isBasic: true,
       prPath: 'dolor',
-      remoteUrl: 'https://localhost/lorem/ipsum'
+      linkUrl: 'https://localhost/lorem/ipsum'
     });
     const basicCommitsNoMarkdownLinksObj = parseCommits({ getGit: () => commitLog });
     basicCommitsNoMarkdownLinksObjClear();
@@ -158,7 +158,7 @@ describe('Parse', () => {
     // Allow general commit messages
     const { mockClear: generalCommitsObjClear } = mockObjectProperty(OPTIONS, {
       isAllowNonConventionalCommits: true,
-      remoteUrl: 'https://localhost/lorem/ipsum'
+      linkUrl: 'https://localhost/lorem/ipsum'
     });
     const generalCommitsObj = parseCommits({ getGit: () => commitLog });
     generalCommitsObjClear();

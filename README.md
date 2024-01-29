@@ -55,16 +55,20 @@ or Yarn
         --changelog        Changelog output filename and relative path
                                               [string] [default: "./CHANGELOG.md"]
         --commit-path      [CHANGELOG.md] path used for commits. This will be
-                           "joined" with "remote-url". Defaults to the commits
-                           path for GitHub.          [string] [default: "commit/"]
+                           "joined" with "link-url". Defaults to the commits path
+                           for GitHub.               [string] [default: "commit/"]
         --compare-path     [CHANGELOG.md] path used for version comparison. This
-                           will be "joined" with "remote-url". Defaults to the
+                           will be "joined" with "link-url". Defaults to the
                            comparison path for GitHub.
                                                     [string] [default: "compare/"]
+        --link-url         Url override for updating all [CHANGELOG.md] base urls.
+                           This should start with "http". Attempts to use "$ git
+                           remote get-url origin", if it starts with "http"
+                                                                          [string]
         --package          package.json read, output and relative path
                                               [string] [default: "./package.json"]
         --pr-path          [CHANGELOG.md] path used for PRs/MRs. This will be
-                           "joined" with "remote-url". Defaults to the PR path for
+                           "joined" with "link-url". Defaults to the PR path for
                            GitHub.                     [string] [default: "pull/"]
         --release-message  A list of prefix release scope commit messages. First
                            list item is the new commit message prefix, the second
@@ -73,9 +77,6 @@ or Yarn
                                                [array] [default: "chore(release)"]
         --release-desc     Add a description under the release version header
                            copy. Example, "⚠ BREAKING CHANGES"            [string]
-        --remote-url       Git remote get-url for updating [CHANGELOG.md] base
-                           urls. This should start with "http". Defaults to "$ git
-                           remote get-url origin"                         [string]
     -h, --help             Show help                                     [boolean]
     -v, --version          Show version number                           [boolean]
 ```
@@ -144,11 +145,11 @@ To get your release commit setup from a "forked" repository...
 1. Make sure your working branch is synced and updated with the remote branch you want to merge into
 1. Run and confirm the hashes AND LINKS with the remote align in the terminal with...
    ```
-   $ changelog --dry-run --remote-url https://github.com/[the remote url].git
+   $ changelog --dry-run --link-url https://github.com/[the remote url].git
    ```
 1. Run the release script
    ```
-   $ changelog --remote-url https://github.com/[the remote url].git
+   $ changelog --link-url https://github.com/[the remote url].git
    ```
 1. Setup your pull/merge request, there should be a single commit difference... your release commit.
    > If there is more than one commit difference then you incorrectly synced your branch. Confer online, or with your team, for the git commands needed.

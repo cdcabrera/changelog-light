@@ -83,17 +83,17 @@ const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
 };
 
 /**
- * Get the repositories remote
+ * Get the base url for links, and then set the multiple link formats for markdown.
  *
  * @param {object} options
  * @param {string} options.commitPath
  * @param {string} options.comparePath
+ * @param {string} options.linkUrl
  * @param {string} options.prPath
- * @param {string} options.remoteUrl
  * @returns {{baseUrl: string, prUrl, commitUrl}}
  */
-const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = OPTIONS) => {
-  const setUrl = remoteUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
+const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath } = OPTIONS) => {
+  const setUrl = linkUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
   let updatedUrl;
   let commitUrl;
   let compareUrl;
@@ -101,9 +101,9 @@ const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = OPTIONS)
 
   if (/^http/.test(setUrl)) {
     updatedUrl = setUrl.trim().replace(/(\.git)$/, '');
-    const [protocol, remotePath] = updatedUrl.split('://');
+    const [protocol, linkPath] = updatedUrl.split('://');
     const generateUrl = path => {
-      let tempUrl = typeof path === 'string' && `${protocol}://${join(remotePath, path)}`;
+      let tempUrl = typeof path === 'string' && `${protocol}://${join(linkPath, path)}`;
       if (tempUrl && !/\/$/.test(tempUrl)) {
         tempUrl += '/';
       }
@@ -263,9 +263,9 @@ const getVersion = (versionBump, { getCurrentVersion: getAliasCurrentVersion = g
 module.exports = {
   commitFiles,
   getGit,
+  getLinkUrls,
   getOverrideVersion,
   getReleaseCommit,
-  getRemoteUrls,
   getVersion,
   runCmd
 };

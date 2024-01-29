@@ -53,7 +53,7 @@ describe('Files', () => {
     expect(
       updateChangelog({ ...commitObj, packageVersion: '1.0.0' }, undefined, {
         getComparisonCommitHashes: () => comparisonObjNoReleaseCommit,
-        getRemoteUrls: () => urlObj
+        getLinkUrls: () => urlObj
       })
     ).toMatchSnapshot('urls and paths, no release commit');
 
@@ -66,7 +66,7 @@ describe('Files', () => {
     expect(
       updateChangelog({ ...commitObj, packageVersion: '1.0.0' }, undefined, {
         getComparisonCommitHashes: () => comparisonObjReleaseCommit,
-        getRemoteUrls: () => urlObj
+        getLinkUrls: () => urlObj
       })
     ).toMatchSnapshot('urls and paths, release commit');
 
@@ -80,7 +80,7 @@ describe('Files', () => {
         },
         {
           getComparisonCommitHashes: () => comparisonObjReleaseCommit,
-          getRemoteUrls: () => urlObj
+          getLinkUrls: () => urlObj
         }
       )
     ).toMatchSnapshot('urls and paths, release commit, no markdown links');

@@ -28,7 +28,7 @@ Functions for `git`, `package.json` version, and more
     * [~commitFiles(version, options)](#module_Commands..commitFiles) ⇒ <code>string</code>
     * [~getCurrentVersion(options)](#module_Commands..getCurrentVersion) ⇒ <code>\*</code>
     * [~getReleaseCommit(options)](#module_Commands..getReleaseCommit) ⇒ <code>string</code>
-    * [~getRemoteUrls(options)](#module_Commands..getRemoteUrls) ⇒ <code>Object</code>
+    * [~getLinkUrls(options)](#module_Commands..getLinkUrls) ⇒ <code>Object</code>
     * [~getGit(options, settings)](#module_Commands..getGit) ⇒ <code>Array</code>
         * [~getGitLog(commitHash, searchFilter)](#module_Commands..getGit..getGitLog) ⇒ <code>string</code>
     * [~getOverrideVersion(options)](#module_Commands..getOverrideVersion) ⇒ <code>Object</code>
@@ -124,10 +124,10 @@ Get last release commit hash
     </tr>  </tbody>
 </table>
 
-<a name="module_Commands..getRemoteUrls"></a>
+<a name="module_Commands..getLinkUrls"></a>
 
-### Commands~getRemoteUrls(options) ⇒ <code>Object</code>
-Get the repositories remote
+### Commands~getLinkUrls(options) ⇒ <code>Object</code>
+Get the base url for links, and then set the multiple link formats for markdown.
 
 **Kind**: inner method of [<code>Commands</code>](#module_Commands)  
 <table>
@@ -144,9 +144,9 @@ Get the repositories remote
     </tr><tr>
     <td>options.comparePath</td><td><code>string</code></td>
     </tr><tr>
-    <td>options.prPath</td><td><code>string</code></td>
+    <td>options.linkUrl</td><td><code>string</code></td>
     </tr><tr>
-    <td>options.remoteUrl</td><td><code>string</code></td>
+    <td>options.prPath</td><td><code>string</code></td>
     </tr>  </tbody>
 </table>
 
@@ -298,7 +298,7 @@ Update CHANGELOG.md with commit output.
     </tr><tr>
     <td>settings.getComparisonCommitHashes</td><td><code>function</code></td><td></td>
     </tr><tr>
-    <td>settings.getRemoteUrls</td><td><code>function</code></td><td></td>
+    <td>settings.getLinkUrls</td><td><code>function</code></td><td></td>
     </tr><tr>
     <td>settings.headerMd</td><td><code>string</code></td><td></td>
     </tr>  </tbody>
@@ -525,7 +525,7 @@ Format commit message for CHANGELOG.md
     </tr><tr>
     <td>settings</td><td><code>object</code></td>
     </tr><tr>
-    <td>settings.getRemoteUrls</td><td><code>function</code></td>
+    <td>settings.getLinkUrls</td><td><code>function</code></td>
     </tr>  </tbody>
 </table>
 
