@@ -9,6 +9,17 @@ exports[`Parse should format a changelog commit message: formatChangelogMessages
 }
 `;
 
+exports[`Parse should format a non-conforming changelog commit message: formatChangelogMessagesNonConformingCommitMessages 1`] = `
+{
+  "empty": "*  1f1x345b597123453031234555b6d25574ccacee  (1f1x345)",
+  "emptyPR": "*  1f1x345b597123453031234555b6d25574ccacee (#9) (1f1x345)",
+  "madeUpType": "*  ref: lorem updates (#8) (1f1x345)",
+  "misplacedScope": "*  missing fix: semicolon  (1f12p45)",
+  "noScopeNoSemicolon": "*  refactor lorem updates (#8) (1f1x345)",
+  "noTypeWithScope": "*  (dolor): issues/20 sit enhancements  (1f72345)",
+}
+`;
+
 exports[`Parse should get the first, last commits: first and last, no release commit 1`] = `
 {
   "first": null,
@@ -300,6 +311,33 @@ exports[`Parse should parse a commit message: parseCommitMessages 1`] = `
 
 exports[`Parse should parse a non-conforming commit message: parseNonConformingCommitMessages 1`] = `
 {
+  "empty": {
+    "description": "",
+    "hash": "1f1x345b597123453031234555b6d25574ccacee",
+    "isBreaking": false,
+    "prNumber": "",
+    "scope": undefined,
+    "type": "general",
+    "typeScope": undefined,
+  },
+  "emptyPR": {
+    "description": "",
+    "hash": "1f1x345b597123453031234555b6d25574ccacee",
+    "isBreaking": false,
+    "prNumber": "9",
+    "scope": undefined,
+    "type": "general",
+    "typeScope": undefined,
+  },
+  "madeUpType": {
+    "description": "ref: lorem updates",
+    "hash": "1f1x345b597123453031234555b6d25574ccacee",
+    "isBreaking": false,
+    "prNumber": "8",
+    "scope": undefined,
+    "type": "general",
+    "typeScope": undefined,
+  },
   "misplacedScope": {
     "description": "missing fix: semicolon",
     "hash": "1f12p45b597123453031234555b6dl2401ccacee",

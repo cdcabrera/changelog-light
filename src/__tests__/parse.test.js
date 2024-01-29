@@ -55,11 +55,17 @@ describe('Parse', () => {
   });
 
   it('should parse a non-conforming commit message', () => {
+    const commitMessageEmpty = '1f1x345b597123453031234555b6d25574ccacee';
+    const commitMessageEmptyPR = '1f1x345b597123453031234555b6d25574ccacee (#9)';
+    const commitMessageMadeUpType = '1f1x345b597123453031234555b6d25574ccacee ref: lorem updates (#8)';
     const commitMessageNoScopeNoSemicolon = '1f1x345b597123453031234555b6d25574ccacee refactor lorem updates (#8)';
     const commitMessageNoTypeWithScope = '1f72345b597123453031234555b6d25574ccacee (dolor): issues/20 sit enhancements';
     const commitMessageMisplacedScope = '1f12p45b597123453031234555b6dl2401ccacee missing fix: semicolon';
 
     expect({
+      empty: parseCommitMessage({ message: commitMessageEmpty }),
+      emptyPR: parseCommitMessage({ message: commitMessageEmptyPR }),
+      madeUpType: parseCommitMessage({ message: commitMessageMadeUpType }),
       noScopeNoSemicolon: parseCommitMessage({ message: commitMessageNoScopeNoSemicolon }),
       noTypeWithScope: parseCommitMessage({ message: commitMessageNoTypeWithScope }),
       misplacedScope: parseCommitMessage({ message: commitMessageMisplacedScope })
@@ -87,6 +93,24 @@ describe('Parse', () => {
       general: formatChangelogMessage(parseCommitMessage({ message: commitMessageNonCC })),
       fix: formatChangelogMessage(parseCommitMessage({ message: commitMessageNoScope }))
     }).toMatchSnapshot('formatChangelogMessages');
+  });
+
+  it('should format a non-conforming changelog commit message', () => {
+    const commitMessageEmpty = '1f1x345b597123453031234555b6d25574ccacee';
+    const commitMessageEmptyPR = '1f1x345b597123453031234555b6d25574ccacee (#9)';
+    const commitMessageMadeUpType = '1f1x345b597123453031234555b6d25574ccacee ref: lorem updates (#8)';
+    const commitMessageNoScopeNoSemicolon = '1f1x345b597123453031234555b6d25574ccacee refactor lorem updates (#8)';
+    const commitMessageNoTypeWithScope = '1f72345b597123453031234555b6d25574ccacee (dolor): issues/20 sit enhancements';
+    const commitMessageMisplacedScope = '1f12p45b597123453031234555b6dl2401ccacee missing fix: semicolon';
+
+    expect({
+      empty: formatChangelogMessage(parseCommitMessage({ message: commitMessageEmpty })),
+      emptyPR: formatChangelogMessage(parseCommitMessage({ message: commitMessageEmptyPR })),
+      madeUpType: formatChangelogMessage(parseCommitMessage({ message: commitMessageMadeUpType })),
+      noScopeNoSemicolon: formatChangelogMessage(parseCommitMessage({ message: commitMessageNoScopeNoSemicolon })),
+      noTypeWithScope: formatChangelogMessage(parseCommitMessage({ message: commitMessageNoTypeWithScope })),
+      misplacedScope: formatChangelogMessage(parseCommitMessage({ message: commitMessageMisplacedScope }))
+    }).toMatchSnapshot('formatChangelogMessagesNonConformingCommitMessages');
   });
 
   it('should parse a commit listing using conventional commit types', () => {

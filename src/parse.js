@@ -130,7 +130,7 @@ const formatChangelogMessage = (
     updatedHash = `([${hash.substring(0, 7)}](${new URL(hash, commitUrl).href}))`;
   }
 
-  output = `* ${updatedBreaking}${updatedScope} ${description} ${updatedPr} ${updatedHash}`;
+  output = `* ${updatedBreaking}${updatedScope} ${description || hash} ${updatedPr} ${updatedHash}`;
 
   return output;
 };
