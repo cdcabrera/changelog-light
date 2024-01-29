@@ -29,7 +29,7 @@ Functions for `git`, `package.json` version, and more
     * [~getCurrentVersion(options)](#module_Commands..getCurrentVersion) ⇒ <code>\*</code>
     * [~getReleaseCommit(options)](#module_Commands..getReleaseCommit) ⇒ <code>string</code>
     * [~getRemoteUrls(options)](#module_Commands..getRemoteUrls) ⇒ <code>Object</code>
-    * [~getGit(settings)](#module_Commands..getGit) ⇒ <code>Array</code>
+    * [~getGit(options, settings)](#module_Commands..getGit) ⇒ <code>Array</code>
         * [~getGitLog(commitHash, searchFilter)](#module_Commands..getGit..getGitLog) ⇒ <code>string</code>
     * [~getOverrideVersion(options)](#module_Commands..getOverrideVersion) ⇒ <code>Object</code>
     * [~getVersion(versionBump, settings)](#module_Commands..getVersion) ⇒ <code>string</code>
@@ -119,6 +119,8 @@ Get last release commit hash
     <td>options</td><td><code>object</code></td>
     </tr><tr>
     <td>options.releaseTypeScope</td><td><code>Array.&lt;string&gt;</code> | <code>string</code></td>
+    </tr><tr>
+    <td>options.releaseBranch</td><td><code>string</code> | <code>undefined</code></td>
     </tr>  </tbody>
 </table>
 
@@ -150,7 +152,7 @@ Get the repositories remote
 
 <a name="module_Commands..getGit"></a>
 
-### Commands~getGit(settings) ⇒ <code>Array</code>
+### Commands~getGit(options, settings) ⇒ <code>Array</code>
 Return output for a range of commits from a hash
 
 **Kind**: inner method of [<code>Commands</code>](#module_Commands)  
@@ -162,6 +164,10 @@ Return output for a range of commits from a hash
   </thead>
   <tbody>
 <tr>
+    <td>options</td><td><code>object</code></td>
+    </tr><tr>
+    <td>options.releaseBranch</td><td><code>string</code> | <code>undefined</code></td>
+    </tr><tr>
     <td>settings</td><td><code>object</code></td>
     </tr><tr>
     <td>settings.getReleaseCommit</td><td><code>function</code></td>

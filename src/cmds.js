@@ -68,13 +68,14 @@ const getCurrentVersion = ({ packagePath } = OPTIONS) => {
  *
  * @param {object} options
  * @param {string[]|string} options.releaseTypeScope
+ * @param {string|undefined} options.releaseBranch
  * @returns {string}
  */
-const getReleaseCommit = ({ releaseTypeScope } = OPTIONS) => {
+const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
   const isArray = Array.isArray(releaseTypeScope);
-
+  const updatedReleaseBranch = (releaseBranch && ` ${releaseBranch}`) || '';
   return runCmd(
-    `git log --grep="${
+    `git log${updatedReleaseBranch} --grep="${
       (isArray && releaseTypeScope?.[1]) || (isArray && releaseTypeScope?.[0]) || releaseTypeScope
     }" --pretty=oneline -1`,
     'Skipping release commit check... {0}'
@@ -125,17 +126,22 @@ const getRemoteUrls = ({ commitPath, comparePath, prPath, remoteUrl } = OPTIONS)
 /**
  * Return output for a range of commits from a hash
  *
+ * @param {object} options
+ * @param {string|undefined} options.releaseBranch
  * @param {object} settings
  * @param {Function} settings.getReleaseCommit
  * @param {Array} settings.breakingChangeMessageFilter
  * @param {Array} settings.breakingChangeScopeTypeFilter
  * @returns {Array}
  */
-const getGit = ({
-  getReleaseCommit: getAliasReleaseCommit = getReleaseCommit,
-  breakingChangeMessageFilter = ['BREAKING CHANGE:', 'BREAKING CHANGES:'],
-  breakingChangeScopeTypeFilter = [')!:', '!:']
-} = {}) => {
+const getGit = (
+  { releaseBranch } = OPTIONS,
+  {
+    getReleaseCommit: getAliasReleaseCommit = getReleaseCommit,
+    breakingChangeMessageFilter = ['BREAKING CHANGE:', 'BREAKING CHANGES:'],
+    breakingChangeScopeTypeFilter = [')!:', '!:']
+  } = {}
+) => {
   const releaseCommitHash = getAliasReleaseCommit().split(/\s/)[0];
   let breakingChangeMessageCommits;
   let breakingChangeScopeTypeCommits;
@@ -154,7 +160,7 @@ const getGit = ({
    * @returns {string}
    */
   const getGitLog = (commitHash, searchFilter) => {
-    const releaseCommitHashRange = (commitHash && ` ${commitHash}..HEAD`) || '';
+    const releaseCommitHashRange = (commitHash && ` ${commitHash}..${releaseBranch}`) || '';
     const searchFilterCommits = searchFilter?.map(value => ` --grep="${value}"`).join(' ') || '';
 
     return runCmd(

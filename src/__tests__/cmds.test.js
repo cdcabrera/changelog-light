@@ -6,7 +6,8 @@ describe('Commands', () => {
   const { mockClear } = mockObjectProperty(OPTIONS, {
     date: '2022-10-01',
     changelogPath: join(OPTIONS.contextPath, 'CHANGELOG.md'),
-    packagePath: join(OPTIONS.contextPath, 'package.json')
+    packagePath: join(OPTIONS.contextPath, 'package.json'),
+    releaseBranch: 'HEAD'
   });
 
   afterAll(() => {

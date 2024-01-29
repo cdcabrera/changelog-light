@@ -10,6 +10,7 @@ const { commitChangelog, OPTIONS } = require('../src');
  */
 const {
   basic: isBasic,
+  branch: releaseBranch,
   changelog: changelogFile,
   commit: isCommit,
   'commit-path': commitPath,
@@ -65,6 +66,12 @@ const {
     describe: 'Generate [CHANGELOG.md] sample output',
     type: 'boolean'
   })
+  .option('branch', {
+    default: 'HEAD',
+    describe: 'The local branch used to run `$ git log [branch]` against, defaults to HEAD, or just `$ git log`',
+    type: 'string',
+    requiresArg: true
+  })
   .option('changelog', {
     default: './CHANGELOG.md',
     describe: 'Changelog output filename and relative path',
@@ -113,9 +120,10 @@ const {
  * Set global OPTIONS
  *
  * @type {{comparePath: string, date: string, packagePath: Function, isOverrideVersion: boolean,
- *     packageFile: string, releaseDescription: string, isAllowNonConventionalCommits: boolean, prPath: string,
- *     isCommit: boolean, overrideVersion: string|*, changelogPath: Function, commitPath: string,
- *     changelogFile: string, releaseTypeScope: string[]|string, isDryRun: boolean, remoteUrl: string,
+ *     packageFile: string, releaseDescription: string, isAllowNonConventionalCommits: boolean,
+ *     releaseBranch: string, prPath: string, isCommit: boolean, overrideVersion: string|*,
+ *     changelogPath: Function, commitPath: string, changelogFile: string,
+ *     releaseTypeScope: string[]|string, isDryRun: boolean, remoteUrl: string,
  *     isBasic: boolean}}
  * @private
  */
@@ -138,6 +146,7 @@ OPTIONS._set = {
     return join(this.contextPath, packageFile);
   },
   prPath,
+  releaseBranch,
   releaseDescription,
   releaseTypeScope,
   remoteUrl
