@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0](https://github.com/cdcabrera/changelog-light/compare/9aabe71e790bc547a283e11386ef83edf3a3aa2a...c38871bd9e3991e9342e46899583da6f9a8ecee1) (2024-01-29)
+⚠ BREAKING CHANGES
+
+### Features
+* **cli** create log from different branch ([#115](https://github.com/cdcabrera/changelog-light/pull/115)) ([9cd9fe4](https://github.com/cdcabrera/changelog-light/commit/9cd9fe48bd38f6eb038d796f15eb4d6fb42812ab))
+
+### Documentation
+* **readme** breakdown common use scenario ([#115](https://github.com/cdcabrera/changelog-light/pull/115)) ([756d47b](https://github.com/cdcabrera/changelog-light/commit/756d47b9980bd5e832ca5b1882b94eb952624d8b))
+* **readme** switch to dynamic coverage badge ([#116](https://github.com/cdcabrera/changelog-light/pull/116)) ([aab6323](https://github.com/cdcabrera/changelog-light/commit/aab632333e3048c00a1bbd96e9ffdf69bda804b9))
+
+### Code Refactoring
+* ⚠ **cli** rename remote to linkUrl ([#117](https://github.com/cdcabrera/changelog-light/pull/117)) ([c38871b](https://github.com/cdcabrera/changelog-light/commit/c38871bd9e3991e9342e46899583da6f9a8ecee1))
+* **parse** explicit undefined instead of empty string ([#115](https://github.com/cdcabrera/changelog-light/pull/115)) ([e4365d7](https://github.com/cdcabrera/changelog-light/commit/e4365d70dd8a0770749b6b550f1374b5c44e800e))
+
+### Bug Fixes
+* **parse** empty summary, message ([#115](https://github.com/cdcabrera/changelog-light/pull/115)) ([aab697e](https://github.com/cdcabrera/changelog-light/commit/aab697edcb0166f7a9bd3f6429cb1e42951e0bc5))
+
 ## [0.6.1](https://github.com/cdcabrera/changelog-light/compare/dacbefd9c043e76cc601d0d330f982766626a35d...1375886b0247ff6e6870a3ec969b72cb91ab4a26) (2024-01-10)
 
 

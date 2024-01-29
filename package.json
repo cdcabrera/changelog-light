@@ -1,6 +1,6 @@
 {
   "name": "changelog-light",
-  "version": "0.6.1",
+  "version": "1.0.0",
   "description": "Generate a changelog from commits.",
   "author": "cdcabrera",
   "license": "MIT",
@@ -51,10 +51,10 @@
     "test:spell": "cspell './src/**/*.js' './tests/**/*.js' --config ./cspell.config.json"
   },
   "coverage": {
-    "total": 214,
-    "covered": 202,
+    "total": 215,
+    "covered": 203,
     "skipped": 0,
-    "pct": 94.39
+    "pct": 94.41
   },
   "jest": {
     "roots": [
