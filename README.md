@@ -42,13 +42,16 @@ or Yarn
                            commit                        [boolean] [default: true]
     -d, --date             [CHANGELOG.md] release date in the form of a valid date
                            string. Uses system new Date([your date])
-                                    [string] [default: "2023-01-03T02:22:35.984Z"]
+                                    [string] [default: "2024-01-29T07:40:54.615Z"]
     -n, --non-cc           Allow non-conventional commits to apply a semver weight
                            and appear in [CHANGELOG.md] under a general type
                            description.                 [boolean] [default: false]
     -o, --override         Use a version you define.                      [string]
     -r, --dry-run          Generate [CHANGELOG.md] sample output
                                                         [boolean] [default: false]
+        --branch           The local branch used to run `$ git log [branch]`
+                           against, defaults to HEAD, or just `$ git log`
+                                                        [string] [default: "HEAD"]
         --changelog        Changelog output filename and relative path
                                               [string] [default: "./CHANGELOG.md"]
         --commit-path      [CHANGELOG.md] path used for commits. This will be
