@@ -122,8 +122,42 @@ Assuming you're using GitHub as your base. _If you're not using GitHub we do exp
    - or as updated files `CHANGELOG.md` and `package.json`, if you opted to update without a commit, see option `--commit=false`
 1. That's it!
 
+##### Common scenario
+I want to run `changelog-light` from a different branch in the same repository, or from a "forked" repository?
+
+To get your release commit setup from a different branch...
+1. Make sure your working branch is synced and updated with the branch you want to merge into
+1. Run and confirm the hashes align in the terminal with...
+   ```
+   $ changelog --dry-run
+   ```
+1. Run the release script
+   ```
+   $ changelog
+   ```
+1. Setup your pull/merge request, there should be a single commit difference... your release commit.
+   > If there is more than one commit difference then you incorrectly synced your branch. Confer online, or with your team, for the git commands needed.
+1. Merge, or rebase, your commit (depending on your approval process) into the target branch 
+   > The git hash associated with the release commit **IS NOT USED** until the next time you run `changelog-light`. Having it updated when you merge, or rebase, your commit makes no difference in your markdown.
+
+To get your release commit setup from a "forked" repository...
+1. Make sure your working branch is synced and updated with the remote branch you want to merge into
+1. Run and confirm the hashes AND LINKS with the remote align in the terminal with...
+   ```
+   $ changelog --dry-run --remote-url https://github.com/[the remote url].git
+   ```
+1. Run the release script
+   ```
+   $ changelog --remote-url https://github.com/[the remote url].git
+   ```
+1. Setup your pull/merge request, there should be a single commit difference... your release commit.
+   > If there is more than one commit difference then you incorrectly synced your branch. Confer online, or with your team, for the git commands needed.
+1. Merge, or rebase, your commit (depending on your approval process) into the target branch
+   > The git hash associated with the release commit **IS NOT USED** until the next time you run `changelog-light`. Having it updated when you merge, or rebase, your commit makes no difference in your markdown.
+
+
 ## Credit
-This project is influenced by the now deprecated project [Standard Version](https://github.com/conventional-changelog/standard-version). 
+This project is influenced by the deprecated project [Standard Version](https://github.com/conventional-changelog/standard-version). 
 
 The primary differences between [Standard Version](https://github.com/conventional-changelog/standard-version) and this project
 are the weighting assigned to commit message types and a fraction of the features.
