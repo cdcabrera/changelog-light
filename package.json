@@ -32,14 +32,14 @@
     "build:deps": "bash ./scripts/dependencies.sh --doctor -u --doctorInstall \"yarn\" --doctorTest \"yarn test:deps\"",
     "build:docs": "run-s -l test:docs docs:md",
     "docs:md": "node ./scripts/readme.docs.js",
-    "release": "run-s release:test release:coverage release:commit",
+    "release": "run-s release:commit",
     "release:commit": "node ./bin/cli.js",
-    "release:coverage": "node ./scripts/coverage.build.js",
-    "release:test": "export CI=true; jest --collectCoverage --coverageReporters=\"json-summary\"",
     "start": "./bin/cli.js",
     "test": "run-s -l test:lint test:spell* test:ci",
-    "test:ci": "export CI=true; jest --collectCoverage",
+    "test:ci": "export CI=true; jest --collectCoverage --coverageReporters=\"lcov\" --coverageReporters=\"json-summary\"",
     "test:clearCache": "jest --clearCache",
+    "test:coverage": "run-s test:ci test:coverageSummary",
+    "test:coverageSummary": "node ./scripts/coverage.build.js",
     "test:deps": "run-s test",
     "test:dev": "eslint ./src ./bin; run-s test:spell test:local",
     "test:docs": "run-s test:spell test:lint",
@@ -49,12 +49,6 @@
     "test:local": "jest --watch",
     "test:spell-docs": "cspell ./README.md ./CONTRIBUTING.md --config ./cspell.config.json",
     "test:spell": "cspell './src/**/*.js' './tests/**/*.js' --config ./cspell.config.json"
-  },
-  "coverage": {
-    "total": 215,
-    "covered": 203,
-    "skipped": 0,
-    "pct": 94.41
   },
   "jest": {
     "roots": [

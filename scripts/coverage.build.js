@@ -2,26 +2,24 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Add release coverage totals to package.json for dynamic badge display.
+ * Add release coverage totals to a summary.json for dynamic badge display.
  *
  * @param {object} options
  * @param {string} options.coverageJson
- * @param {string} options.packageJson
+ * @param {string} options.outputJson
  */
 const addCoverageTotals = ({
   coverageJson = path.join(process.cwd(), 'coverage/coverage-summary.json'),
-  packageJson = path.join(process.cwd(), 'package.json')
+  outputJson = path.join(process.cwd(), 'coverage/lcov-report/summary.json')
 } = {}) => {
   try {
-    if (!fs.existsSync(coverageJson) || !fs.existsSync(packageJson)) {
+    if (!fs.existsSync(coverageJson)) {
       return;
     }
     const { total } = require(coverageJson);
-    const resultJsonStr = fs.readFileSync(packageJson);
-    const resultJson = { ...JSON.parse(resultJsonStr.toString()) };
-
+    const resultJson = {};
     resultJson.coverage = { ...total?.lines };
-    fs.writeFileSync(packageJson, JSON.stringify(resultJson, null, 2) + '\n');
+    fs.writeFileSync(outputJson, JSON.stringify(resultJson, null, 2) + '\n');
   } catch (e) {
     console.error(new Error(`Add coverage totals: ${e.message}`));
   }
