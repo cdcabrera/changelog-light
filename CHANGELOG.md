@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1](https://github.com/cdcabrera/changelog-light/compare/6f786663f37b2d641e87d676233c39158d12cbfb...8d39625850a331cc7a9e87ffde3f534ad9060b8a) (2024-02-18)
+
+
+### Builds
+* **deps-dev** prettier from 3.1.1 to 3.2.5 ([#127](https://github.com/cdcabrera/changelog-light/pull/127)) ([8d39625](https://github.com/cdcabrera/changelog-light/commit/8d39625850a331cc7a9e87ffde3f534ad9060b8a))
+* **coverage** move from codecov to pages ([#126](https://github.com/cdcabrera/changelog-light/pull/126)) ([2624c5c](https://github.com/cdcabrera/changelog-light/commit/2624c5c928ce8afcd91e7df5738a81d071dee969))
+* **deps-dev** eslint-plugin-jest from 27.6.1 to 27.6.3 ([#119](https://github.com/cdcabrera/changelog-light/pull/119)) ([4346753](https://github.com/cdcabrera/changelog-light/commit/4346753f9e34a340174f9d4c4a9e8b04798f100f))
+* **deps-dev** npm-check-updates from 16.14.12 to 16.14.14 ([#118](https://github.com/cdcabrera/changelog-light/pull/118)) ([de61624](https://github.com/cdcabrera/changelog-light/commit/de61624070fd5bc5ea70468c50ad643f040e46d8))
+* **deps** bump actions/cache from 3 to 4 ([#124](https://github.com/cdcabrera/changelog-light/pull/124)) ([337e3c9](https://github.com/cdcabrera/changelog-light/commit/337e3c950ba355463852de4025693d179eafe6b0))
+
 ## [1.0.0](https://github.com/cdcabrera/changelog-light/compare/9aabe71e790bc547a283e11386ef83edf3a3aa2a...c38871bd9e3991e9342e46899583da6f9a8ecee1) (2024-01-29)
 ⚠ BREAKING CHANGES
 
