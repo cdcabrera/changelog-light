@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1](https://github.com/cdcabrera/changelog-light/compare/2fa8e0eb28f4d003f0305fd168b209fad9c1ad29...71f9b4971f4b8565c14fad4a58248fc1cb3d5677) (2024-03-12)
+
+
+### Builds
+* **deps-dev** 5 npm updates ([#134](https://github.com/cdcabrera/changelog-light/pull/134)) ([71f9b49](https://github.com/cdcabrera/changelog-light/commit/71f9b4971f4b8565c14fad4a58248fc1cb3d5677))
+* **deps** npm update ([#135](https://github.com/cdcabrera/changelog-light/pull/135)) ([4598f90](https://github.com/cdcabrera/changelog-light/commit/4598f90d8cfc83533beaee0a55a8265ceae0deac))
+* **deps** dependabot groups ([#133](https://github.com/cdcabrera/changelog-light/pull/133)) ([bc30d32](https://github.com/cdcabrera/changelog-light/commit/bc30d3281648ea41946ff28030e5f476a6fc933f))
+
 ## [1.0.1](https://github.com/cdcabrera/changelog-light/compare/6f786663f37b2d641e87d676233c39158d12cbfb...8d39625850a331cc7a9e87ffde3f534ad9060b8a) (2024-02-18)
 
 
