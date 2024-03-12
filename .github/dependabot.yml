@@ -12,6 +12,17 @@ updates:
       - dependency-type: direct
     labels:
       - "build"
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: github-actions
     directory: /
