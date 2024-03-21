@@ -42,7 +42,7 @@ or Yarn
                            commit                        [boolean] [default: true]
     -d, --date             [CHANGELOG.md] release date in the form of a valid date
                            string. Uses system new Date([your date])
-                                    [string] [default: "2024-01-29T07:40:54.615Z"]
+                                    [string] [default: "2024-03-21T13:20:45.593Z"]
     -n, --non-cc           Allow non-conventional commits to apply a semver weight
                            and appear in [CHANGELOG.md] under a general type
                            description.                 [boolean] [default: false]
@@ -65,6 +65,11 @@ or Yarn
                            This should start with "http". Attempts to use "$ git
                            remote get-url origin", if it starts with "http"
                                                                           [string]
+        --lock-file        Lock file read and relative path. Will attempt to
+                           determine "package-lock.json" or "yarn.lock" use and
+                           updates during release. Use if a "lock-like" file
+                           outside of "package" and "yarn" lock is customized or
+                           used.                                          [string]
         --package          package.json read, output and relative path
                                               [string] [default: "./package.json"]
         --pr-path          [CHANGELOG.md] path used for PRs/MRs. This will be
