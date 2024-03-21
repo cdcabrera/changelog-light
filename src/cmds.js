@@ -37,14 +37,16 @@ const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
  * @param {object} options
  * @param {string} options.changelogPath
  * @param {string} options.packagePath
+ * @param {string} options.lockFilePath
  * @param {string[]|string} options.releaseTypeScope
  * @returns {string}
  */
-const commitFiles = (version, { changelogPath, packagePath, releaseTypeScope } = OPTIONS) => {
+const commitFiles = (version, { changelogPath, packagePath, lockFilePath, releaseTypeScope } = OPTIONS) => {
   const isArray = Array.isArray(releaseTypeScope);
+  const updatedLockFilePath = (lockFilePath && ` ${lockFilePath}`) || '';
 
   return runCmd(
-    `git add ${packagePath} ${changelogPath} && git commit ${packagePath} ${changelogPath} -m "${
+    `git add ${packagePath} ${changelogPath}${updatedLockFilePath} && git commit ${packagePath} ${changelogPath}${updatedLockFilePath} -m "${
       (isArray && releaseTypeScope?.[0]) || releaseTypeScope
     }: ${version}"`,
     'Skipping release commit... {0}'

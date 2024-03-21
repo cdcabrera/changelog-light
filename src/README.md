@@ -78,6 +78,8 @@ Optionally commit CHANGELOG.md, package.json
     </tr><tr>
     <td>options.packagePath</td><td><code>string</code></td>
     </tr><tr>
+    <td>options.lockFilePath</td><td><code>string</code></td>
+    </tr><tr>
     <td>options.releaseTypeScope</td><td><code>Array.&lt;string&gt;</code> | <code>string</code></td>
     </tr>  </tbody>
 </table>

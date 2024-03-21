@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const { existsSync } = require('fs');
 const { join } = require('path');
 const yargs = require('yargs');
 const packageJson = require('../package');
@@ -17,6 +18,7 @@ const {
   'compare-path': comparePath,
   date,
   'dry-run': isDryRun,
+  'lock-file': lockFile,
   'non-cc': isAllowNonConventionalCommits,
   override: overrideVersion,
   package: packageFile,
@@ -94,6 +96,11 @@ const {
       'Url override for updating all [CHANGELOG.md] base urls. This should start with "http". Attempts to use "$ git remote get-url origin", if it starts with "http"',
     type: 'string'
   })
+  .option('lock-file', {
+    describe:
+      'Lock file read and relative path. Will attempt to determine "package-lock.json" or "yarn.lock" use and updates during release. Use if a "lock-like" file outside of "package" and "yarn" lock is customized or used.',
+    type: 'string'
+  })
   .option('package', {
     default: './package.json',
     describe: 'package.json read, output and relative path',
@@ -141,6 +148,22 @@ OPTIONS._set = {
   isCommit,
   isOverrideVersion: overrideVersion !== undefined,
   linkUrl,
+  lockFile,
+  lockFilePath: function () {
+    if (lockFile) {
+      return join(this.contextPath, lockFile);
+    }
+
+    const foundLockFile = [join(this.contextPath, 'package-lock.json'), join(this.contextPath, 'yarn.lock')].find(
+      fileAndPath => existsSync(fileAndPath)
+    );
+
+    if (foundLockFile) {
+      return foundLockFile;
+    }
+
+    return undefined;
+  },
   overrideVersion,
   packageFile,
   packagePath: function () {
