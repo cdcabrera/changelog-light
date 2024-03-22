@@ -97,9 +97,11 @@ const {
     type: 'string'
   })
   .option('lock-file', {
+    default: ['./package-lock.json', './yarn.lock'],
     describe:
-      'Lock file read and relative path. Will attempt to determine "package-lock.json" or "yarn.lock" use and updates during release. Use if a "lock-like" file outside of "package" and "yarn" lock is customized or used.',
-    type: 'string'
+      'Lock file read and relative path lookup. Defaults to looking for git related updates to "package-lock.json" and "yarn.lock" during release. You can pass your own custom "lock" file if needed. To disable, pass a falsely value.',
+    type: 'array',
+    coerce: args => args.flat().filter(value => !/null|undefined|false|0/.test(value) && value !== '')
   })
   .option('package', {
     default: './package.json',
@@ -148,21 +150,14 @@ OPTIONS._set = {
   isCommit,
   isOverrideVersion: overrideVersion !== undefined,
   linkUrl,
-  lockFile,
   lockFilePath: function () {
-    if (lockFile) {
-      return join(this.contextPath, lockFile);
+    let foundLockFile;
+
+    if (Array.isArray(lockFile)) {
+      foundLockFile = lockFile.map(file => join(this.contextPath, file)).find(filePath => existsSync(filePath));
     }
 
-    const foundLockFile = [join(this.contextPath, 'package-lock.json'), join(this.contextPath, 'yarn.lock')].find(
-      fileAndPath => existsSync(fileAndPath)
-    );
-
-    if (foundLockFile) {
-      return foundLockFile;
-    }
-
-    return undefined;
+    return foundLockFile;
   },
   overrideVersion,
   packageFile,

@@ -65,11 +65,12 @@ or Yarn
                            This should start with "http". Attempts to use "$ git
                            remote get-url origin", if it starts with "http"
                                                                           [string]
-        --lock-file        Lock file read and relative path. Will attempt to
-                           determine "package-lock.json" or "yarn.lock" use and
-                           updates during release. Use if a "lock-like" file
-                           outside of "package" and "yarn" lock is customized or
-                           used.                                          [string]
+        --lock-file        Lock file read and relative path lookup. Defaults to
+                           looking for git related updates to "package-lock.json"
+                           and "yarn.lock" during release. You can pass your own
+                           custom "lock" file if needed. To disable, pass a
+                           falsely value.
+                          [array] [default: ["./package-lock.json","./yarn.lock"]]
         --package          package.json read, output and relative path
                                               [string] [default: "./package.json"]
         --pr-path          [CHANGELOG.md] path used for PRs/MRs. This will be
