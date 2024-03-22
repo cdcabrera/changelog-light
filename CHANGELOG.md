@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2](https://github.com/cdcabrera/changelog-light/compare/a0ef71a77169c6b59fa5f31d35d6e3be82427ade...b55502df0b91c77f7208fd33c000e8d9a73d4d6b) (2024-03-22)
+
+
+### Code Refactoring
+* **lock-file** optimize cli option ([#139](https://github.com/cdcabrera/changelog-light/pull/139)) ([50eaf02](https://github.com/cdcabrera/changelog-light/commit/50eaf02b06f99a9a291b36db4e639923bc1ecf34))
+
+### Builds
+* **package** add keyword  ([b55502d](https://github.com/cdcabrera/changelog-light/commit/b55502df0b91c77f7208fd33c000e8d9a73d4d6b))
+
+### Bug Fixes
+* **lock-file** allow adding lock files during release commit ([#138](https://github.com/cdcabrera/changelog-light/pull/138)) ([4dbb795](https://github.com/cdcabrera/changelog-light/commit/4dbb79507ac71262b502ee17265448668641794b))
+
 ## [1.1.1](https://github.com/cdcabrera/changelog-light/compare/2fa8e0eb28f4d003f0305fd168b209fad9c1ad29...71f9b4971f4b8565c14fad4a58248fc1cb3d5677) (2024-03-12)
 
 
