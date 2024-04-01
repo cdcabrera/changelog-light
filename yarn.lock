@@ -645,10 +645,10 @@
   resolved "https://registry.yarnpkg.com/@cspell/strong-weak-map/-/strong-weak-map-7.3.8.tgz#8505ed746ac7c6a324b3cc28cd3f9e130a8ec61c"
   integrity sha512-qNnt2wG45wb8JP54mENarnQgxfSYKPp3zlYID/2przbMNmVJRqUlcIBOdLI6plCgGeNkzJTl3T9T1ATbnN+LLw==
 
-"@es-joy/jsdoccomment@~0.41.0":
-  version "0.41.0"
-  resolved "https://registry.yarnpkg.com/@es-joy/jsdoccomment/-/jsdoccomment-0.41.0.tgz#4a2f7db42209c0425c71a1476ef1bdb6dcd836f6"
-  integrity sha512-aKUhyn1QI5Ksbqcr3fFJj16p99QdjUxXAEuFst1Z47DRyoiMwivIH9MV/ARcJOCXVjPfjITciej8ZD2O/6qUmw==
+"@es-joy/jsdoccomment@~0.42.0":
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/@es-joy/jsdoccomment/-/jsdoccomment-0.42.0.tgz#59e878708336aaee88c2b34c894f73dbf77ae2b0"
+  integrity sha512-R1w57YlVA6+YE01wch3GPYn6bCsrOV3YW/5oGGE2tmX6JcL9Nr+b5IikrjMPF+v9CV3ay+obImEdsDhovhJrzw==
   dependencies:
     comment-parser "1.4.1"
     esquery "^1.5.0"
@@ -2648,19 +2648,19 @@ eslint-plugin-jest@^27.9.0:
   dependencies:
     "@typescript-eslint/utils" "^5.10.0"
 
-eslint-plugin-jsdoc@^47.0.2:
-  version "47.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-47.0.2.tgz#113a6370e623535e5c6e0a59a094ffdc253371ff"
-  integrity sha512-sIq81Pv+yrhhwY0m1JH79rdZRgDNunehv3S0Yv0UfewpoeJyPkODFn2o4o20nofVoI2tjku9/QBcCYUmmeWFXA==
+eslint-plugin-jsdoc@^48.2.2:
+  version "48.2.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-48.2.2.tgz#eefdc5e3bb3cea957b66dd4817e9de30930b5270"
+  integrity sha512-S0Gk+rpT5w/ephKCncUY7kUsix9uE4B9XI8D/fS1/26d8okE+vZsuG1IvIt4B6sJUdQqsnzi+YXfmh+HJG11CA==
   dependencies:
-    "@es-joy/jsdoccomment" "~0.41.0"
+    "@es-joy/jsdoccomment" "~0.42.0"
     are-docs-informative "^0.0.2"
     comment-parser "1.4.1"
     debug "^4.3.4"
     escape-string-regexp "^4.0.0"
     esquery "^1.5.0"
     is-builtin-module "^3.2.1"
-    semver "^7.5.4"
+    semver "^7.6.0"
     spdx-expression-parse "^4.0.0"
 
 eslint-plugin-node@^11.1.0:
