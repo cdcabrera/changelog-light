@@ -30,7 +30,7 @@
     "changelog": "./bin/cli.js"
   },
   "scripts": {
-    "build:deps": "bash ./scripts/dependencies.sh --doctor -u --doctorInstall \"yarn\" --doctorTest \"yarn test:deps\"",
+    "build:deps": "bash ./scripts/dependencies.sh --doctor -u --doctorTest \"npm run test:deps\"",
     "build:docs": "run-s -l test:docs docs:md",
     "docs:md": "node ./scripts/readme.docs.js",
     "release": "run-s release:commit",

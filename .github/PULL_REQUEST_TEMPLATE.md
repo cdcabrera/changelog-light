@@ -9,13 +9,15 @@
 <!-- Are there directions to test/review? -->
 <!--
 ### Coverage and basic unit test check
-1. update the NPM packages with `$ yarn`
-1. `$ yarn test`
-### Interactive unit test check
-1. update the NPM packages with `$ yarn`
-1. `$ yarn test:dev`
+1. update the NPM packages with `$ npm install`
+1. `$ npm test`
 -->
-...
+
+<!--
+### Interactive unit test check
+1. update the NPM packages with `$ npm install`
+1. `$ npm run test:dev`
+-->
 
 ## Example
 <!-- Append a demo/screenshot/animated gif, or a link to the aforementioned, of the cli output -->
