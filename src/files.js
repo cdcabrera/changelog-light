@@ -50,7 +50,14 @@ const updateChangelog = (
     timeZone: 'UTC'
   });
   const { compareUrl } = getAliasLinkUrls();
-  const updatedReleaseDescription = releaseDescription || (isBreakingChanges && breakingChangeReleaseDesc) || '';
+  const updatedReleaseDescription = releaseDescription || '';
+  const updatedBreakingChanges = (isBreakingChanges && breakingChangeReleaseDesc) || '';
+  const fullReleaseDescription =
+    (updatedBreakingChanges &&
+      updatedReleaseDescription &&
+      `${updatedBreakingChanges}\n\n${updatedReleaseDescription}`) ||
+    `${updatedBreakingChanges}${updatedReleaseDescription}`;
+
   let header = headerMd;
   let version = fallbackPackageVersion;
   let body = '';
@@ -78,7 +85,7 @@ const updateChangelog = (
     }
   }
 
-  const updatedBody = `## ${version} (${systemTimestamp})\n${updatedReleaseDescription}\n${displayCommits}`;
+  const updatedBody = `## ${version} (${systemTimestamp})\n${fullReleaseDescription}\n${displayCommits}`;
   const output = `${header}\n\n${updatedBody}\n${body}${(body && '\n') || ''}`;
 
   if (isDryRun) {
