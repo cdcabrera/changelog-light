@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0](https://github.com/cdcabrera/changelog-light/compare/1fcb77d8564b40191da2ef0d189e0d9b97171f24...bdb21dee7b308255f0c200dd1141c9ad0a12fe20) (2024-04-21)
+
+
+### Chores
+* **config** remove unused codecov ([#144](https://github.com/cdcabrera/changelog-light/pull/144)) ([1f0d9ec](https://github.com/cdcabrera/changelog-light/commit/1f0d9ec0edd236ad0205643ebcb0c937dc742bfd))
+
+### Builds
+* **npm** move from yarn to npm ([#146](https://github.com/cdcabrera/changelog-light/pull/146)) ([bdb21de](https://github.com/cdcabrera/changelog-light/commit/bdb21dee7b308255f0c200dd1141c9ad0a12fe20))
+* **deps-dev** bump group with 1 update ([#141](https://github.com/cdcabrera/changelog-light/pull/141)) ([e4dbe14](https://github.com/cdcabrera/changelog-light/commit/e4dbe145bca11a33fae152ecd16c695bf86ceceb))
+* **deps** bump actions/configure-pages from 4 to 5 ([#140](https://github.com/cdcabrera/changelog-light/pull/140)) ([1292840](https://github.com/cdcabrera/changelog-light/commit/1292840c6f67b2f2a5c4f0f600ab330794841850))
+
+### Bug Fixes
+* **files** display breaking change title with desc ([#145](https://github.com/cdcabrera/changelog-light/pull/145)) ([b85ffcb](https://github.com/cdcabrera/changelog-light/commit/b85ffcbf9e8d8d0977dba050d80e132495b426c3))
+
 ## [1.1.2](https://github.com/cdcabrera/changelog-light/compare/a0ef71a77169c6b59fa5f31d35d6e3be82427ade...b55502df0b91c77f7208fd33c000e8d9a73d4d6b) (2024-03-22)
 
 
