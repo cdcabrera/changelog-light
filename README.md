@@ -8,9 +8,7 @@ Generate a changelog with [conventional commit types](https://www.conventionalco
 ## Requirements
 The basic requirements:
  * [NodeJS version 16+](https://nodejs.org/)
- * Optionally your system could be running
-    - [Yarn](https://yarnpkg.com), otherwise NPM should be adequate.
- 
+ * NPM
 
 ## Use
 
@@ -20,12 +18,6 @@ NPM install...
 
   ```shell
     $ npm i changelog-light
-  ```
-  
-or Yarn
-
-  ```shell
-    $ yarn add changelog-light
   ```
 
 #### CLI Usage
