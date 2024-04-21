@@ -71,6 +71,74 @@ All notable changes to this project will be documented in this file.
 "
 `;
 
+exports[`Files should create, and update CHANGELOG.md with enhanced descriptions: changelog with breaking 1`] = `
+"# Changelog
+All notable changes to this project will be documented in this file.
+
+## 0.1.0 (2022-10-01)
+⚠ BREAKING CHANGES
+
+### Features
+* ⚠ **dolor** issues/20 sit enhancements (#8) (53a1234)
+
+### Code Refactoring
+* **file** lorem updates (#8) (LASTg45)
+
+### Chores
+* **build** npm packages (#15) (e5c456e)
+
+### Bug Fixes
+* **build** eslint, jsdoc updates (#16) (d123453)
+*  missing semicolon  (1f1x345)
+
+"
+`;
+
+exports[`Files should create, and update CHANGELOG.md with enhanced descriptions: changelog with breaking and description 1`] = `
+"# Changelog
+All notable changes to this project will be documented in this file.
+
+## 0.1.0 (2022-10-01)
+⚠ BREAKING CHANGES
+
+Lorem ipsum dolor sit!
+
+### Features
+* ⚠ **dolor** issues/20 sit enhancements (#8) (53a1234)
+
+### Code Refactoring
+* **file** lorem updates (#8) (LASTg45)
+
+### Chores
+* **build** npm packages (#15) (e5c456e)
+
+### Bug Fixes
+* **build** eslint, jsdoc updates (#16) (d123453)
+*  missing semicolon  (1f1x345)
+
+"
+`;
+
+exports[`Files should create, and update CHANGELOG.md with enhanced descriptions: changelog with description 1`] = `
+"# Changelog
+All notable changes to this project will be documented in this file.
+
+## 0.1.0 (2022-10-01)
+Lorem ipsum dolor sit!
+
+### Code Refactoring
+* **file** lorem updates (#8) (LASTg45)
+
+### Chores
+* **build** npm packages (#15) (e5c456e)
+
+### Bug Fixes
+* **build** eslint, jsdoc updates (#16) (d123453)
+*  missing semicolon  (1f1x345)
+
+"
+`;
+
 exports[`Files should create, and update a basic CHANGELOG.md: changelog 1`] = `
 "# Changelog
 All notable changes to this project will be documented in this file.

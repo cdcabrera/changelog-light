@@ -121,7 +121,7 @@ const {
     type: 'array'
   })
   .option('release-desc', {
-    describe: 'Add a description under the release version header copy. Example, "\u26A0 BREAKING CHANGES"',
+    describe: 'Add a description under the release version header copy. Example, "Lorem ipsum dolor sit!"',
     type: 'string'
   }).argv;
 

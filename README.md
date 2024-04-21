@@ -82,7 +82,7 @@ or Yarn
                            for range. [write new, search old]
                                                [array] [default: "chore(release)"]
         --release-desc     Add a description under the release version header
-                           copy. Example, "⚠ BREAKING CHANGES"            [string]
+                           copy. Example, "Lorem ipsum dolor sit!"        [string]
     -h, --help             Show help                                     [boolean]
     -v, --version          Show version number                           [boolean]
 ```

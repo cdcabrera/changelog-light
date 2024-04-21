@@ -30,6 +30,56 @@ describe('Files', () => {
     expect(updateChangelog({ ...commitObj }, undefined)).toMatchSnapshot('changelog');
   });
 
+  it('should create, and update CHANGELOG.md with enhanced descriptions', () => {
+    const commitLog = [
+      { commit: 'LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
+      { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
+      { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
+      { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' }
+    ];
+
+    const mockUpdateChangelogDeps = (log, description) => {
+      const urlObj = {
+        compareUrl: 'https://localhost/lorem/ipsum/comparmock/'
+      };
+
+      const commitObj = parseCommits({ getGit: () => log });
+      const comparisonObj = getComparisonCommitHashes({
+        getGit: () => log,
+        getReleaseCommit: () => ''
+      });
+
+      return [
+        { ...commitObj, packageVersion: '0.1.0' },
+        {
+          ...OPTIONS,
+          releaseDescription: description
+        },
+        {
+          getComparisonCommitHashes: () => comparisonObj,
+          getLinkUrls: () => urlObj
+        }
+      ];
+    };
+
+    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, 'Lorem ipsum dolor sit!'))).toMatchSnapshot(
+      'changelog with description'
+    );
+
+    commitLog.push({
+      commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor)!: issues/20 sit enhancements (#8)',
+      isBreaking: true
+    });
+
+    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, undefined))).toMatchSnapshot(
+      'changelog with breaking'
+    );
+
+    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, 'Lorem ipsum dolor sit!'))).toMatchSnapshot(
+      'changelog with breaking and description'
+    );
+  });
+
   it('should create, and update CHANGELOG.md version with a comparison urls', () => {
     const commitLog = [
       { commit: 'LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
