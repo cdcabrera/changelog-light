@@ -62,7 +62,9 @@ describe('Files', () => {
       ];
     };
 
-    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, 'Lorem ipsum dolor sit!'))).toMatchSnapshot('changelog with description');
+    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, 'Lorem ipsum dolor sit!'))).toMatchSnapshot(
+      'changelog with description'
+    );
 
     commitLog.push({
       commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor)!: issues/20 sit enhancements (#8)',
