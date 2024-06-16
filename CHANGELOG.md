@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](https://github.com/cdcabrera/changelog-light/compare/cbac9db900688200cfb3defdde9a79bfb749ab13...5625ea01e61ba3aa3fd2b28480c6fb2b72d92309) (2024-06-16)
+⚠ BREAKING CHANGES
+
+### Builds
+* **deps-dev** bump group with 2 updates ([#159](https://github.com/cdcabrera/changelog-light/pull/159)) ([5625ea0](https://github.com/cdcabrera/changelog-light/commit/5625ea01e61ba3aa3fd2b28480c6fb2b72d92309))
+* **deps-dev** eslint-plugin-jest from 27.9.0 to 28.5.0 ([#153](https://github.com/cdcabrera/changelog-light/pull/153)) ([8faf4f8](https://github.com/cdcabrera/changelog-light/commit/8faf4f88e5f51c2392f9b9314db1bba0e45fa8c0))
+* **deps-dev** eslint-plugin-jsdoc from 47.0.2 to 48.2.6 ([#157](https://github.com/cdcabrera/changelog-light/pull/157)) ([5eaadc1](https://github.com/cdcabrera/changelog-light/commit/5eaadc177df4cd312ea079b757cbb51b88ad43f3))
+* **deps-dev** bump cspell from 7.3.9 to 8.8.3 ([#158](https://github.com/cdcabrera/changelog-light/pull/158)) ([802b173](https://github.com/cdcabrera/changelog-light/commit/802b173c54c500ed2b110e5567f085de49490471))
+* ⚠ **nodejs** remove 16 support ([#156](https://github.com/cdcabrera/changelog-light/pull/156)) ([9ad7321](https://github.com/cdcabrera/changelog-light/commit/9ad7321dd6351b6e3f193a9ad768805a2cd22132))
+* **deps-dev** npm-check-updates from 16.14.18 to 16.14.20 ([#147](https://github.com/cdcabrera/changelog-light/pull/147)) ([c7c003c](https://github.com/cdcabrera/changelog-light/commit/c7c003c8f9adc3668568c784a8287897ade7be0b))
+
 ## [1.2.0](https://github.com/cdcabrera/changelog-light/compare/1fcb77d8564b40191da2ef0d189e0d9b97171f24...bdb21dee7b308255f0c200dd1141c9ad0a12fe20) (2024-04-21)
 
 
