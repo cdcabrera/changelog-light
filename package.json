@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cdcabrera/changelog-light"
+    "url": "git+https://github.com/cdcabrera/changelog-light.git"
   },
   "bugs": {
     "url": "https://github.com/cdcabrera/changelog-light/issues"
@@ -27,7 +27,7 @@
     "src/*.js"
   ],
   "bin": {
-    "changelog": "./bin/cli.js"
+    "changelog": "bin/cli.js"
   },
   "scripts": {
     "build:deps": "bash ./scripts/dependencies.sh --doctor -u --doctorTest \"npm run test:deps\"",
