@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1](https://github.com/cdcabrera/changelog-light/compare/3ffeb717dbf9ece251f099dcdca307df85e1a9c5...329a75e74007607eda2538d41b45a5a6b89b972c) (2024-08-05)
+
+
+### Builds
+* **deps-dev** bump group with 6 updates ([#169](https://github.com/cdcabrera/changelog-light/pull/169)) ([329a75e](https://github.com/cdcabrera/changelog-light/commit/329a75e74007607eda2538d41b45a5a6b89b972c))
+* **deps** semver from 7.6.2 to 7.6.3 ([#165](https://github.com/cdcabrera/changelog-light/pull/165)) ([576be2f](https://github.com/cdcabrera/changelog-light/commit/576be2fc2ee23f0d59b3e0dd785915a947b94c93))
+* **deps-dev** bump group with 4 updates ([#162](https://github.com/cdcabrera/changelog-light/pull/162)) ([d9834ab](https://github.com/cdcabrera/changelog-light/commit/d9834abf0a0212e3a80c91793ff19e6c33df409f))
+
 ## [2.0.0](https://github.com/cdcabrera/changelog-light/compare/cbac9db900688200cfb3defdde9a79bfb749ab13...5625ea01e61ba3aa3fd2b28480c6fb2b72d92309) (2024-06-16)
 ⚠ BREAKING CHANGES
 
