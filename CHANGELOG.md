@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.2](https://github.com/cdcabrera/changelog-light/compare/3ad3338efd065280c1e3e4c886458ae1498e444e...1c81d13bdf1ac01e5a22375ae15069fcdc6bbec2) (2024-09-01)
+
+
+### Builds
+* **deps** lock reset ([#172](https://github.com/cdcabrera/changelog-light/pull/172)) ([1c81d13](https://github.com/cdcabrera/changelog-light/commit/1c81d13bdf1ac01e5a22375ae15069fcdc6bbec2))
+* **deps-dev** bump group with 4 updates ([#171](https://github.com/cdcabrera/changelog-light/pull/171)) ([5282318](https://github.com/cdcabrera/changelog-light/commit/52823181fc0dc5b3a92a4a741ea11456a7f75b05))
+*  minor package adjustments ([#170](https://github.com/cdcabrera/changelog-light/pull/170)) ([9a02ff8](https://github.com/cdcabrera/changelog-light/commit/9a02ff819e459d020a9f409f2e493a772555b9ae))
+* **deps-dev** npm-check-updates from 16.14.20 to 17.0.2 ([#168](https://github.com/cdcabrera/changelog-light/pull/168)) ([73419d4](https://github.com/cdcabrera/changelog-light/commit/73419d4b13109880d8c12ae37d7ad25a14b60d64))
+
 ## [2.0.1](https://github.com/cdcabrera/changelog-light/compare/3ffeb717dbf9ece251f099dcdca307df85e1a9c5...329a75e74007607eda2538d41b45a5a6b89b972c) (2024-08-05)
 
 
