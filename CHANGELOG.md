@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.3](https://github.com/cdcabrera/changelog-light/compare/b00e23855f9dcaa4bd52388d9ea581cb672e8225...2d25fa17993b3de1f63bdff24dfa3b196d9a8327) (2024-09-27)
+
+
+### Builds
+* **deps-dev** bump jsdoc-to-markdown from 8.0.3 to 9.0.2 ([#177](https://github.com/cdcabrera/changelog-light/pull/177)) ([2d25fa1](https://github.com/cdcabrera/changelog-light/commit/2d25fa17993b3de1f63bdff24dfa3b196d9a8327))
+* **deps-dev** bump group with 5 updates ([#176](https://github.com/cdcabrera/changelog-light/pull/176)) ([bb3ee7c](https://github.com/cdcabrera/changelog-light/commit/bb3ee7c5900209f115a2691eaf5b0c5f3da9c766))
+
 ## [2.0.2](https://github.com/cdcabrera/changelog-light/compare/3ad3338efd065280c1e3e4c886458ae1498e444e...1c81d13bdf1ac01e5a22375ae15069fcdc6bbec2) (2024-09-01)
 
 
