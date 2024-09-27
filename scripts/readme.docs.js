@@ -8,11 +8,12 @@ const jsdoc2md = require('jsdoc-to-markdown');
  * @param {object} params
  * @param {string} params.input
  * @param {string} params.output
+ * @returns {Promise<unknown>}
  */
-const generateReadMe = ({ input, output } = {}) => {
+const generateReadMe = async ({ input, output } = {}) => {
   try {
     const outputPath = join(process.cwd(), output);
-    const docs = jsdoc2md.renderSync({ files: input, 'no-gfm': true });
+    const docs = await jsdoc2md.render({ files: input, 'no-gfm': true });
     writeFileSync(outputPath, docs);
     console.info(`Generate README success > ${input}`);
   } catch (e) {
