@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.4](https://github.com/cdcabrera/changelog-light/compare/f7b1b61e09596f131bfc39697267509236223350...4fa0b3c7b80ba09b16ff937177fde059c7634493) (2024-11-23)
+
+
+### Builds
+* **deps** lock reset ([#187](https://github.com/cdcabrera/changelog-light/pull/187)) ([4fa0b3c](https://github.com/cdcabrera/changelog-light/commit/4fa0b3c7b80ba09b16ff937177fde059c7634493))
+* **deps** bump group with 5 updates ([#185](https://github.com/cdcabrera/changelog-light/pull/185)) ([c7c67c5](https://github.com/cdcabrera/changelog-light/commit/c7c67c5492203a676cc75c98f4c2b19ff5bbbce2))
+* **deps-dev** bump group with 4 updates ([#183](https://github.com/cdcabrera/changelog-light/pull/183)) ([e5572fe](https://github.com/cdcabrera/changelog-light/commit/e5572fe1bd832a251839759a61fbb0e5688e9f60))
+*  dependabot commit message ([#182](https://github.com/cdcabrera/changelog-light/pull/182)) ([437317d](https://github.com/cdcabrera/changelog-light/commit/437317d1e093141889050e786ebf33dd59d82105))
+* **deps-dev** bump group with 3 updates ([#181](https://github.com/cdcabrera/changelog-light/pull/181)) ([6864b52](https://github.com/cdcabrera/changelog-light/commit/6864b526a130263b1c5b84e46c01bca879bdd589))
+* **deps-dev** eslint-plugin-jsdoc from 50.3.0 to 50.3.1 ([#179](https://github.com/cdcabrera/changelog-light/pull/179)) ([66d6bd9](https://github.com/cdcabrera/changelog-light/commit/66d6bd90f878552a119a3adda7f0073d09dc27fd))
+
 ## [2.0.3](https://github.com/cdcabrera/changelog-light/compare/b00e23855f9dcaa4bd52388d9ea581cb672e8225...2d25fa17993b3de1f63bdff24dfa3b196d9a8327) (2024-09-27)
 
 
