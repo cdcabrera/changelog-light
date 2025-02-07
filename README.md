@@ -7,7 +7,7 @@ Generate a changelog with [conventional commit types](https://www.conventionalco
 
 ## Requirements
 The basic requirements:
- * [NodeJS version 18+](https://nodejs.org/)
+ * [NodeJS version 20+](https://nodejs.org/)
  * NPM
 
 ## Use
