@@ -16,12 +16,12 @@ updates:
     labels:
       - "build"
     groups:
-      dev-dependencies:
+      dev:
         dependency-type: "development"
         update-types:
           - "minor"
           - "patch"
-      dependencies:
+      prod:
         dependency-type: "production"
         update-types:
           - "minor"
