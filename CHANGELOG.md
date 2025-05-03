@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.6](https://github.com/cdcabrera/changelog-light/compare/3d0371f0d8ff5fd5b7cc3bcb70a3abca7af4ee03...767af98ea01bc03d33953dfb25c77995fa31e5c0) (2025-05-03)
+
+
+### Documentation
+* **readme** status badge path update ([#200](https://github.com/cdcabrera/changelog-light/pull/200)) ([6b86dd3](https://github.com/cdcabrera/changelog-light/commit/6b86dd3028bd9bb1654556bf5fcfc4af8a2c84bd))
+
+### Builds
+* **deps** lock reset ([#212](https://github.com/cdcabrera/changelog-light/pull/212)) ([767af98](https://github.com/cdcabrera/changelog-light/commit/767af98ea01bc03d33953dfb25c77995fa31e5c0))
+* **deps-dev** bump the dev group with 4 updates ([#209](https://github.com/cdcabrera/changelog-light/pull/209)) ([9767b2f](https://github.com/cdcabrera/changelog-light/commit/9767b2f11e676d6fdca5575603e2df6f986fdbeb))
+* **deps-dev** bump the dev group with 4 updates ([#207](https://github.com/cdcabrera/changelog-light/pull/207)) ([e2bc285](https://github.com/cdcabrera/changelog-light/commit/e2bc2852eb5d246a93d37f7b804e1a68208295d5))
+* **deps-dev** bump the dev group with 3 updates ([#205](https://github.com/cdcabrera/changelog-light/pull/205)) ([8782973](https://github.com/cdcabrera/changelog-light/commit/8782973895ea705f463323ca995ad5a5284fbf0e))
+*  dependabot group names ([#204](https://github.com/cdcabrera/changelog-light/pull/204)) ([1b72fdb](https://github.com/cdcabrera/changelog-light/commit/1b72fdb0e93d1726a046d7f9836600aeaaf93587))
+* **deps-dev** bump group with 3 updates ([#203](https://github.com/cdcabrera/changelog-light/pull/203)) ([e5142b6](https://github.com/cdcabrera/changelog-light/commit/e5142b65536c11789923c1585c9618f52d95854a))
+* **deps-dev** bump eslint-config-prettier from 9.1.0 to 10.0.2 ([#201](https://github.com/cdcabrera/changelog-light/pull/201)) ([a66f343](https://github.com/cdcabrera/changelog-light/commit/a66f3432902e4471f03a7f822b4c54038663c947))
+
 ## [2.0.5](https://github.com/cdcabrera/changelog-light/compare/5212bc2aec8c9bc0126163cd4798dba66539f3f9...a8f1bf52f9f46672eb74a8f3de20c83895a9696e) (2025-02-18)
 
 
