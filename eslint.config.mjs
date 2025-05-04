@@ -26,7 +26,6 @@ export default [
       ecmaVersion: 2022
     },
     rules: {
-      // '@stylistic/quotes': ['error', 'single'],
       'arrow-parens': ['error', 'as-needed'],
       'comma-dangle': 0,
       'consistent-return': 1,
