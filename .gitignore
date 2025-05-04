@@ -21,3 +21,4 @@ dependency-update-log.txt
 .docs
 .env
 .fixtures
+.archive
