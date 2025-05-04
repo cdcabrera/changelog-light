@@ -46,7 +46,7 @@
     "test:docs": "run-s test:spell test:lint",
     "test:integration": "jest --roots=./tests",
     "test:integration-dev": "jest --roots=./tests --watchAll",
-    "test:lint": "eslint ./src ./bin",
+    "test:lint": "eslint ./src ./bin eslint.config.mjs",
     "test:local": "jest --watch",
     "test:spell-docs": "cspell ./README.md ./CONTRIBUTING.md --config ./cspell.config.json",
     "test:spell": "cspell './src/**/*.js' './tests/**/*.js' --config ./cspell.config.json"
@@ -82,6 +82,7 @@
     "@eslint/js": "^9.26.0",
     "cspell": "^8.19.3",
     "eslint": "^9.26.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-jsdoc": "^50.6.11",
     "eslint-plugin-n": "^17.17.0",
