@@ -1,16 +1,18 @@
 import { join } from 'node:path';
-import { includeIgnoreFile } from "@eslint/compat";
+import { includeIgnoreFile } from '@eslint/compat';
 import eslintPluginJs from '@eslint/js';
+import importPlugin from 'eslint-plugin-import';
 import jestPlugin from 'eslint-plugin-jest';
-import jsdocPlugin from "eslint-plugin-jsdoc";
-import nodePlugin from "eslint-plugin-n";
-import prettierPlugin from "eslint-plugin-prettier/recommended"; // per docs prettier/recommended includes eslint-config-prettier
+import jsdocPlugin from 'eslint-plugin-jsdoc';
+import nodePlugin from 'eslint-plugin-n';
+import prettierPlugin from 'eslint-plugin-prettier/recommended'; // per docs prettier/recommended includes eslint-config-prettier
 
 export default [
-  includeIgnoreFile(join(process.cwd(), ".gitignore")),
+  includeIgnoreFile(join(process.cwd(), '.gitignore')),
   jestPlugin.configs['flat/recommended'],
   jsdocPlugin.configs['flat/recommended'],
   nodePlugin.configs['flat/recommended'],
+  importPlugin.flatConfigs.recommended,
   eslintPluginJs.configs.recommended,
   prettierPlugin,
   {
@@ -19,11 +21,12 @@ export default [
       globals: {
         generateFixture: 'readonly',
         mockObjectProperty: 'readonly',
-        setMockResourceFunctions: 'readonly',
+        setMockResourceFunctions: 'readonly'
       },
       ecmaVersion: 2022
     },
     rules: {
+      // '@stylistic/quotes': ['error', 'single'],
       'arrow-parens': ['error', 'as-needed'],
       'comma-dangle': 0,
       'consistent-return': 1,
@@ -44,16 +47,16 @@ export default [
         'warn',
         'always',
         {
-          'count': 0,
-          'applyToEndTag': false,
-          'startLines': 1
+          count: 0,
+          applyToEndTag: false,
+          startLines: 1
         }
       ],
       'max-len': [
         'error',
         {
-          'code': 240,
-          'ignoreUrls': true
+          code: 240,
+          ignoreUrls: true
         }
       ],
       'n/no-unsupported-features/es-syntax': 1,
