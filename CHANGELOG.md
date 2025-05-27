@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0](https://github.com/cdcabrera/changelog-light/compare/5fb00d54a8a80c9f5ed357fef63cf43c63b932bd...9cf290df70a57c657ae9ba5837cfa465138cbc13) (2025-05-27)
+⚠ BREAKING CHANGES
+
+### Continuous Integrations
+*  npm publish workflow ([#218](https://github.com/cdcabrera/changelog-light/pull/218)) ([9cf290d](https://github.com/cdcabrera/changelog-light/commit/9cf290df70a57c657ae9ba5837cfa465138cbc13))
+
+### Builds
+*  dependabot frequency ([#216](https://github.com/cdcabrera/changelog-light/pull/216)) ([a551cd0](https://github.com/cdcabrera/changelog-light/commit/a551cd0aa1b1570cafa70fca87cc7c54f9e74a96))
+* **deps** bump group with 7 updates ([#215](https://github.com/cdcabrera/changelog-light/pull/215)) ([8ef753b](https://github.com/cdcabrera/changelog-light/commit/8ef753b4c170da82b6a93589981a43038598a5ea))
+* **deps-dev** eslint 9, config lint ([#214](https://github.com/cdcabrera/changelog-light/pull/214)) ([e777ce5](https://github.com/cdcabrera/changelog-light/commit/e777ce5d181df8c2ca6da8da5e7db6f57e338d72))
+* **deps-dev** npm-check-updates from 17.1.16 to 18.0.1 ([#211](https://github.com/cdcabrera/changelog-light/pull/211)) ([65338af](https://github.com/cdcabrera/changelog-light/commit/65338af210f630b2d2a75fd7f2787b57a2dbfb81))
+* **deps-dev** move to eslint 9 ([#213](https://github.com/cdcabrera/changelog-light/pull/213)) ([52412c8](https://github.com/cdcabrera/changelog-light/commit/52412c8b1e643cd6c77810e23a538b778c89cbb6))
+* ⚠ **nodejs** remove 18 support ([#198](https://github.com/cdcabrera/changelog-light/pull/198)) ([6af6245](https://github.com/cdcabrera/changelog-light/commit/6af6245dc2d1962787de0be25c98397af6d151d6))
+
 ## [2.0.6](https://github.com/cdcabrera/changelog-light/compare/3d0371f0d8ff5fd5b7cc3bcb70a3abca7af4ee03...767af98ea01bc03d33953dfb25c77995fa31e5c0) (2025-05-03)
 
 
