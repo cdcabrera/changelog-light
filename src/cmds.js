@@ -11,12 +11,15 @@ const { color, OPTIONS } = require('./global');
  */
 
 /**
- * Execute a command
+ * Executes a shell command and handles any errors that occur.
  *
- * @param {string} cmd
- * @param {object} settings
- * @param {string} settings.errorMessage
- * @returns {string}
+ * This function wraps Node's execSync to provide consistent error handling
+ * and output formatting for all command executions in the application.
+ *
+ * @param {string} cmd - The shell command to execute
+ * @param {object} settings - Configuration options
+ * @param {string} settings.errorMessage - Error message template (use {0} for the error message)
+ * @returns {string} The command output as a string
  */
 const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
   let stdout = '';
@@ -31,15 +34,19 @@ const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
 };
 
 /**
- * Optionally commit CHANGELOG.md, package.json
+ * Commits changes to CHANGELOG.md, package.json, and optionally package-lock.json.
  *
- * @param {*|string} version
- * @param {object} options
- * @param {string} options.changelogPath
- * @param {string} options.packagePath
- * @param {string} options.lockFilePath
- * @param {string[]|string} options.releaseTypeScope
- * @returns {string}
+ * This function stages the specified files and creates a commit with a message
+ * that includes the release type and version. It handles both string and array
+ * formats for the release type scope.
+ *
+ * @param {string} version - The version being released
+ * @param {object} options - Configuration options
+ * @param {string} options.changelogPath - Path to the changelog file
+ * @param {string} options.packagePath - Path to the package.json file
+ * @param {string} options.lockFilePath - Optional path to the package-lock.json file
+ * @param {Array<string>|string} options.releaseTypeScope - Release type for the commit message (e.g., "chore", "feat")
+ * @returns {string} The output from the git commit command
  */
 const commitFiles = (version, { changelogPath, packagePath, lockFilePath, releaseTypeScope } = OPTIONS) => {
   const isArray = Array.isArray(releaseTypeScope);
@@ -54,11 +61,14 @@ const commitFiles = (version, { changelogPath, packagePath, lockFilePath, releas
 };
 
 /**
- * Get current package.json version
+ * Retrieves the current version from package.json.
  *
- * @param {object} options
- * @param {string} options.packagePath
- * @returns {*}
+ * This function reads the package.json file at the specified path
+ * and returns the version field value.
+ *
+ * @param {object} options - Configuration options
+ * @param {string} options.packagePath - Path to the package.json file
+ * @returns {string} The current version string from package.json
  */
 const getCurrentVersion = ({ packagePath } = OPTIONS) => {
   const { version } = require(packagePath);
@@ -66,12 +76,16 @@ const getCurrentVersion = ({ packagePath } = OPTIONS) => {
 };
 
 /**
- * Get last release commit hash
+ * Retrieves the hash of the last release commit.
  *
- * @param {object} options
- * @param {string[]|string} options.releaseTypeScope
- * @param {string|undefined} options.releaseBranch
- * @returns {string}
+ * This function searches the git history for commits matching the specified
+ * release type scope pattern and returns the most recent one. It can be
+ * restricted to a specific branch if provided.
+ *
+ * @param {object} options - Configuration options
+ * @param {Array<string>|string} options.releaseTypeScope - Pattern to match in commit messages for identifying releases
+ * @param {string|undefined} options.releaseBranch - Optional branch to restrict the search to
+ * @returns {string} The hash and message of the last release commit
  */
 const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
   const isArray = Array.isArray(releaseTypeScope);
@@ -85,14 +99,18 @@ const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
 };
 
 /**
- * Get the base url for links, and then set the multiple link formats for markdown.
+ * Generates URLs for linking to commits, comparisons, and pull requests in the changelog.
  *
- * @param {object} options
- * @param {string} options.commitPath
- * @param {string} options.comparePath
- * @param {string} options.linkUrl
- * @param {string} options.prPath
- * @returns {{baseUrl: string, prUrl, commitUrl}}
+ * This function takes the repository URL (either provided or fetched from git)
+ * and constructs various URLs for linking to different resources in the changelog.
+ * It handles formatting and ensures all URLs end with a trailing slash.
+ *
+ * @param {object} options - Configuration options
+ * @param {string} options.commitPath - Path segment for commit URLs (e.g., "commit")
+ * @param {string} options.comparePath - Path segment for comparison URLs (e.g., "compare")
+ * @param {string} options.linkUrl - Optional explicit repository URL (falls back to git remote)
+ * @param {string} options.prPath - Path segment for pull request URLs (e.g., "pull")
+ * @returns {{baseUrl: string, commitUrl: string, compareUrl: string, prUrl: string }}
  */
 const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath } = OPTIONS) => {
   const setUrl = linkUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
@@ -126,15 +144,19 @@ const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath } = OPTIONS) => 
 };
 
 /**
- * Return output for a range of commits from a hash
+ * Retrieves and processes git commits since the last release.
  *
- * @param {object} options
- * @param {string|undefined} options.releaseBranch
- * @param {object} settings
- * @param {Function} settings.getReleaseCommit
- * @param {Array} settings.breakingChangeMessageFilter
- * @param {Array} settings.breakingChangeScopeTypeFilter
- * @returns {Array}
+ * This function gets all commits since the last release and identifies breaking changes
+ * by examining commit messages for specific patterns. It supports two types of breaking
+ * change indicators: message body syntax and scope type syntax.
+ *
+ * @param {object} options - Configuration options
+ * @param {string|undefined} options.releaseBranch - Optional branch to restrict the search to
+ * @param {object} settings - Function and value overrides for customization
+ * @param {getReleaseCommit} settings.getReleaseCommit - Function to get the last release commit
+ * @param {Array<string>} settings.breakingChangeMessageFilter - Patterns to identify breaking changes in commit messages
+ * @param {Array<string>} settings.breakingChangeScopeTypeFilter - Patterns to identify breaking changes in commit scope/type
+ * @returns {Array<{ commit: string, isBreaking: boolean }>} Array of commit objects with hash and breaking change flag
  */
 const getGit = (
   { releaseBranch } = OPTIONS,
@@ -210,11 +232,15 @@ const getGit = (
 };
 
 /**
- * Determine if override version is valid semver and return
+ * Validates and processes an override version string.
  *
- * @param {object} options
- * @param {string|*} options.overrideVersion
- * @returns {{clean: string, version: string}}
+ * This function checks if the provided override version is a valid semantic version
+ * using semver's clean function. If valid, it returns both the original version string
+ * and the cleaned version. If invalid, it logs an error and returns undefined values.
+ *
+ * @param {object} options - Configuration options
+ * @param {string} options.overrideVersion - The version string to validate and process
+ * @returns {{ version:(string|undefined), clean:(string|undefined) }} The processed version information
  */
 const getOverrideVersion = ({ overrideVersion: version } = OPTIONS) => {
   let updatedVersion;
@@ -237,12 +263,16 @@ const getOverrideVersion = ({ overrideVersion: version } = OPTIONS) => {
 };
 
 /**
- * Set package.json version using npm version
+ * Calculates a new version based on the current version and a semantic version bump.
  *
- * @param {'major'|'minor'|'patch'|*} versionBump
- * @param {object} settings
- * @param {Function} settings.getCurrentVersion
- * @returns {string}
+ * This function retrieves the current version from package.json and applies the specified
+ * semantic version bump (major, minor, patch) using semver's increment function.
+ * It returns both the formatted version string and a cleaned version string.
+ *
+ * @param {'major'|'minor'|'patch'|string} versionBump - Type of semantic version bump to apply
+ * @param {object} settings - Function overrides for customization
+ * @param {getCurrentVersion} settings.getCurrentVersion - Function to get the current version from package.json
+ * @returns {{ version:(string|undefined), clean:(string|undefined) }} The new version information
  */
 const getVersion = (versionBump, { getCurrentVersion: getAliasCurrentVersion = getCurrentVersion } = {}) => {
   const currentVersion = getAliasCurrentVersion() || '';
