@@ -17,8 +17,8 @@ const { color, OPTIONS } = require('./global');
  * and output formatting for all command executions in the application.
  *
  * @param {string} cmd - The shell command to execute
- * @param {object} settings - Configuration options
- * @param {string} settings.errorMessage - Error message template (use {0} for the error message)
+ * @param {object} [settings={}] - Configuration options
+ * @param {string} [settings.errorMessage='Skipping... {0}'] - Error message template (use {0} for the error message)
  * @returns {string} The command output as a string
  */
 const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
@@ -41,7 +41,7 @@ const runCmd = (cmd, { errorMessage = 'Skipping... {0}' } = {}) => {
  * formats for the release type scope.
  *
  * @param {string} version - The version being released
- * @param {object} options - Configuration options
+ * @param {object} [options=OPTIONS] - Configuration options
  * @param {string} options.changelogPath - Path to the changelog file
  * @param {string} options.packagePath - Path to the package.json file
  * @param {string} options.lockFilePath - Optional path to the package-lock.json file
@@ -66,7 +66,7 @@ const commitFiles = (version, { changelogPath, packagePath, lockFilePath, releas
  * This function reads the package.json file at the specified path
  * and returns the version field value.
  *
- * @param {object} options - Configuration options
+ * @param {object} [options=OPTIONS] - Configuration options
  * @param {string} options.packagePath - Path to the package.json file
  * @returns {string} The current version string from package.json
  */
@@ -82,7 +82,7 @@ const getCurrentVersion = ({ packagePath } = OPTIONS) => {
  * release type scope pattern and returns the most recent one. It can be
  * restricted to a specific branch if provided.
  *
- * @param {object} options - Configuration options
+ * @param {object} [options=OPTIONS] - Configuration options
  * @param {Array<string>|string} options.releaseTypeScope - Pattern to match in commit messages for identifying releases
  * @param {string|undefined} options.releaseBranch - Optional branch to restrict the search to
  * @returns {string} The hash and message of the last release commit
@@ -105,7 +105,7 @@ const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
  * and constructs various URLs for linking to different resources in the changelog.
  * It handles formatting and ensures all URLs end with a trailing slash.
  *
- * @param {object} options - Configuration options
+ * @param {object} [options=OPTIONS] - Configuration options
  * @param {string} options.commitPath - Path segment for commit URLs (e.g., "commit")
  * @param {string} options.comparePath - Path segment for comparison URLs (e.g., "compare")
  * @param {string} options.linkUrl - Optional explicit repository URL (falls back to git remote)
@@ -150,12 +150,12 @@ const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath } = OPTIONS) => 
  * by examining commit messages for specific patterns. It supports two types of breaking
  * change indicators: message body syntax and scope type syntax.
  *
- * @param {object} options - Configuration options
+ * @param {object} [options=OPTIONS] - Configuration options
  * @param {string|undefined} options.releaseBranch - Optional branch to restrict the search to
- * @param {object} settings - Function and value overrides for customization
- * @param {getReleaseCommit} settings.getReleaseCommit - Function to get the last release commit
- * @param {Array<string>} settings.breakingChangeMessageFilter - Patterns to identify breaking changes in commit messages
- * @param {Array<string>} settings.breakingChangeScopeTypeFilter - Patterns to identify breaking changes in commit scope/type
+ * @param {object} [settings={}] - Function and value overrides for customization
+ * @param {getReleaseCommit} [settings.getReleaseCommit=getReleaseCommit] - Function to get the last release commit
+ * @param {Array<string>} [settings.breakingChangeMessageFilter=['BREAKING CHANGE:', 'BREAKING CHANGES:']] - Patterns to identify breaking changes in commit messages
+ * @param {Array<string>} [settings.breakingChangeScopeTypeFilter=[')!:', '!:']] - Patterns to identify breaking changes in commit scope/type
  * @returns {Array<{ commit: string, isBreaking: boolean }>} Array of commit objects with hash and breaking change flag
  */
 const getGit = (
@@ -238,7 +238,7 @@ const getGit = (
  * using semver's clean function. If valid, it returns both the original version string
  * and the cleaned version. If invalid, it logs an error and returns undefined values.
  *
- * @param {object} options - Configuration options
+ * @param {object} [options=OPTIONS] - Configuration options
  * @param {string} options.overrideVersion - The version string to validate and process
  * @returns {{ version:(string|undefined), clean:(string|undefined) }} The processed version information
  */
@@ -270,7 +270,7 @@ const getOverrideVersion = ({ overrideVersion: version } = OPTIONS) => {
  * It returns both the formatted version string and a cleaned version string.
  *
  * @param {'major'|'minor'|'patch'|string} versionBump - Type of semantic version bump to apply
- * @param {object} settings - Function overrides for customization
+ * @param {object} [settings={}] - Function overrides for customization
  * @param {getCurrentVersion} settings.getCurrentVersion - Function to get the current version from package.json
  * @returns {{ version:(string|undefined), clean:(string|undefined) }} The new version information
  */

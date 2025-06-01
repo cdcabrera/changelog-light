@@ -17,21 +17,21 @@ const { getComparisonCommitHashes } = require('./parse');
  * the current version and formatted commit messages, and writes the updated content back to the file.
  *
  * Note: Future enhancement - syntax for the comparison can include the use of caret.
- * Review using caret vs a release commit for determining range.
+ * Review using caret against a release commit for determining range.
  *
- * @param {object} params - Parameters for changelog generation
+ * @param {object} [params={}] - Parameters for changelog generation
  * @param {{ feat: { commits: Array },
  *     refactor: { commits: Array },
- *     fix: { commits: Array } }} params.commits - Parsed commit messages grouped by type
- * @param {boolean} params.isBreakingChanges - Whether breaking changes are included (applies a 'major' weight if true)
+ *     fix: { commits: Array } }} [params.commits={}] - Parsed commit messages grouped by type
+ * @param {boolean} [params.isBreakingChanges=false] - Whether breaking changes are included (applies a 'major' weight if true)
  * @param {string} params.packageVersion - Version to display in the changelog
- * @param {object} options - Configuration options
+ * @param {object} [options=OPTIONS] - Configuration options
  * @param {string} options.changelogPath - Path to the changelog file
  * @param {string} options.date - Date to use for the release (defaults to current date)
- * @param {boolean} options.isBasic - Whether to use basic formatting without links
- * @param {boolean} options.isDryRun - Whether to perform a dry run without writing files
+ * @param {boolean} [options.isBasic=false] - Whether to use basic formatting without links
+ * @param {boolean} [options.isDryRun=false] - Whether to perform a dry run without writing files
  * @param {string} options.releaseDescription - Optional description for the release
- * @param {object} settings - Function and value overrides for customization
+ * @param {object} [settings={}] - Function and value overrides for customization
  * @param {string} settings.breakingChangeReleaseDesc - Text to display for breaking changes
  * @param {string} settings.fallbackPackageVersion - Fallback version if packageVersion is not provided
  * @param {getComparisonCommitHashes} settings.getComparisonCommitHashes - Function to get commit hashes for comparison links
@@ -109,8 +109,8 @@ const updateChangelog = (
  * modifying the file.
  *
  * @param {'major'|'minor'|'patch'|string} versionBump - Type of semantic version bump or specific version
- * @param {object} options - Configuration options
- * @param {boolean} options.isDryRun - Whether to perform a dry run without writing files
+ * @param {object} [options=OPTIONS] - Configuration options
+ * @param {boolean} [options.isDryRun=false] - Whether to perform a dry run without writing files
  * @param {string} options.packagePath - Path to the package.json file
  * @returns {string} A message indicating the version bump that was applied
  */
