@@ -10,25 +10,28 @@ const { updateChangelog, updatePackage } = require('./files');
  */
 
 /**
- * Set changelog and package.
+ * Updates changelog and package.json files based on commit history.
  *
- * @param {object} options
- * @param {string} options.changelogFile
- * @param {string} options.contextPath
- * @param {boolean} options.isCommit
- * @param {boolean} options.isDryRun
- * @param {string} options.overrideVersion
- * @param {object} settings
- * @param {Function} settings.commitFiles
- * @param {Function} settings.getOverrideVersion
- * @param {Function} settings.getVersion
- * @param {Function} settings.parseCommits
- * @param {Function} settings.semverBump
- * @param {Function} settings.updateChangelog
- * @param {Function} settings.updatePackage
+ * This function analyzes commit messages, determines the appropriate semantic version bump,
+ * updates the changelog with formatted commit messages, and optionally commits the changes.
+ *
+ * @param {object} [options=OPTIONS] - Configuration options for the changelog update
+ * @param {string} options.changelogFile - Path to the changelog file
+ * @param {string} options.contextPath - Base directory path for operations
+ * @param {boolean} options.isCommit - Whether to commit changes to git
+ * @param {boolean} options.isDryRun - Whether to perform a dry run without writing files
+ * @param {string} options.overrideVersion - Optional version to use instead of calculated version
+ * @param {object} [settings={}] - Function overrides for testing or customization
+ * @param {commitFiles} [settings.commitFiles=commitFiles] - Function to commit changes to git
+ * @param {getOverrideVersion} [settings.getOverrideVersion=getOverrideVersion] - Function to get the override version
+ * @param {getVersion} [settings.getVersion=getVersion] - Function to calculate the new version
+ * @param {parseCommits} [settings.parseCommits=parseCommits] - Function to parse commit messages
+ * @param {semverBump} [settings.semverBump=semverBump] - Function to determine semantic version bump
+ * @param {updateChangelog} [settings.updateChangelog=updateChangelog] - Function to update the changelog file
+ * @param {updatePackage} [settings.updatePackage=updatePackage] - Function to update the package.json file
  * @returns {{parsedCommits: {"Bug Fixes": {commits: string[], title: string}, Chores: {commits: string[],
  *     title: string}, Features: {commits: string[], title: string}}, semverBump: ("major"|"minor"|"patch"),
- *     package: string, versionClean: *, changelog: string, semverWeight: number, version: *}}
+ *     package: string, versionClean: string, changelog: string, semverWeight: number, version: string}} Result of the changelog update
  */
 const commitChangelog = (
   { changelogFile, contextPath, isCommit, isDryRun, overrideVersion } = OPTIONS,

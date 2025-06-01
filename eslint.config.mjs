@@ -29,6 +29,7 @@ export default [
       'arrow-parens': ['error', 'as-needed'],
       'comma-dangle': 0,
       'consistent-return': 1,
+      'jsdoc/no-defaults': 0,
       'jsdoc/no-undefined-types': 2,
       'jsdoc/require-jsdoc': 2,
       'jsdoc/require-param': 2,

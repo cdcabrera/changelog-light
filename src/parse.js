@@ -8,12 +8,20 @@ const { getGit, getReleaseCommit, getLinkUrls } = require('./cmds');
  */
 
 /**
- * Aggregate conventional commit types. Optionally allow non-conventional commit types.
+ * Retrieves and combines conventional commit types with optional support for non-conventional commits.
  *
- * @param {object} options
- * @param {boolean} options.isAllowNonConventionalCommits
- * @returns {{fix: {description: string, title: string, value: string}, chore: {description: string,
- *     title: string, value: string}, feat: {description: string, title: string, value: string}}}
+ * This function returns the standard conventional commit types from the 'conventional-commit-types'
+ * package and optionally includes a general catch-all type for non-conventional commits.
+ * The result is used to categorize and process commit messages throughout the application.
+ *
+ * @param {object} [options=OPTIONS] - Configuration options
+ * @param {boolean} options.isAllowNonConventionalCommits - Whether to include the general commit type for non-conventional commits
+ * @returns {{
+ *     feat:{description:string, title:string, value:string},
+ *     fix:{description:string, title:string, value:string},
+ *     chore:{description:string, title:string, value:string,
+ *     general:({description:string, title:string, value:string}|undefined)}
+ *     }} Combined commit types
  */
 const getCommitType = ({ isAllowNonConventionalCommits } = OPTIONS) => ({
   ...conventionalCommitType,
@@ -21,12 +29,16 @@ const getCommitType = ({ isAllowNonConventionalCommits } = OPTIONS) => ({
 });
 
 /**
- * In the current context, get the first and last commits based on the last release commit message.
+ * Retrieves the commit hashes for generating comparison links in the changelog.
  *
- * @param {object} settings
- * @param {Function} settings.getGit
- * @param {Function} settings.getReleaseCommit
- * @returns {{last: string, first: string}}
+ * This function finds the hash of the last release commit and the most recent commit
+ * in the current branch. These hashes are used to create comparison links in the
+ * changelog that show all changes between releases.
+ *
+ * @param {object} [settings={}] - Function overrides for customization
+ * @param {getGit} [settings.getGit=getGit] - Function to get all commits
+ * @param {getReleaseCommit} [settings.getReleaseCommit=getReleaseCommit] - Function to get the last release commit
+ * @returns {{first:(string|null), last:(string|null)}} Commit hashes for comparison
  */
 const getComparisonCommitHashes = ({
   getGit: getAliasGit = getGit,
@@ -44,15 +56,27 @@ const getComparisonCommitHashes = ({
 };
 
 /**
- * Parse a commit message
+ * Parses a git commit message into structured components.
  *
- * @param {object} params
- * @param {string} params.message
- * @param {boolean} params.isBreaking
- * @param {object} settings
- * @param {Function} settings.getCommitType
- * @returns {{description: string, type: string, prNumber: string, hash: *}|{scope: string, description: string,
- *     type: string, prNumber: string, hash: string, typeScope: string}}
+ * This function extracts various parts of a commit message including the hash,
+ * type, scope, description, and pull request number. It handles both conventional
+ * commit format and non-conventional formats, falling back to a general type
+ * for commits that don't follow the conventional format.
+ *
+ * @param {object} [params={}] - Parameters for parsing
+ * @param {string} params.message - The raw commit message to parse
+ * @param {boolean} [params.isBreaking=false] - Whether the commit contains breaking changes
+ * @param {object} [settings={}] - Function overrides for customization
+ * @param {getCommitType} [settings.getCommitType=getCommitType] - Function to get commit types
+ * @returns {{
+ *     hash:string,
+ *     typeScope:(string|undefined),
+ *     type:(string|undefined),
+ *     scope:(string|undefined),
+ *     description:(string|undefined),
+ *     prNumber:(string|undefined),
+ *     isBreaking:boolean
+ *     }} Parsed commit message components
  */
 const parseCommitMessage = (
   { message, isBreaking = false } = {},
@@ -97,16 +121,16 @@ const parseCommitMessage = (
 /**
  * Format commit message for CHANGELOG.md
  *
- * @param {object} params
+ * @param {object} [params={}]
  * @param {string} params.scope
  * @param {string} params.description
  * @param {string|number|*} params.prNumber
  * @param {string} params.hash
  * @param {boolean} params.isBreaking
- * @param {object} options
+ * @param {object} [options=OPTIONS]
  * @param {boolean} options.isBasic
- * @param {object} settings
- * @param {Function} settings.getLinkUrls
+ * @param {object} [settings={}]
+ * @param {getLinkUrls} [settings.getLinkUrls=getLinkUrls]
  * @returns {string}
  */
 const formatChangelogMessage = (
@@ -138,11 +162,11 @@ const formatChangelogMessage = (
 /**
  * Return an object of commit groupings based on "conventional-commit-types"
  *
- * @param {object} settings
- * @param {Function} settings.getCommitType
- * @param {Function} settings.getGit
- * @param {Function} settings.formatChangelogMessage
- * @param {Function} settings.parseCommitMessage
+ * @param {object} [settings={}]
+ * @param {getCommitType} [settings.getCommitType=getCommitType]
+ * @param {getGit} [settings.getGit=getGit]
+ * @param {formatChangelogMessage} [settings.formatChangelogMessage=formatChangelogMessage]
+ * @param {parseCommitMessage} [settings.parseCommitMessage=parseCommitMessage]
  * @returns {{'Bug Fixes': {commits: string[], title: string}, Chores: {commits: string[],
  *     title: string}, Features: {commits: string[], title: string}}}
  */
@@ -188,13 +212,13 @@ const parseCommits = ({
 /**
  * Apply a clear weight to commit types, determine MAJOR, MINOR, PATCH
  *
- * @param {object} params
- * @param {{ feat: { commits: Array }, refactor: { commits: Array }, fix: { commits: Array } }} params.commits
- * @param {boolean} params.isBreakingChanges Apply a 'major' weight if true
- * @param {object} options
- * @param {boolean} options.isOverrideVersion
- * @param {object} settings
- * @param {Function} settings.getCommitType
+ * @param {object} [params={}]
+ * @param {{ feat: { commits: Array }, refactor: { commits: Array }, fix: { commits: Array } }} [params.commits={}]
+ * @param {boolean} [params.isBreakingChanges=false] Apply a 'major' weight if true
+ * @param {object} [options=OPTIONS]
+ * @param {boolean} [options.isOverrideVersion=false]
+ * @param {object} [settings={}]
+ * @param {getCommitType} [settings.getCommitType=getCommitType]
  * @returns {{bump: ('major'|'minor'|'patch'), weight: number}}
  */
 const semverBump = (
