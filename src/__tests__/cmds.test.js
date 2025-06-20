@@ -3,15 +3,21 @@ const cmds = require('../cmds');
 const { OPTIONS } = require('../global');
 
 describe('Commands', () => {
-  const { mockClear } = mockObjectProperty(OPTIONS, {
-    date: '2022-10-01',
-    changelogPath: join(OPTIONS.contextPath, 'CHANGELOG.md'),
-    packagePath: join(OPTIONS.contextPath, 'package.json'),
-    releaseBranch: 'HEAD'
+  let mockObjectClear;
+
+  beforeEach(() => {
+    const { mockClear } = mockObjectProperty(OPTIONS, {
+      date: '2022-10-01',
+      changelogPath: join(OPTIONS.contextPath, 'CHANGELOG.md'),
+      packagePath: join(OPTIONS.contextPath, 'package.json'),
+      releaseBranch: 'HEAD'
+    });
+
+    mockObjectClear = mockClear;
   });
 
-  afterAll(() => {
-    mockClear();
+  afterEach(() => {
+    mockObjectClear();
   });
 
   it('should attempt to run commands', () => {

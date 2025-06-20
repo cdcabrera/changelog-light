@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Commit Changelog should parse commits to produce a CHANGELOG.md with an override version: override 1`] = `
 {

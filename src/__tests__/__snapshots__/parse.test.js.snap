@@ -1,391 +1,26 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`Parse should format a changelog commit message: formatChangelogMessages 1`] = `
-{
-  "feat": "* **dolor** issues/20 sit enhancements  (1f72345)",
-  "fix": "*  missing semicolon  (1f12p45)",
-  "general": "*  Initial commit  (1f12s45)",
-  "refactor": "* **file** lorem updates ([#8](https://localhost/lorem/ipsum/prmock/8)) ([1f1x345](https://localhost/lorem/ipsum/commitsmock/1f1x345b597123453031234555b6d25574ccacee))",
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, feat 1`] = `"* **dolor** issues/20 sit enhancements  (1f72345)"`;
 
-exports[`Parse should format a non-conforming changelog commit message: formatChangelogMessagesNonConformingCommitMessages 1`] = `
-{
-  "empty": "*  1f1x345b597123453031234555b6d25574ccacee  (1f1x345)",
-  "emptyPR": "*  1f1x345b597123453031234555b6d25574ccacee (#9) (1f1x345)",
-  "madeUpType": "*  ref: lorem updates (#8) (1f1x345)",
-  "misplacedScope": "*  missing fix: semicolon  (1f12p45)",
-  "noScopeNoSemicolon": "*  refactor lorem updates (#8) (1f1x345)",
-  "noTypeWithScope": "*  (dolor): issues/20 sit enhancements  (1f72345)",
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, general, or non-conventional commit 1`] = `"*  Initial commit  (1f12s45)"`;
 
-exports[`Parse should get the first, last commits: first and last, no release commit 1`] = `
-{
-  "first": null,
-  "last": null,
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, no scope fix 1`] = `"*  missing semicolon  (1f12p45)"`;
 
-exports[`Parse should get the first, last commits: first and last, release commit 1`] = `
-{
-  "first": "REALFIRST123452345d42123123131231ca11235",
-  "last": "LAST1f12345b597123453031234555bvvvccacee",
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, non-conforming message, empty 1`] = `"*  1f1x345b597123453031234555b6d25574ccacee  (1f1x345)"`;
 
-exports[`Parse should parse a commit listing using conventional commit types: parsed commits 1`] = `
-{
-  "basicCommitsNoMarkdownLinks": {
-    "commits": {
-      "build": {
-        "commits": [
-          "* **deps** bump codecov/codecov-action from 1.1.0 to 1.1.1 (#19) (fe7d312)",
-          "* **deps** bump actions/cache from 1 to 2 (#12) (112345c)",
-          "* **deps** bump actions/checkout from 1 to 2 (#11) (512345d)",
-          "* **deps** aggregated checks, updates (#10) (12345d7)",
-          "* **deps** bump actions/github-script from 5 to 6 (#9) (1412345)",
-        ],
-        "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
-        "title": "Builds",
-        "value": "build",
-      },
-      "chore": {
-        "commits": [
-          "* **build** npm packages (#15) (e5c456e)",
-          "* **build** npm packages (#15) (6f0f55d)",
-        ],
-        "description": "Other changes that don't modify src or test files",
-        "title": "Chores",
-        "value": "chore",
-      },
-      "feat": {
-        "commits": [
-          "* **dolor** issues/20 sit enhancements (#8) (53a1234)",
-        ],
-        "description": "A new feature",
-        "title": "Features",
-        "value": "feat",
-      },
-      "fix": {
-        "commits": [
-          "* **build** npm packages (#18) (6112345)",
-          "*  missing semicolon  (1f1x345)",
-          "* **build** eslint, jsdoc updates (#16) (d123453)",
-        ],
-        "description": "A bug fix",
-        "title": "Bug Fixes",
-        "value": "fix",
-      },
-      "refactor": {
-        "commits": [
-          "* **file** lorem updates (#8) (1f12345)",
-        ],
-        "description": "A code change that neither fixes a bug nor adds a feature",
-        "title": "Code Refactoring",
-        "value": "refactor",
-      },
-    },
-    "isBreakingChanges": false,
-  },
-  "commits": {
-    "commits": {
-      "build": {
-        "commits": [
-          "* **deps** bump codecov/codecov-action from 1.1.0 to 1.1.1 (#19) (fe7d312)",
-          "* **deps** bump actions/cache from 1 to 2 (#12) (112345c)",
-          "* **deps** bump actions/checkout from 1 to 2 (#11) (512345d)",
-          "* **deps** aggregated checks, updates (#10) (12345d7)",
-          "* **deps** bump actions/github-script from 5 to 6 (#9) (1412345)",
-        ],
-        "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
-        "title": "Builds",
-        "value": "build",
-      },
-      "chore": {
-        "commits": [
-          "* **build** npm packages (#15) (e5c456e)",
-          "* **build** npm packages (#15) (6f0f55d)",
-        ],
-        "description": "Other changes that don't modify src or test files",
-        "title": "Chores",
-        "value": "chore",
-      },
-      "feat": {
-        "commits": [
-          "* **dolor** issues/20 sit enhancements (#8) (53a1234)",
-        ],
-        "description": "A new feature",
-        "title": "Features",
-        "value": "feat",
-      },
-      "fix": {
-        "commits": [
-          "* **build** npm packages (#18) (6112345)",
-          "*  missing semicolon  (1f1x345)",
-          "* **build** eslint, jsdoc updates (#16) (d123453)",
-        ],
-        "description": "A bug fix",
-        "title": "Bug Fixes",
-        "value": "fix",
-      },
-      "refactor": {
-        "commits": [
-          "* **file** lorem updates (#8) (1f12345)",
-        ],
-        "description": "A code change that neither fixes a bug nor adds a feature",
-        "title": "Code Refactoring",
-        "value": "refactor",
-      },
-    },
-    "isBreakingChanges": false,
-  },
-  "default": {
-    "commits": {},
-    "isBreakingChanges": false,
-  },
-  "generalCommits": {
-    "commits": {
-      "build": {
-        "commits": [
-          "* **deps** bump codecov/codecov-action from 1.1.0 to 1.1.1 (#19) (fe7d312)",
-          "* **deps** bump actions/cache from 1 to 2 (#12) (112345c)",
-          "* **deps** bump actions/checkout from 1 to 2 (#11) (512345d)",
-          "* **deps** aggregated checks, updates (#10) (12345d7)",
-          "* **deps** bump actions/github-script from 5 to 6 (#9) (1412345)",
-        ],
-        "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
-        "title": "Builds",
-        "value": "build",
-      },
-      "chore": {
-        "commits": [
-          "* **build** npm packages (#15) (e5c456e)",
-          "* **build** npm packages (#15) (6f0f55d)",
-        ],
-        "description": "Other changes that don't modify src or test files",
-        "title": "Chores",
-        "value": "chore",
-      },
-      "feat": {
-        "commits": [
-          "* **dolor** issues/20 sit enhancements (#8) (53a1234)",
-        ],
-        "description": "A new feature",
-        "title": "Features",
-        "value": "feat",
-      },
-      "fix": {
-        "commits": [
-          "* **build** npm packages (#18) (6112345)",
-          "*  missing semicolon  (1f1x345)",
-          "* **build** eslint, jsdoc updates (#16) (d123453)",
-        ],
-        "description": "A bug fix",
-        "title": "Bug Fixes",
-        "value": "fix",
-      },
-      "general": {
-        "commits": [
-          "*  Initial commit  (12345dd)",
-        ],
-        "description": "Commits without category",
-        "title": "General",
-        "value": "general",
-      },
-      "refactor": {
-        "commits": [
-          "* **file** lorem updates (#8) (1f12345)",
-        ],
-        "description": "A code change that neither fixes a bug nor adds a feature",
-        "title": "Code Refactoring",
-        "value": "refactor",
-      },
-    },
-    "isBreakingChanges": false,
-  },
-  "urls": {
-    "commits": {
-      "build": {
-        "commits": [
-          "* **deps** bump codecov/codecov-action from 1.1.0 to 1.1.1 ([#19](https://localhost/lorem/ipsum/dolor/19)) ([fe7d312](https://localhost/lorem/ipsum/sit/fe7d312345xe604d8328d025612345925123457b))",
-          "* **deps** bump actions/cache from 1 to 2 ([#12](https://localhost/lorem/ipsum/dolor/12)) ([112345c](https://localhost/lorem/ipsum/sit/112345ca212345c8d2d123450c31234588f12345))",
-          "* **deps** bump actions/checkout from 1 to 2 ([#11](https://localhost/lorem/ipsum/dolor/11)) ([512345d](https://localhost/lorem/ipsum/sit/512345d6712345a1234581234501234516b12345))",
-          "* **deps** aggregated checks, updates ([#10](https://localhost/lorem/ipsum/dolor/10)) ([12345d7](https://localhost/lorem/ipsum/sit/12345d71e12345d2fc712345dd411234586b850a))",
-          "* **deps** bump actions/github-script from 5 to 6 ([#9](https://localhost/lorem/ipsum/dolor/9)) ([1412345](https://localhost/lorem/ipsum/sit/1412345dd312345d4212345d53e12345dca12345))",
-        ],
-        "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
-        "title": "Builds",
-        "value": "build",
-      },
-      "chore": {
-        "commits": [
-          "* **build** npm packages ([#15](https://localhost/lorem/ipsum/dolor/15)) ([e5c456e](https://localhost/lorem/ipsum/sit/e5c456ea12345vv4610fa4aff7812345ss31b1e2))",
-          "* **build** npm packages ([#15](https://localhost/lorem/ipsum/dolor/15)) ([6f0f55d](https://localhost/lorem/ipsum/sit/6f0f55d32412345221234512345d2345c3212345))",
-        ],
-        "description": "Other changes that don't modify src or test files",
-        "title": "Chores",
-        "value": "chore",
-      },
-      "feat": {
-        "commits": [
-          "* **dolor** issues/20 sit enhancements ([#8](https://localhost/lorem/ipsum/dolor/8)) ([53a1234](https://localhost/lorem/ipsum/sit/53a12345479ef91123456e921234548ac4123450))",
-        ],
-        "description": "A new feature",
-        "title": "Features",
-        "value": "feat",
-      },
-      "fix": {
-        "commits": [
-          "* **build** npm packages ([#18](https://localhost/lorem/ipsum/dolor/18)) ([6112345](https://localhost/lorem/ipsum/sit/611234511234543c39c1234536dc01234521549c))",
-          "*  missing semicolon  ([1f1x345](https://localhost/lorem/ipsum/sit/1f1x345b597123453031234555b6dl2401ccacee))",
-          "* **build** eslint, jsdoc updates ([#16](https://localhost/lorem/ipsum/dolor/16)) ([d123453](https://localhost/lorem/ipsum/sit/d1234537b5e94a6512345xeb96503312345x18d2))",
-        ],
-        "description": "A bug fix",
-        "title": "Bug Fixes",
-        "value": "fix",
-      },
-      "refactor": {
-        "commits": [
-          "* **file** lorem updates ([#8](https://localhost/lorem/ipsum/dolor/8)) ([1f12345](https://localhost/lorem/ipsum/sit/1f12345b597123453031234555b6d25574ccacee))",
-        ],
-        "description": "A code change that neither fixes a bug nor adds a feature",
-        "title": "Code Refactoring",
-        "value": "refactor",
-      },
-    },
-    "isBreakingChanges": false,
-  },
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, non-conforming message, empty with PR/MR 1`] = `"*  1f1x345b597123453031234555b6d25574ccacee (#9) (1f1x345)"`;
 
-exports[`Parse should parse a commit message: parseCommitMessages 1`] = `
-{
-  "breaking": {
-    "description": "dolor sit redo",
-    "hash": "1f1x3Ubc81234530312x434555b6d25574ccacee",
-    "isBreaking": true,
-    "prNumber": "8",
-    "scope": undefined,
-    "type": "refactor",
-    "typeScope": "refactor",
-  },
-  "feat": {
-    "description": "issues/20 sit enhancements",
-    "hash": "1f72345b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": undefined,
-    "scope": "dolor",
-    "type": "feat",
-    "typeScope": "feat(dolor)",
-  },
-  "fix": {
-    "description": "missing semicolon",
-    "hash": "1f12p45b597123453031234555b6dl2401ccacee",
-    "isBreaking": false,
-    "prNumber": undefined,
-    "scope": undefined,
-    "type": "fix",
-    "typeScope": "fix",
-  },
-  "general": {
-    "description": "Initial commit",
-    "hash": "1f12s45b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": "",
-    "scope": undefined,
-    "type": "general",
-    "typeScope": undefined,
-  },
-  "refactor": {
-    "description": "lorem updates",
-    "hash": "1f1x345b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": "8",
-    "scope": "file",
-    "type": "refactor",
-    "typeScope": "refactor(file)",
-  },
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, non-conforming message, made up type 1`] = `"*  ref: lorem updates (#8) (1f1x345)"`;
 
-exports[`Parse should parse a non-conforming commit message: parseNonConformingCommitMessages 1`] = `
-{
-  "empty": {
-    "description": "",
-    "hash": "1f1x345b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": "",
-    "scope": undefined,
-    "type": "general",
-    "typeScope": undefined,
-  },
-  "emptyPR": {
-    "description": "",
-    "hash": "1f1x345b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": "9",
-    "scope": undefined,
-    "type": "general",
-    "typeScope": undefined,
-  },
-  "madeUpType": {
-    "description": "ref: lorem updates",
-    "hash": "1f1x345b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": "8",
-    "scope": undefined,
-    "type": "general",
-    "typeScope": undefined,
-  },
-  "misplacedScope": {
-    "description": "missing fix: semicolon",
-    "hash": "1f12p45b597123453031234555b6dl2401ccacee",
-    "isBreaking": false,
-    "prNumber": "",
-    "scope": undefined,
-    "type": "general",
-    "typeScope": undefined,
-  },
-  "noScopeNoSemicolon": {
-    "description": "refactor lorem updates",
-    "hash": "1f1x345b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": "8",
-    "scope": undefined,
-    "type": "general",
-    "typeScope": undefined,
-  },
-  "noTypeWithScope": {
-    "description": "(dolor): issues/20 sit enhancements",
-    "hash": "1f72345b597123453031234555b6d25574ccacee",
-    "isBreaking": false,
-    "prNumber": "",
-    "scope": undefined,
-    "type": "general",
-    "typeScope": undefined,
-  },
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, non-conforming message, misplaced scope 1`] = `"*  missing fix: semicolon  (1f12p45)"`;
 
-exports[`Parse should return a semver version: semver bump 1`] = `
-{
-  "breaking": {
-    "bump": "major",
-    "weight": 112,
-  },
-  "commits": {
-    "bump": "minor",
-    "weight": 12,
-  },
-  "default": {
-    "bump": "patch",
-    "weight": 0,
-  },
-}
-`;
+exports[`formatChangelogMessage should format a changelog commit message, non-conforming message, missing colon 1`] = `"*  refactor lorem updates (#8) (1f1x345)"`;
 
-exports[`Parse should return commit types: getCommitType 1`] = `
+exports[`formatChangelogMessage should format a changelog commit message, non-conforming message, no type but with scope 1`] = `"*  (dolor): issues/20 sit enhancements  (1f72345)"`;
+
+exports[`formatChangelogMessage should format a changelog commit message, refactor 1`] = `"* **file** lorem updates ([#8](https://localhost/lorem/ipsum/prmock/8)) ([1f1x345](https://localhost/lorem/ipsum/commitsmock/1f1x345b597123453031234555b6d25574ccacee))"`;
+
+exports[`getCommitType should return commit types, basic 1`] = `
 {
   "build": {
     "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
@@ -445,10 +80,401 @@ exports[`Parse should return commit types: getCommitType 1`] = `
 }
 `;
 
-exports[`Parse should return commit types: non-conventional-commits 1`] = `
+exports[`getCommitType should return commit types, non-conventional commits 1`] = `
 {
   "description": "Commits without category",
   "title": "General",
   "value": "general",
+}
+`;
+
+exports[`getComparisonCommitHashes should get the first and last commits, no release commit 1`] = `
+{
+  "first": null,
+  "last": null,
+}
+`;
+
+exports[`getComparisonCommitHashes should get the first and last commits, release commit 1`] = `
+{
+  "first": "REALFIRST123452345d42123123131231ca11235",
+  "last": "LAST1f12345b597123453031234555bvvvccacee",
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, breaking 1`] = `
+{
+  "description": "dolor sit redo",
+  "hash": "1f1x3Ubc81234530312x434555b6d25574ccacee",
+  "isBreaking": true,
+  "prNumber": "8",
+  "scope": undefined,
+  "type": "refactor",
+  "typeScope": "refactor",
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, feat 1`] = `
+{
+  "description": "issues/20 sit enhancements",
+  "hash": "1f72345b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": undefined,
+  "scope": "dolor",
+  "type": "feat",
+  "typeScope": "feat(dolor)",
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, general, or non-conventional commit 1`] = `
+{
+  "description": "Initial commit",
+  "hash": "1f12s45b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": "",
+  "scope": undefined,
+  "type": "general",
+  "typeScope": undefined,
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, no scope fix 1`] = `
+{
+  "description": "missing semicolon",
+  "hash": "1f12p45b597123453031234555b6dl2401ccacee",
+  "isBreaking": false,
+  "prNumber": undefined,
+  "scope": undefined,
+  "type": "fix",
+  "typeScope": "fix",
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, non-conforming message, empty 1`] = `
+{
+  "description": "",
+  "hash": "1f1x345b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": "",
+  "scope": undefined,
+  "type": "general",
+  "typeScope": undefined,
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, non-conforming message, empty with PR/MR 1`] = `
+{
+  "description": "",
+  "hash": "1f1x345b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": "9",
+  "scope": undefined,
+  "type": "general",
+  "typeScope": undefined,
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, non-conforming message, made up type 1`] = `
+{
+  "description": "ref: lorem updates",
+  "hash": "1f1x345b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": "8",
+  "scope": undefined,
+  "type": "general",
+  "typeScope": undefined,
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, non-conforming message, misplaced scope 1`] = `
+{
+  "description": "missing fix: semicolon",
+  "hash": "1f12p45b597123453031234555b6dl2401ccacee",
+  "isBreaking": false,
+  "prNumber": "",
+  "scope": undefined,
+  "type": "general",
+  "typeScope": undefined,
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, non-conforming message, missing colon 1`] = `
+{
+  "description": "refactor lorem updates",
+  "hash": "1f1x345b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": "8",
+  "scope": undefined,
+  "type": "general",
+  "typeScope": undefined,
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, non-conforming message, no type but with scope 1`] = `
+{
+  "description": "(dolor): issues/20 sit enhancements",
+  "hash": "1f72345b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": "",
+  "scope": undefined,
+  "type": "general",
+  "typeScope": undefined,
+}
+`;
+
+exports[`parseCommitMessage should parse a commit message, refactor 1`] = `
+{
+  "description": "lorem updates",
+  "hash": "1f1x345b597123453031234555b6d25574ccacee",
+  "isBreaking": false,
+  "prNumber": "8",
+  "scope": "file",
+  "type": "refactor",
+  "typeScope": "refactor(file)",
+}
+`;
+
+exports[`parseCommits should parse a commit listing using conventional commit types, allow general commit messages 1`] = `
+{
+  "commits": {
+    "build": {
+      "commits": [
+        "* **deps** bump actions/cache from 1 to 2 (#12) (112345c)",
+        "* **deps** bump actions/checkout from 1 to 2 (#11) (512345d)",
+        "* **deps** aggregated checks, updates (#10) (12345d7)",
+        "* **deps** bump actions/github-script from 5 to 6 (#9) (1412345)",
+      ],
+      "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+      "title": "Builds",
+      "value": "build",
+    },
+    "chore": {
+      "commits": [
+        "* **build** npm packages (#15) (e5c456e)",
+        "* **build** npm packages (#15) (6f0f55d)",
+      ],
+      "description": "Other changes that don't modify src or test files",
+      "title": "Chores",
+      "value": "chore",
+    },
+    "feat": {
+      "commits": [
+        "* **dolor** issues/20 sit enhancements (#8) (53a1234)",
+      ],
+      "description": "A new feature",
+      "title": "Features",
+      "value": "feat",
+    },
+    "fix": {
+      "commits": [
+        "* **build** npm packages (#18) (6112345)",
+        "*  missing semicolon  (1f1x345)",
+        "* **build** eslint, jsdoc updates (#16) (d123453)",
+      ],
+      "description": "A bug fix",
+      "title": "Bug Fixes",
+      "value": "fix",
+    },
+    "general": {
+      "commits": [
+        "*  Initial commit  (12345dd)",
+      ],
+      "description": "Commits without category",
+      "title": "General",
+      "value": "general",
+    },
+    "refactor": {
+      "commits": [
+        "* **file** lorem updates (#8) (1f12345)",
+      ],
+      "description": "A code change that neither fixes a bug nor adds a feature",
+      "title": "Code Refactoring",
+      "value": "refactor",
+    },
+  },
+  "isBreakingChanges": false,
+}
+`;
+
+exports[`parseCommits should parse a commit listing using conventional commit types, basic 1`] = `
+{
+  "commits": {
+    "build": {
+      "commits": [
+        "* **deps** bump actions/cache from 1 to 2 (#12) (112345c)",
+        "* **deps** bump actions/checkout from 1 to 2 (#11) (512345d)",
+        "* **deps** aggregated checks, updates (#10) (12345d7)",
+        "* **deps** bump actions/github-script from 5 to 6 (#9) (1412345)",
+      ],
+      "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+      "title": "Builds",
+      "value": "build",
+    },
+    "chore": {
+      "commits": [
+        "* **build** npm packages (#15) (e5c456e)",
+        "* **build** npm packages (#15) (6f0f55d)",
+      ],
+      "description": "Other changes that don't modify src or test files",
+      "title": "Chores",
+      "value": "chore",
+    },
+    "feat": {
+      "commits": [
+        "* **dolor** issues/20 sit enhancements (#8) (53a1234)",
+      ],
+      "description": "A new feature",
+      "title": "Features",
+      "value": "feat",
+    },
+    "fix": {
+      "commits": [
+        "* **build** npm packages (#18) (6112345)",
+        "*  missing semicolon  (1f1x345)",
+        "* **build** eslint, jsdoc updates (#16) (d123453)",
+      ],
+      "description": "A bug fix",
+      "title": "Bug Fixes",
+      "value": "fix",
+    },
+    "refactor": {
+      "commits": [
+        "* **file** lorem updates (#8) (1f12345)",
+      ],
+      "description": "A code change that neither fixes a bug nor adds a feature",
+      "title": "Code Refactoring",
+      "value": "refactor",
+    },
+  },
+  "isBreakingChanges": false,
+}
+`;
+
+exports[`parseCommits should parse a commit listing using conventional commit types, no markdown links 1`] = `
+{
+  "commits": {
+    "build": {
+      "commits": [
+        "* **deps** bump actions/cache from 1 to 2 (#12) (112345c)",
+        "* **deps** bump actions/checkout from 1 to 2 (#11) (512345d)",
+        "* **deps** aggregated checks, updates (#10) (12345d7)",
+        "* **deps** bump actions/github-script from 5 to 6 (#9) (1412345)",
+      ],
+      "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+      "title": "Builds",
+      "value": "build",
+    },
+    "chore": {
+      "commits": [
+        "* **build** npm packages (#15) (e5c456e)",
+        "* **build** npm packages (#15) (6f0f55d)",
+      ],
+      "description": "Other changes that don't modify src or test files",
+      "title": "Chores",
+      "value": "chore",
+    },
+    "feat": {
+      "commits": [
+        "* **dolor** issues/20 sit enhancements (#8) (53a1234)",
+      ],
+      "description": "A new feature",
+      "title": "Features",
+      "value": "feat",
+    },
+    "fix": {
+      "commits": [
+        "* **build** npm packages (#18) (6112345)",
+        "*  missing semicolon  (1f1x345)",
+        "* **build** eslint, jsdoc updates (#16) (d123453)",
+      ],
+      "description": "A bug fix",
+      "title": "Bug Fixes",
+      "value": "fix",
+    },
+    "refactor": {
+      "commits": [
+        "* **file** lorem updates (#8) (1f12345)",
+      ],
+      "description": "A code change that neither fixes a bug nor adds a feature",
+      "title": "Code Refactoring",
+      "value": "refactor",
+    },
+  },
+  "isBreakingChanges": false,
+}
+`;
+
+exports[`parseCommits should parse a commit listing using conventional commit types, url path 1`] = `
+{
+  "commits": {
+    "build": {
+      "commits": [
+        "* **deps** bump actions/cache from 1 to 2 ([#12](https://localhost/lorem/ipsum/dolor/12)) ([112345c](https://localhost/lorem/ipsum/sit/112345ca212345c8d2d123450c31234588f12345))",
+        "* **deps** bump actions/checkout from 1 to 2 ([#11](https://localhost/lorem/ipsum/dolor/11)) ([512345d](https://localhost/lorem/ipsum/sit/512345d6712345a1234581234501234516b12345))",
+        "* **deps** aggregated checks, updates ([#10](https://localhost/lorem/ipsum/dolor/10)) ([12345d7](https://localhost/lorem/ipsum/sit/12345d71e12345d2fc712345dd411234586b850a))",
+        "* **deps** bump actions/github-script from 5 to 6 ([#9](https://localhost/lorem/ipsum/dolor/9)) ([1412345](https://localhost/lorem/ipsum/sit/1412345dd312345d4212345d53e12345dca12345))",
+      ],
+      "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+      "title": "Builds",
+      "value": "build",
+    },
+    "chore": {
+      "commits": [
+        "* **build** npm packages ([#15](https://localhost/lorem/ipsum/dolor/15)) ([e5c456e](https://localhost/lorem/ipsum/sit/e5c456ea12345vv4610fa4aff7812345ss31b1e2))",
+        "* **build** npm packages ([#15](https://localhost/lorem/ipsum/dolor/15)) ([6f0f55d](https://localhost/lorem/ipsum/sit/6f0f55d32412345221234512345d2345c3212345))",
+      ],
+      "description": "Other changes that don't modify src or test files",
+      "title": "Chores",
+      "value": "chore",
+    },
+    "feat": {
+      "commits": [
+        "* **dolor** issues/20 sit enhancements ([#8](https://localhost/lorem/ipsum/dolor/8)) ([53a1234](https://localhost/lorem/ipsum/sit/53a12345479ef91123456e921234548ac4123450))",
+      ],
+      "description": "A new feature",
+      "title": "Features",
+      "value": "feat",
+    },
+    "fix": {
+      "commits": [
+        "* **build** npm packages ([#18](https://localhost/lorem/ipsum/dolor/18)) ([6112345](https://localhost/lorem/ipsum/sit/611234511234543c39c1234536dc01234521549c))",
+        "*  missing semicolon  ([1f1x345](https://localhost/lorem/ipsum/sit/1f1x345b597123453031234555b6dl2401ccacee))",
+        "* **build** eslint, jsdoc updates ([#16](https://localhost/lorem/ipsum/dolor/16)) ([d123453](https://localhost/lorem/ipsum/sit/d1234537b5e94a6512345xeb96503312345x18d2))",
+      ],
+      "description": "A bug fix",
+      "title": "Bug Fixes",
+      "value": "fix",
+    },
+    "refactor": {
+      "commits": [
+        "* **file** lorem updates ([#8](https://localhost/lorem/ipsum/dolor/8)) ([1f12345](https://localhost/lorem/ipsum/sit/1f12345b597123453031234555b6d25574ccacee))",
+      ],
+      "description": "A code change that neither fixes a bug nor adds a feature",
+      "title": "Code Refactoring",
+      "value": "refactor",
+    },
+  },
+  "isBreakingChanges": false,
+}
+`;
+
+exports[`semverBump should return a semver version, basic 1`] = `
+{
+  "bump": "patch",
+  "weight": 0,
+}
+`;
+
+exports[`semverBump should return a semver version, breaking 1`] = `
+{
+  "bump": "major",
+  "weight": 100.5,
+}
+`;
+
+exports[`semverBump should return a semver version, commits 1`] = `
+{
+  "bump": "minor",
+  "weight": 12,
 }
 `;
