@@ -4,139 +4,123 @@ const { updateChangelog, updatePackage } = require('../files');
 const { getComparisonCommitHashes, parseCommits } = require('../parse');
 const { OPTIONS } = require('../global');
 
-describe('Files', () => {
-  const { mockClear } = mockObjectProperty(OPTIONS, {
-    date: new Date('2022-10-01').toISOString(),
-    changelogPath: join(OPTIONS.contextPath, 'CHANGELOG.md'),
-    packagePath: join(OPTIONS.contextPath, 'package.json')
-  });
-
-  afterAll(() => {
-    mockClear();
-  });
-
-  it('should create, and update a basic CHANGELOG.md', () => {
-    const commitLog = [
-      { commit: '1f12345b597123453031234555b6d25574ccacee feat(lorem)!: lorem dolor sit (#12)', isBreaking: true },
-      { commit: '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
-      { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
-      { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
-      { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
-      { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
-      { commit: '12345dd312345d421231231312312345dca11235 Initial commit' }
-    ];
-
-    const commitObj = parseCommits({ getGit: () => commitLog });
-    expect(updateChangelog({ ...commitObj }, undefined)).toMatchSnapshot('changelog');
-  });
-
-  it('should create, and update CHANGELOG.md with enhanced descriptions', () => {
-    const commitLog = [
-      { commit: 'LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
-      { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
-      { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
-      { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' }
-    ];
-
-    const mockUpdateChangelogDeps = (log, description) => {
-      const urlObj = {
-        compareUrl: 'https://localhost/lorem/ipsum/comparmock/'
-      };
-
-      const commitObj = parseCommits({ getGit: () => log });
-      const comparisonObj = getComparisonCommitHashes({
-        getGit: () => log,
-        getReleaseCommit: () => ''
-      });
-
-      return [
-        { ...commitObj, packageVersion: '0.1.0' },
-        {
-          ...OPTIONS,
-          releaseDescription: description
-        },
-        {
-          getComparisonCommitHashes: () => comparisonObj,
-          getLinkUrls: () => urlObj
-        }
-      ];
-    };
-
-    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, 'Lorem ipsum dolor sit!'))).toMatchSnapshot(
-      'changelog with description'
-    );
-
-    commitLog.push({
-      commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor)!: issues/20 sit enhancements (#8)',
-      isBreaking: true
-    });
-
-    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, undefined))).toMatchSnapshot(
-      'changelog with breaking'
-    );
-
-    expect(updateChangelog(...mockUpdateChangelogDeps(commitLog, 'Lorem ipsum dolor sit!'))).toMatchSnapshot(
-      'changelog with breaking and description'
-    );
-  });
-
-  it('should create, and update CHANGELOG.md version with a comparison urls', () => {
-    const commitLog = [
-      { commit: 'LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
-      { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
-      { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
-      { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
-      { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
-      { commit: 'FIRSTdd312345d421231231312312345dca11235 Initial-like commit' }
-    ];
-
+describe('updateChangelog', () => {
+  it.each([
+    {
+      releaseCommit: '',
+      commitLog: [
+        { commit: '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
+        { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
+        { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
+        { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
+        { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
+        { commit: '12345dd312345d421231231312312345dca11235 Initial commit' }
+      ],
+      description: 'basic',
+      options: undefined
+    },
+    {
+      releaseCommit: '',
+      commitLog: [
+        { commit: '1f12345b597123453031234555b6d25574ccacee feat(lorem)!: lorem dolor sit (#12)', isBreaking: true },
+        { commit: '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
+        { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
+        { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
+        { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
+        { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
+        { commit: '12345dd312345d421231231312312345dca11235 Initial commit' }
+      ],
+      description: 'with breaking changes',
+      options: undefined
+    },
+    {
+      releaseCommit: '',
+      commitLog: [
+        { commit: '1f12345b597123453031234555b6d25574ccacee feat(lorem)!: lorem dolor sit (#12)', isBreaking: true },
+        { commit: '1f12345b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
+        { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
+        { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
+        { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
+        { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
+        { commit: '12345dd312345d421231231312312345dca11235 Initial commit' }
+      ],
+      description: 'with breaking changes and description',
+      options: {
+        releaseDescription: 'Lorem ipsum dolor sit!'
+      }
+    },
+    {
+      releaseCommit: '',
+      commitLog: [
+        { commit: 'LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
+        { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
+        { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
+        { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
+        { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
+        { commit: 'FIRSTdd312345d421231231312312345dca11235 Initial-like commit' }
+      ],
+      description: 'with no release commit',
+      options: undefined
+    },
+    {
+      releaseCommit: 'REALFIRST2345d421231231312312345dca11235',
+      commitLog: [
+        { commit: 'REALFIRST2345d421231231312312345dca11235 chore(release): 0.1.0' },
+        { commit: 'LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
+        { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
+        { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
+        { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
+        { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
+        { commit: 'FIRSTdd312345d421231231312312345dca11235 Initial-like commit' }
+      ],
+      description: 'with release commit',
+      options: undefined
+    },
+    {
+      releaseCommit: 'REALFIRST2345d421231231312312345dca11235',
+      commitLog: [
+        { commit: 'REALFIRST2345d421231231312312345dca11235 chore(release): 0.1.0' },
+        { commit: 'LASTg45b597123453031234555b6d25574ccacee refactor(file): lorem updates (#8)' },
+        { commit: '53a12345479ef91123456e921234548ac4123450 feat(dolor): issues/20 sit enhancements (#8)' },
+        { commit: 'd1234537b5e94a6512345xeb96503312345x18d2 fix(build): eslint, jsdoc updates (#16)' },
+        { commit: '1f1x345b597123453031234555b6dl2401ccacee fix: missing semicolon' },
+        { commit: 'e5c456ea12345vv4610fa4aff7812345ss31b1e2 chore(build): npm packages (#15)' },
+        { commit: 'FIRSTdd312345d421231231312312345dca11235 Initial-like commit' }
+      ],
+      description: 'with release commit, description, and no version comparison markdown link',
+      options: {
+        isBasic: true,
+        releaseDescription: '### ⚠ **lorem ipsum**\n- `dolor` (#1234)\n- `sit` (#5678)'
+      }
+    }
+  ])('should create a CHANGELOG.md $description', ({ commitLog, options, releaseCommit }) => {
     const urlObj = {
       compareUrl: 'https://localhost/lorem/ipsum/comparmock/'
     };
 
     const commitObj = parseCommits({ getGit: () => commitLog });
-    const comparisonObjNoReleaseCommit = getComparisonCommitHashes({
+    const comparisonObj = getComparisonCommitHashes({
       getGit: () => commitLog,
-      getReleaseCommit: () => ''
+      getReleaseCommit: () => releaseCommit
     });
-
-    expect(
-      updateChangelog({ ...commitObj, packageVersion: '1.0.0' }, undefined, {
-        getComparisonCommitHashes: () => comparisonObjNoReleaseCommit,
-        getLinkUrls: () => urlObj
-      })
-    ).toMatchSnapshot('urls and paths, no release commit');
-
-    commitLog.push({ commit: 'REALFIRST2345d421231231312312345dca11235 chore(release): 0.1.0' });
-    const comparisonObjReleaseCommit = getComparisonCommitHashes({
-      getGit: () => commitLog,
-      getReleaseCommit: () => 'REALFIRST2345d421231231312312345dca11235'
-    });
-
-    expect(
-      updateChangelog({ ...commitObj, packageVersion: '1.0.0' }, undefined, {
-        getComparisonCommitHashes: () => comparisonObjReleaseCommit,
-        getLinkUrls: () => urlObj
-      })
-    ).toMatchSnapshot('urls and paths, release commit');
 
     expect(
       updateChangelog(
         { ...commitObj, packageVersion: '1.0.0' },
+        { date: new Date('2022-10-01').toISOString(), ...options },
         {
-          ...OPTIONS,
-          isBasic: true,
-          releaseDescription: '### ⚠ **lorem ipsum**\n- `dolor` (#1234)\n- `sit` (#5678)'
-        },
-        {
-          getComparisonCommitHashes: () => comparisonObjReleaseCommit,
+          getComparisonCommitHashes: () => comparisonObj,
           getLinkUrls: () => urlObj
         }
       )
-    ).toMatchSnapshot('urls and paths, release commit, no markdown links');
+    ).toMatchSnapshot();
   });
+});
 
+describe('updatePackage', () => {
   it('should update a package.json', () => {
-    expect(updatePackage('lorem ipsum')).toMatchSnapshot('package');
+    expect(updatePackage('lorem ipsum', { packagePath: join(OPTIONS.contextPath, 'package.json') })).toMatchSnapshot(
+      'package'
+    );
   });
 });
