@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`formatChangelogMessage should format a changelog commit message, feat 1`] = `"* **dolor** issues/20 sit enhancements  (1f72345)"`;
 
