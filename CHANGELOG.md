@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.1](https://github.com/cdcabrera/changelog-light/compare/7d59c538db96d24923abfc67e45eb4f2363383f2...e033076324f485d9b057a24597ef92a973b6d851) (2025-07-07)
+
+
+### Tests
+*  snapshot updates ([#228](https://github.com/cdcabrera/changelog-light/pull/228)) ([b8fa7f7](https://github.com/cdcabrera/changelog-light/commit/b8fa7f7f90af72978b8fbbcbfc19e4d46f5df1dd))
+*  restructure, jest update prep ([#227](https://github.com/cdcabrera/changelog-light/pull/227)) ([a9921c0](https://github.com/cdcabrera/changelog-light/commit/a9921c062351387e0e4980deb766ebd4bad6137d))
+
+### Documentation
+*  expand jsdoc, annotations ([#220](https://github.com/cdcabrera/changelog-light/pull/220)) ([1da14f2](https://github.com/cdcabrera/changelog-light/commit/1da14f299ee121a1333978f12cb8ac983fd9f009))
+
+### Builds
+* **deps-dev** bump the dev group with 7 updates ([#231](https://github.com/cdcabrera/changelog-light/pull/231)) ([e033076](https://github.com/cdcabrera/changelog-light/commit/e033076324f485d9b057a24597ef92a973b6d851))
+* **deps-dev** bump prettier from 3.5.3 to 3.6.0 ([#230](https://github.com/cdcabrera/changelog-light/pull/230)) ([f913acc](https://github.com/cdcabrera/changelog-light/commit/f913accdcd1aaa405d57cc89730c5442beb43348))
+* **deps-dev** bump group with 5 updates ([#229](https://github.com/cdcabrera/changelog-light/pull/229)) ([4987a4d](https://github.com/cdcabrera/changelog-light/commit/4987a4db3db334614b0f0d1907e666c5e2d31011))
+* **deps-dev** bump jest from 29.7.0 to 30.0.0 ([#223](https://github.com/cdcabrera/changelog-light/pull/223)) ([d75e8a1](https://github.com/cdcabrera/changelog-light/commit/d75e8a16f60cb947a57d57648f2a343e9576c469))
+* **deps-dev** bump dev group with 6 updates ([#225](https://github.com/cdcabrera/changelog-light/pull/225)) ([43caca7](https://github.com/cdcabrera/changelog-light/commit/43caca77e39980f74e9f37d5e145154386660a86))
+* **deps-dev** eslint-plugin-jest from 28.12.0 to 28.13.0 ([#222](https://github.com/cdcabrera/changelog-light/pull/222)) ([6e869b6](https://github.com/cdcabrera/changelog-light/commit/6e869b6612bb8e6267cb052845e94fb3f25a1adb))
+* **deps-dev** bump the dev group with 6 updates ([#221](https://github.com/cdcabrera/changelog-light/pull/221)) ([65117f6](https://github.com/cdcabrera/changelog-light/commit/65117f690abe143a90743104bbb7fb049850a9d5))
+
 ## [3.0.0](https://github.com/cdcabrera/changelog-light/compare/5fb00d54a8a80c9f5ed357fef63cf43c63b932bd...9cf290df70a57c657ae9ba5837cfa465138cbc13) (2025-05-27)
 ⚠ BREAKING CHANGES
 
