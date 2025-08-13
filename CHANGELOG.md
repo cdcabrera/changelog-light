@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.2](https://github.com/cdcabrera/changelog-light/compare/082de401f1929eee34c55a3aeec035063f2b8ea6...86e8186601087d8bad910ce3be106645858cffda) (2025-08-13)
+
+
+### Builds
+* **deps-dev** bump the dev group with 4 updates ([#237](https://github.com/cdcabrera/changelog-light/pull/237)) ([86e8186](https://github.com/cdcabrera/changelog-light/commit/86e8186601087d8bad910ce3be106645858cffda))
+* **deps-dev** eslint-plugin-n from 17.21.0 to 17.21.3 ([#236](https://github.com/cdcabrera/changelog-light/pull/236)) ([71d93ca](https://github.com/cdcabrera/changelog-light/commit/71d93ca9047448327c360022347f3ce766c6a9cc))
+* **deps-dev** bump the dev group with 8 updates ([#235](https://github.com/cdcabrera/changelog-light/pull/235)) ([87de557](https://github.com/cdcabrera/changelog-light/commit/87de5572d0c68b30f2ccb88f07e155c7f0d2e94c))
+* **deps-dev** bump dev group with 3 updates ([#234](https://github.com/cdcabrera/changelog-light/pull/234)) ([00adf19](https://github.com/cdcabrera/changelog-light/commit/00adf19831502be72ccd34dc779e67d3e6ffd97e))
+* **deps-dev** bump dev group with 5 updates ([#233](https://github.com/cdcabrera/changelog-light/pull/233)) ([10b3dc2](https://github.com/cdcabrera/changelog-light/commit/10b3dc22241b69f04025594b07a78de0432dc94b))
+
 ## [3.0.1](https://github.com/cdcabrera/changelog-light/compare/7d59c538db96d24923abfc67e45eb4f2363383f2...e033076324f485d9b057a24597ef92a973b6d851) (2025-07-07)
 
 
