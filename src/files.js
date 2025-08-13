@@ -43,11 +43,11 @@ const updateChangelog = (
   { commits: parsedCommits = {}, isBreakingChanges = false, packageVersion } = {},
   { date, changelogPath, isBasic = false, isDryRun = false, releaseDescription } = OPTIONS,
   {
-    breakingChangeReleaseDesc = `\u26A0 BREAKING CHANGES`,
+    breakingChangeReleaseDesc = '\u26A0 BREAKING CHANGES',
     fallbackPackageVersion = '¯\\_(ツ)_/¯',
     getComparisonCommitHashes: getAliasComparisonCommitHashes = getComparisonCommitHashes,
     getLinkUrls: getAliasLinkUrls = getLinkUrls,
-    headerMd = `# Changelog\nAll notable changes to this project will be documented in this file.`
+    headerMd = '# Changelog\nAll notable changes to this project will be documented in this file.'
   } = {}
 ) => {
   const systemTimestamp = ((date && new Date(date)) || new Date()).toLocaleDateString('fr-CA', {
@@ -60,7 +60,7 @@ const updateChangelog = (
     (updatedBreakingChanges &&
       updatedReleaseDescription &&
       `${updatedBreakingChanges}\n\n${updatedReleaseDescription}`) ||
-    `${updatedBreakingChanges}${updatedReleaseDescription}`;
+      `${updatedBreakingChanges}${updatedReleaseDescription}`;
 
   let header = headerMd;
   let version = fallbackPackageVersion;
@@ -68,6 +68,7 @@ const updateChangelog = (
 
   if (existsSync(changelogPath)) {
     const [tempHeader, ...tempBody] = readFileSync(changelogPath, 'utf-8').split('##');
+
     header = tempHeader.trim();
     body = (tempBody.length && `## ${tempBody.join('##').trim()}`) || body;
   } else if (!isDryRun) {
@@ -83,6 +84,7 @@ const updateChangelog = (
 
     if (!isBasic && compareUrl) {
       const { first, last } = getAliasComparisonCommitHashes();
+
       if (first && last) {
         version = `[${version}](${compareUrl}${first}...${last})`;
       }

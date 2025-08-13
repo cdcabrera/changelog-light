@@ -244,6 +244,7 @@ describe('parseCommits', () => {
     ];
 
     const { mockClear } = mockObjectProperty(OPTIONS, { ...options });
+
     expect(parseCommits({ getGit: () => commitLog })).toMatchSnapshot();
     mockClear();
   });

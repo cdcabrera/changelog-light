@@ -7,6 +7,7 @@ describe('Global', () => {
 
   it('should set a one-time mutable OPTIONS object', () => {
     const { OPTIONS } = global;
+
     OPTIONS.lorem = 'et all';
     OPTIONS.dolor = 'magna';
     OPTIONS._set = {

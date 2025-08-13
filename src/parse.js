@@ -184,6 +184,7 @@ const parseCommits = ({
       if (isBreaking === true) {
         isBreakingChanges = true;
       }
+
       return parseAliasCommitMessage({ message, isBreaking });
     })
     .filter(obj => obj.type in commitType)

@@ -133,6 +133,7 @@ const OPTIONS = {
     Object.entries(obj).forEach(([key, value]) => {
       if (typeof value === 'function') {
         this[key] = value.call(this);
+
         return;
       }
 
