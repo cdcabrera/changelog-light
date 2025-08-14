@@ -72,6 +72,7 @@ const commitFiles = (version, { changelogPath, packagePath, lockFilePath, releas
  */
 const getCurrentVersion = ({ packagePath } = OPTIONS) => {
   const { version } = require(packagePath);
+
   return version;
 };
 
@@ -90,6 +91,7 @@ const getCurrentVersion = ({ packagePath } = OPTIONS) => {
 const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
   const isArray = Array.isArray(releaseTypeScope);
   const updatedReleaseBranch = (releaseBranch && ` ${releaseBranch}`) || '';
+
   return runCmd(
     `git log${updatedReleaseBranch} --grep="${
       (isArray && releaseTypeScope?.[1]) || (isArray && releaseTypeScope?.[0]) || releaseTypeScope
@@ -124,9 +126,11 @@ const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath } = OPTIONS) => 
     const [protocol, linkPath] = updatedUrl.split('://');
     const generateUrl = path => {
       let tempUrl = typeof path === 'string' && `${protocol}://${join(linkPath, path)}`;
+
       if (tempUrl && !/\/$/.test(tempUrl)) {
         tempUrl += '/';
       }
+
       return tempUrl;
     };
 
