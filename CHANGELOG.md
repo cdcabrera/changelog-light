@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.3](https://github.com/cdcabrera/changelog-light/compare/d93dd4b089c4fb021d908eb3a2a12fc19e70125f...9dcf7d5bfa292bff063fb8522e6d7cb40c6daf87) (2025-09-02)
+
+
+### Builds
+* **deps-dev** bump the dev group with 4 updates ([#242](https://github.com/cdcabrera/changelog-light/pull/242)) ([9dcf7d5](https://github.com/cdcabrera/changelog-light/commit/9dcf7d5bfa292bff063fb8522e6d7cb40c6daf87))
+* **deps-dev** bump eslint from 9.33.0 to 9.34.0 ([#241](https://github.com/cdcabrera/changelog-light/pull/241)) ([a90c42d](https://github.com/cdcabrera/changelog-light/commit/a90c42dbf04cdf19e7d307131055cacda273d08e))
+* **deps-dev** clean unused lint packages ([#240](https://github.com/cdcabrera/changelog-light/pull/240)) ([efe31db](https://github.com/cdcabrera/changelog-light/commit/efe31db5badd9a7a2f9f16d241dabffd0ea371ca))
+* **deps-dev** migrate to eslint-config-toolkit ([#239](https://github.com/cdcabrera/changelog-light/pull/239)) ([d1d2530](https://github.com/cdcabrera/changelog-light/commit/d1d25303e0ffc4eaea42397dc403bf00c11c8ad8))
+
 ## [3.0.2](https://github.com/cdcabrera/changelog-light/compare/082de401f1929eee34c55a3aeec035063f2b8ea6...86e8186601087d8bad910ce3be106645858cffda) (2025-08-13)
 
 
