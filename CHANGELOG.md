@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.4](https://github.com/cdcabrera/changelog-light/compare/a9ad86d5607afa519046df6fc709822a2a000016...3158e241a11977a9caf5e255435f6f6a110b63dc) (2025-11-10)
+
+
+### Builds
+* **deps-dev** npm-check-updates from 18.1.1 to 19.0.0 ([#259](https://github.com/cdcabrera/changelog-light/pull/259)) ([3158e24](https://github.com/cdcabrera/changelog-light/commit/3158e241a11977a9caf5e255435f6f6a110b63dc))
+* **deps-dev** bump dev group with 3 updates ([#261](https://github.com/cdcabrera/changelog-light/pull/261)) ([91cf9dc](https://github.com/cdcabrera/changelog-light/commit/91cf9dc04ac01d5514889e3c8cf0c63504c68121))
+* **deps** bump actions/setup-node from 5 to 6 ([#260](https://github.com/cdcabrera/changelog-light/pull/260)) ([a905322](https://github.com/cdcabrera/changelog-light/commit/a90532283d74c387bd3fe144e31109978ccc6c54))
+* **deps-dev** bump dev group with 2 updates ([#255](https://github.com/cdcabrera/changelog-light/pull/255)) ([994f2bb](https://github.com/cdcabrera/changelog-light/commit/994f2bb6fe1f2e08fa9f721dc18e635223355874))
+*  add nodejs 24 check ([#256](https://github.com/cdcabrera/changelog-light/pull/256)) ([deb05ba](https://github.com/cdcabrera/changelog-light/commit/deb05ba9412e6e315c6f5dd5fe5634282b45abe2))
+*  dependabot, package cooldown ([#254](https://github.com/cdcabrera/changelog-light/pull/254)) ([def669c](https://github.com/cdcabrera/changelog-light/commit/def669c50b8276f36bb688cecd1deb031d39c42a))
+* **deps** bump actions/setup-node from 4 to 5 ([#250](https://github.com/cdcabrera/changelog-light/pull/250)) ([4f4aa41](https://github.com/cdcabrera/changelog-light/commit/4f4aa41745b3f0991240f76808f686e8c4f47fa1))
+* **deps** bump actions/github-script from 7 to 8 ([#251](https://github.com/cdcabrera/changelog-light/pull/251)) ([b3735d2](https://github.com/cdcabrera/changelog-light/commit/b3735d2af2278bf6c788665223cb753b10bf8092))
+* **deps-dev** npm-check-updates from 18.1.0 to 18.1.1 ([#247](https://github.com/cdcabrera/changelog-light/pull/247)) ([458ca7b](https://github.com/cdcabrera/changelog-light/commit/458ca7b7d0a55c984cfbfa1e68c0abb172447b7a))
+* **deps-dev** bump the dev group with 4 updates ([#246](https://github.com/cdcabrera/changelog-light/pull/246)) ([901cf04](https://github.com/cdcabrera/changelog-light/commit/901cf043773e0fe87aae96d56929002611ad50fb))
+* **deps** bump actions/upload-pages-artifact from 3 to 4 ([#244](https://github.com/cdcabrera/changelog-light/pull/244)) ([f7a1ddc](https://github.com/cdcabrera/changelog-light/commit/f7a1ddc185e16698c676e86a3cd636971c25b875))
+* **deps** bump actions/checkout from 4 to 5 ([#245](https://github.com/cdcabrera/changelog-light/pull/245)) ([8435419](https://github.com/cdcabrera/changelog-light/commit/843541983438d53053482cfe14f04770e24b7019))
+
 ## [3.0.3](https://github.com/cdcabrera/changelog-light/compare/d93dd4b089c4fb021d908eb3a2a12fc19e70125f...9dcf7d5bfa292bff063fb8522e6d7cb40c6daf87) (2025-09-02)
 
 
