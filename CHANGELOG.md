@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.5](https://github.com/cdcabrera/changelog-light/compare/3c13246797315b8b0c4cc175cb043747fab0fdad...0ef86051efb75f33ede5acb6417849897dee4fd7) (2026-01-04)
+
+
+### Continuous Integrations
+*  npm publishing, remove matrix ([#272](https://github.com/cdcabrera/changelog-light/pull/272)) ([0ef8605](https://github.com/cdcabrera/changelog-light/commit/0ef86051efb75f33ede5acb6417849897dee4fd7))
+
+### Builds
+* **deps-dev** bump dev group with 3 updates ([#269](https://github.com/cdcabrera/changelog-light/pull/269)) ([f8e2298](https://github.com/cdcabrera/changelog-light/commit/f8e2298bd793f3f6898099d635f343f76ebbfeab))
+* **deps** bump actions/cache from 4 to 5 ([#270](https://github.com/cdcabrera/changelog-light/pull/270)) ([1c3e0a3](https://github.com/cdcabrera/changelog-light/commit/1c3e0a34262fde34c1024d825a58ad1fa399a65d))
+* **deps** bump actions/checkout from 5 to 6 ([#271](https://github.com/cdcabrera/changelog-light/pull/271)) ([fedf905](https://github.com/cdcabrera/changelog-light/commit/fedf90540e6a714663aaca9ef64b3754ab9d5757))
+* **deps-dev** bump dev group with 3 updates ([#265](https://github.com/cdcabrera/changelog-light/pull/265)) ([d27b46a](https://github.com/cdcabrera/changelog-light/commit/d27b46a896b3208e4a1ffc9efa3ebf87fde69b9c))
+*  relax audit check ([#266](https://github.com/cdcabrera/changelog-light/pull/266)) ([5c7edbe](https://github.com/cdcabrera/changelog-light/commit/5c7edbe5022e96fb043e2f1813e15765fa66302c))
+* **deps-dev** npm-check-updates from 19.1.1 to 19.1.2 ([#263](https://github.com/cdcabrera/changelog-light/pull/263)) ([9f19101](https://github.com/cdcabrera/changelog-light/commit/9f19101fe5ef3ca2108b5bafa21d6d64dd282ff6))
+
 ## [3.0.4](https://github.com/cdcabrera/changelog-light/compare/a9ad86d5607afa519046df6fc709822a2a000016...3158e241a11977a9caf5e255435f6f6a110b63dc) (2025-11-10)
 
 
