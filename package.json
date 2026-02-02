@@ -73,9 +73,9 @@
     ]
   },
   "dependencies": {
-    "conventional-commit-types": "^3.0.0",
-    "semver": "^7.7.2",
-    "yargs": "^17.7.2"
+    "conventional-commit-types": "3.0.0",
+    "semver": "7.7.3",
+    "yargs": "17.7.2"
   },
   "devDependencies": {
     "@cdcabrera/eslint-config-toolkit": "^0.4.0",
