@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.6](https://github.com/cdcabrera/changelog-light/compare/d591bb4a65febeb1b506d3fdd5b8fdcec750aaad...8f2d577262a49ee7bbc17a6cda538a00f2993056) (2026-02-02)
+
+
+### Builds
+* **deps** lock update ([#277](https://github.com/cdcabrera/changelog-light/pull/277)) ([8f2d577](https://github.com/cdcabrera/changelog-light/commit/8f2d577262a49ee7bbc17a6cda538a00f2993056))
+*  pin deps, ignore scripts ([#276](https://github.com/cdcabrera/changelog-light/pull/276)) ([1af1f9e](https://github.com/cdcabrera/changelog-light/commit/1af1f9e544c114e7a9d00b9e742d7b23c5b8aa03))
+* **deps-dev** bump cspell from 9.4.0 to 9.6.0 ([#275](https://github.com/cdcabrera/changelog-light/pull/275)) ([f066e9d](https://github.com/cdcabrera/changelog-light/commit/f066e9db5dd96bd7942c0fa4ed80229d35f84432))
+* **deps-dev** bump dev group with 2 updates ([#274](https://github.com/cdcabrera/changelog-light/pull/274)) ([ea1b984](https://github.com/cdcabrera/changelog-light/commit/ea1b984406a2ce03736233c83069e37a4c816a63))
+
 ## [3.0.5](https://github.com/cdcabrera/changelog-light/compare/3c13246797315b8b0c4cc175cb043747fab0fdad...0ef86051efb75f33ede5acb6417849897dee4fd7) (2026-01-04)
 
 
