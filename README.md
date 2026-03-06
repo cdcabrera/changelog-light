@@ -1,7 +1,7 @@
 # Changelog Light
 [![Build Status](https://github.com/cdcabrera/changelog-light/actions/workflows/integration.yml/badge.svg)](https://github.com/cdcabrera/changelog-light/actions/workflows/integration.yml)
 [![coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdcabrera.github.io%2Fchangelog-light%2Fsummary.json&query=%24.coverage.pct&suffix=%25&label=coverage&color=9F3FC0)](https://cdcabrera.github.io/changelog-light/)
-[![License](https://img.shields.io/github/license/cdcabrera/changelog-light.svg)](https://github.com/cdcabrera/changelog-light/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/cdcabrera/changelog-light)](https://github.com/cdcabrera/changelog-light/blob/main/LICENSE)
 
 Generate a changelog with [conventional commit types](https://www.conventionalcommits.org).
 
