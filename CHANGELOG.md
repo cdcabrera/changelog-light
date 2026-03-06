@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.7](https://github.com/cdcabrera/changelog-light/compare/75986a8fa423aa1fe2843ec63dbd5a295ba79e16...2cdc6a2a14ec1e0830ecd9bcdfc082ae58571e8a) (2026-03-06)
+
+
+### Chores
+*  license badge ([#284](https://github.com/cdcabrera/changelog-light/pull/284)) ([2cdc6a2](https://github.com/cdcabrera/changelog-light/commit/2cdc6a2a14ec1e0830ecd9bcdfc082ae58571e8a))
+
+### Builds
+* **deps** lock update ([#283](https://github.com/cdcabrera/changelog-light/pull/283)) ([524a782](https://github.com/cdcabrera/changelog-light/commit/524a78280045dcc6a2767674042b85013984b247))
+* **deps** bump semver from 7.7.3 to 7.7.4 ([#281](https://github.com/cdcabrera/changelog-light/pull/281)) ([492da0b](https://github.com/cdcabrera/changelog-light/commit/492da0b8673940d312bb642193b1c402cbdc3d19))
+* **deps-dev** cspell from 9.6.2 to 9.6.4 ([#280](https://github.com/cdcabrera/changelog-light/pull/280)) ([a5b63e4](https://github.com/cdcabrera/changelog-light/commit/a5b63e4bb7fc8e6d5b5007a8c9f076e17966f12d))
+* **deps-dev** bump dev group with 2 updates ([#279](https://github.com/cdcabrera/changelog-light/pull/279)) ([5bd3781](https://github.com/cdcabrera/changelog-light/commit/5bd37815cad62bf61a51a3fc913c3d78aad84714))
+
 ## [3.0.6](https://github.com/cdcabrera/changelog-light/compare/d591bb4a65febeb1b506d3fdd5b8fdcec750aaad...8f2d577262a49ee7bbc17a6cda538a00f2993056) (2026-02-02)
 
 
