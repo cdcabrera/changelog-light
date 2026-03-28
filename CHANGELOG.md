@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.8](https://github.com/cdcabrera/changelog-light/compare/6789def6e47d39cf9b589a778dd36302a2e07abf...f60db1ade12872d8d1779a16d0808a626088607d) (2026-03-28)
+
+
+### Builds
+* **deps-dev** clean npm-check-updates, npm-run-all ([#292](https://github.com/cdcabrera/changelog-light/pull/292)) ([f60db1a](https://github.com/cdcabrera/changelog-light/commit/f60db1ade12872d8d1779a16d0808a626088607d))
+* **deps** lock update ([#291](https://github.com/cdcabrera/changelog-light/pull/291)) ([1e83e28](https://github.com/cdcabrera/changelog-light/commit/1e83e28a6e3ea4c3bb0c1977814894b3e624c407))
+* **deps-dev** bump eslint from 9.39.2 to 9.39.4 ([#290](https://github.com/cdcabrera/changelog-light/pull/290)) ([793099d](https://github.com/cdcabrera/changelog-light/commit/793099d67a7f6cc86f467ee24d2a42075215064e))
+* **deps-dev** bump dev group with 3 updates ([#289](https://github.com/cdcabrera/changelog-light/pull/289)) ([769a28a](https://github.com/cdcabrera/changelog-light/commit/769a28a67c3c5d21984677ebf12cb95ab5af631c))
+* **deps-dev** bump dev group with 3 updates ([#286](https://github.com/cdcabrera/changelog-light/pull/286)) ([973fcb3](https://github.com/cdcabrera/changelog-light/commit/973fcb3fca256af6f4a9204d53d1e1f8a007c7ed))
+
 ## [3.0.7](https://github.com/cdcabrera/changelog-light/compare/75986a8fa423aa1fe2843ec63dbd5a295ba79e16...2cdc6a2a14ec1e0830ecd9bcdfc082ae58571e8a) (2026-03-06)
 
 
