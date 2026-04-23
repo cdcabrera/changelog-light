@@ -36,39 +36,18 @@
     "release:commit": "node ./bin/cli.js",
     "start": "./bin/cli.js",
     "test": "npm run test:lint && npm run test:spell && npm run test:spell-docs && npm run test:ci",
-    "test:ci": "export CI=true; jest --collectCoverage --coverageReporters=\"lcov\" --coverageReporters=\"json-summary\"",
+    "test:ci": "export CI=true; jest --selectProjects unit --roots=src/ --collectCoverage --coverageReporters=\"lcov\" --coverageReporters=\"json-summary\"",
     "test:clearCache": "jest --clearCache",
     "test:coverage": "npm run test:ci && npm run test:coverageSummary",
     "test:coverageSummary": "node ./scripts/coverage.build.js",
     "test:dev": "eslint ./src ./bin; npm run test:spell && npm run test:local",
     "test:docs": "npm run test:spell && npm run test:lint",
-    "test:integration": "jest --roots=./tests",
-    "test:integration-dev": "jest --roots=./tests --watchAll",
+    "test:integration": "jest --selectProjects e2e",
+    "test:integration-dev": "jest --selectProjects e2e --watchAll",
     "test:lint": "eslint ./src ./bin eslint.config.mjs",
-    "test:local": "jest --watch",
+    "test:local": "jest --selectProjects unit --roots=src/ --watch",
     "test:spell-docs": "cspell ./README.md ./CONTRIBUTING.md --config ./cspell.config.json",
     "test:spell": "cspell './src/**/*.js' './tests/**/*.js' --config ./cspell.config.json"
-  },
-  "jest": {
-    "roots": [
-      "src"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 60,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
-    },
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/**/.*/**",
-      "!src/logger/*"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>jest.setupTests.js"
-    ]
   },
   "dependencies": {
     "conventional-commit-types": "3.0.0",

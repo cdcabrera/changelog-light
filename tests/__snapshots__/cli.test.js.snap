@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
-
-exports[`CLI should use custom options: custom 1`] = `"<execSync>["node ./bin/cli.js -c false -d"]</execSync>"`;
-
-exports[`CLI should use default options: defaults 1`] = `"<execSync>["node ./bin/cli.js"]</execSync>"`;

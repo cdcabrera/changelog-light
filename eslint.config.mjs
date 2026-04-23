@@ -6,9 +6,9 @@ export default [
   {
     languageOptions: {
       globals: {
+        createGitRepo: 'readonly',
         generateFixture: 'readonly',
-        mockObjectProperty: 'readonly',
-        setMockResourceFunctions: 'readonly'
+        mockObjectProperty: 'readonly'
       }
     },
     rules: {

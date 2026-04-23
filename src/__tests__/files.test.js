@@ -1,5 +1,6 @@
 // spell-checker: disable
 const { join } = require('path');
+
 const { updateChangelog, updatePackage } = require('../files');
 const { getComparisonCommitHashes, parseCommits } = require('../parse');
 const { OPTIONS } = require('../global');

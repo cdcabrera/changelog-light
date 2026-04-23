@@ -1,4 +1,5 @@
 const { join } = require('path');
+
 const { commitChangelog } = require('../index');
 const { OPTIONS } = require('../global');
 
