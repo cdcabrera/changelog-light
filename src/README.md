@@ -665,6 +665,9 @@ updates the changelog with formatted commit messages, and optionally commits the
     <td>options.isDryRun</td><td><code>boolean</code></td><td></td><td><p>Whether to perform a dry run without writing files</p>
 </td>
     </tr><tr>
+    <td>options.isLint</td><td><code>boolean</code></td><td></td><td><p>Whether to lint commit messages</p>
+</td>
+    </tr><tr>
     <td>options.overrideVersion</td><td><code>string</code></td><td></td><td><p>Optional version to use instead of calculated version</p>
 </td>
     </tr><tr>
@@ -681,6 +684,9 @@ updates the changelog with formatted commit messages, and optionally commits the
 </td>
     </tr><tr>
     <td>[settings.parseCommits]</td><td><code>parseCommits</code></td><td><code>parseCommits</code></td><td><p>Function to parse commit messages</p>
+</td>
+    </tr><tr>
+    <td>[settings.lintCommits]</td><td><code>lintCommits</code></td><td><code>lintCommits</code></td><td><p>Function to lint commit messages</p>
 </td>
     </tr><tr>
     <td>[settings.semverBump]</td><td><code>semverBump</code></td><td><code>semverBump</code></td><td><p>Function to determine semantic version bump</p>
@@ -707,6 +713,7 @@ Parse and format commit messages
     * [~formatChangelogMessage([params], [options], [settings])](#module_Parse..formatChangelogMessage) ⇒ <code>string</code>
     * [~parseCommits([settings])](#module_Parse..parseCommits) ⇒ <code>Object</code>
     * [~semverBump([params], [options], [settings])](#module_Parse..semverBump) ⇒ <code>Object</code>
+    * [~lintCommits([params], [options], [settings])](#module_Parse..lintCommits) ⇒ <code>Array.&lt;{hash: string, commit: string, errors: Array.&lt;string&gt;}&gt;</code>
 
 <a name="module_Parse..getCommitType"></a>
 
@@ -892,6 +899,50 @@ Apply a clear weight to commit types, determine MAJOR, MINOR, PATCH
     <td>[settings]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
     </tr><tr>
     <td>[settings.getCommitType]</td><td><code>getCommitType</code></td><td><code>getCommitType</code></td><td></td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_Parse..lintCommits"></a>
+
+### Parse~lintCommits([params], [options], [settings]) ⇒ <code>Array.&lt;{hash: string, commit: string, errors: Array.&lt;string&gt;}&gt;</code>
+Lint commit messages based on internal use of conventional commits and optional rules.
+
+Validates:
+1. `Type` - must be a valid conventional commit type.
+2. `Description` - must be present.
+3. `Message length` - must be within the specified limit.
+4. `Issue number` - (Optional) must include an issue number in the description (e.g., issues/123, JIRA-123).
+
+**Kind**: inner method of [<code>Parse</code>](#module_Parse)  
+**Returns**: <code>Array.&lt;{hash: string, commit: string, errors: Array.&lt;string&gt;}&gt;</code> - Array of commits with validation errors  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>[params]</td><td><code>object</code></td><td><code>{}</code></td><td><p>Parameters for linting</p>
+</td>
+    </tr><tr>
+    <td>[params.commits]</td><td><code>Array</code></td><td><code>[]</code></td><td><p>List of parsed commit objects to lint</p>
+</td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>OPTIONS</code></td><td><p>Configuration options</p>
+</td>
+    </tr><tr>
+    <td>[options.lintMaxLength]</td><td><code>number</code></td><td><code>65</code></td><td><p>Max allowed length for the commit subject</p>
+</td>
+    </tr><tr>
+    <td>[options.lintRequireIssue]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Require an issue number in the description</p>
+</td>
+    </tr><tr>
+    <td>[settings]</td><td><code>object</code></td><td><code>{}</code></td><td><p>Settings, dependency injection and overrides</p>
+</td>
+    </tr><tr>
+    <td>[settings.getCommitType]</td><td><code>getCommitType</code></td><td><code>getCommitType</code></td><td><p>Get valid commit types</p>
+</td>
     </tr>  </tbody>
 </table>
 

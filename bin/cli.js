@@ -25,7 +25,10 @@ const {
   'pr-path': prPath,
   'release-message': releaseTypeScope,
   'release-desc': releaseDescription,
-  'link-url': linkUrl
+  'link-url': linkUrl,
+  lint,
+  'lint-length': lintMaxLength,
+  'lint-issue': lintRequireIssue
 } = yargs
   .usage('Generate a CHANGELOG.md with conventional commit types.\n\nUsage: changelog [options]')
   .help('help')
@@ -123,6 +126,21 @@ const {
   .option('release-desc', {
     describe: 'Add a description under the release version header copy. Example, "Lorem ipsum dolor sit!"',
     type: 'string'
+  })
+  .option('lint', {
+    default: false,
+    describe: 'Lint commits against conventional commit types',
+    type: 'boolean'
+  })
+  .option('lint-length', {
+    default: 65,
+    describe: 'Max length of the main message string',
+    type: 'number'
+  })
+  .option('lint-issue', {
+    default: false,
+    describe: 'Require an issue number in the commit description',
+    type: 'boolean'
   }).argv;
 
 /**
@@ -167,7 +185,10 @@ OPTIONS._set = {
   prPath,
   releaseBranch,
   releaseDescription,
-  releaseTypeScope
+  releaseTypeScope,
+  isLint: lint,
+  lintMaxLength,
+  lintRequireIssue
 };
 
 /**

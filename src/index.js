@@ -1,6 +1,6 @@
 const { color, OPTIONS } = require('./global');
 const { commitFiles, getOverrideVersion, getVersion } = require('./cmds');
-const { parseCommits, semverBump } = require('./parse');
+const { parseCommits, semverBump, lintCommits } = require('./parse');
 const { updateChangelog, updatePackage } = require('./files');
 
 /**
@@ -20,12 +20,14 @@ const { updateChangelog, updatePackage } = require('./files');
  * @param {string} options.contextPath - Base directory path for operations
  * @param {boolean} options.isCommit - Whether to commit changes to git
  * @param {boolean} options.isDryRun - Whether to perform a dry run without writing files
+ * @param {boolean} options.isLint - Whether to lint commit messages
  * @param {string} options.overrideVersion - Optional version to use instead of calculated version
  * @param {object} [settings={}] - Function overrides for testing or customization
  * @param {commitFiles} [settings.commitFiles=commitFiles] - Function to commit changes to git
  * @param {getOverrideVersion} [settings.getOverrideVersion=getOverrideVersion] - Function to get the override version
  * @param {getVersion} [settings.getVersion=getVersion] - Function to calculate the new version
  * @param {parseCommits} [settings.parseCommits=parseCommits] - Function to parse commit messages
+ * @param {lintCommits} [settings.lintCommits=lintCommits] - Function to lint commit messages
  * @param {semverBump} [settings.semverBump=semverBump] - Function to determine semantic version bump
  * @param {updateChangelog} [settings.updateChangelog=updateChangelog] - Function to update the changelog file
  * @param {updatePackage} [settings.updatePackage=updatePackage] - Function to update the package.json file
@@ -34,7 +36,7 @@ const { updateChangelog, updatePackage } = require('./files');
  *     package: string, versionClean: string, changelog: string, semverWeight: number, version: string}} Result of the changelog update
  */
 const commitChangelog = (
-  { changelogFile, contextPath, isCommit, isDryRun, overrideVersion } = OPTIONS,
+  { changelogFile, contextPath, isCommit, isDryRun, overrideVersion, isLint } = OPTIONS,
   {
     commitFiles: commitAliasFiles = commitFiles,
     getOverrideVersion: getAliasOverrideVersion = getOverrideVersion,
@@ -42,14 +44,34 @@ const commitChangelog = (
     parseCommits: parseAliasCommits = parseCommits,
     semverBump: semverAliasBump = semverBump,
     updateChangelog: updateAliasChangelog = updateChangelog,
-    updatePackage: updateAliasPackage = updatePackage
+    updatePackage: updateAliasPackage = updatePackage,
+    lintCommits: lintAliasCommits = lintCommits
   } = {}
 ) => {
   if (process.env.NODE_ENV !== 'test') {
     process.chdir(contextPath);
   }
 
-  const { commits, isBreakingChanges } = parseAliasCommits();
+  const { commits, commitsList, isBreakingChanges } = parseAliasCommits();
+
+  if (isLint) {
+    const lintResults = lintAliasCommits({ commits: commitsList });
+
+    if (lintResults.length > 0) {
+      console.error(color.RED, `\nLint failed for ${lintResults.length} commits:`, color.NOCOLOR);
+      process.stderr.write(`${JSON.stringify(lintResults, null, 2)}\n`);
+      process.exit(1);
+    }
+
+    console.info(color.GREEN, '\nLint passed', color.NOCOLOR);
+
+    if (process.env.NODE_ENV !== 'test') {
+      process.exit(0);
+    }
+
+    return { lintResults };
+  }
+
   const { bump, weight } = semverAliasBump({ commits, isBreakingChanges });
   const { clean: cleanVersion, version } = (overrideVersion && getAliasOverrideVersion()) || getAliasVersion(bump);
 

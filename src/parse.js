@@ -75,7 +75,10 @@ const getComparisonCommitHashes = ({
  *     scope:(string|undefined),
  *     description:(string|undefined),
  *     prNumber:(string|undefined),
- *     isBreaking:boolean
+ *     isBreaking:boolean,
+ *     original:string,
+ *     message:string,
+ *     messageLength:number
  *     }} Parsed commit message components
  */
 const parseCommitMessage = (
@@ -115,7 +118,20 @@ const parseCommitMessage = (
     };
   }
 
-  return output;
+  const updatedMessage = [
+    `${output.typeScope || ''}${(Boolean(output.isBreaking) && '!') || ''}${(Boolean(output.typeScope) && ':') || ''}`,
+    output.description
+  ]
+    .filter(value => Boolean(value))
+    .join(' ')
+    .trim();
+
+  return {
+    ...output,
+    messageLength: updatedMessage?.length || 0,
+    message: updatedMessage,
+    original: message
+  };
 };
 
 /**
@@ -167,8 +183,11 @@ const formatChangelogMessage = (
  * @param {getGit} [settings.getGit=getGit]
  * @param {formatChangelogMessage} [settings.formatChangelogMessage=formatChangelogMessage]
  * @param {parseCommitMessage} [settings.parseCommitMessage=parseCommitMessage]
- * @returns {{'Bug Fixes': {commits: string[], title: string}, Chores: {commits: string[],
- *     title: string}, Features: {commits: string[], title: string}}}
+ * @returns {{commits: {'Bug Fixes': {commits: string[], title: string}, Chores: {commits: string[],
+ *     title: string}, Features: {commits: string[], title: string}}, commitsList: Array<{hash: string,
+ *     typeScope: (string|undefined), type: (string|undefined), scope: (string|undefined),
+ *     description: (string|undefined), prNumber: (string|undefined), isBreaking: boolean,
+ *     original: string, message: string, messageLength: number}>, isBreakingChanges: boolean}}
  */
 const parseCommits = ({
   getCommitType: getAliasCommitType = getCommitType,
@@ -179,14 +198,16 @@ const parseCommits = ({
   const commitType = getAliasCommitType();
   let isBreakingChanges = false;
 
-  const commits = getAliasGit()
+  const commitsList = getAliasGit()
     .map(({ commit: message, isBreaking }) => {
       if (isBreaking === true) {
         isBreakingChanges = true;
       }
 
       return parseAliasCommitMessage({ message, isBreaking });
-    })
+    });
+
+  const commits = commitsList
     .filter(obj => obj.type in commitType)
     .map(obj => ({ ...obj, typeLabel: obj.type }))
     .reduce((groups, { typeLabel, ...messageProps }) => {
@@ -206,6 +227,7 @@ const parseCommits = ({
 
   return {
     commits,
+    commitsList,
     isBreakingChanges
   };
 };
@@ -255,10 +277,73 @@ const semverBump = (
   };
 };
 
+/**
+ * Lint commit messages based on internal use of conventional commits and optional rules.
+ *
+ * Validates:
+ * 1. `Type` - must be a valid conventional commit type.
+ * 2. `Description` - must be present.
+ * 3. `Message length` - must be within the specified limit.
+ * 4. `Issue number` - (Optional) must include an issue number in the description (e.g., issues/123, JIRA-123).
+ *
+ * @param {object} [params={}] - Parameters for linting
+ * @param {Array} [params.commits=[]] - List of parsed commit objects to lint
+ * @param {object} [options=OPTIONS] - Configuration options
+ * @param {number} [options.lintMaxLength=65] - Max allowed length for the commit subject
+ * @param {boolean} [options.lintRequireIssue=false] - Require an issue number in the description
+ * @param {object} [settings={}] - Settings, dependency injection and overrides
+ * @param {getCommitType} [settings.getCommitType=getCommitType] - Get valid commit types
+ * @returns {Array<{hash: string, commit: string, errors: string[]}>} Array of commits with validation errors
+ */
+const lintCommits = (
+  { commits = [] } = {},
+  { lintMaxLength = 65, lintRequireIssue = false } = OPTIONS,
+  { getCommitType: getAliasCommitType = getCommitType } = {}
+) => {
+  const commitType = getAliasCommitType();
+  const results = [];
+
+  commits.forEach(commit => {
+    const errors = [];
+    const { hash, type, description, original, messageLength } = commit;
+
+    if (!type || !(type in commitType)) {
+      errors.push('INVALID: type (expected known types and format "<type>:" or "<type>(<scope>):")');
+    }
+
+    if (!description) {
+      errors.push('INVALID: description (missing description)');
+    }
+
+    if (messageLength > lintMaxLength) {
+      errors.push(`INVALID: message length (${messageLength} > ${lintMaxLength})`);
+    }
+
+    if (lintRequireIssue && description) {
+      const hasIssueNumber = /(^[a-zA-Z]+[/-]+[0-9]+)/.test(description);
+
+      if (!hasIssueNumber) {
+        errors.push('INVALID: issue number (expected format "<desc>/<number>" or "<desc>-<number>")');
+      }
+    }
+
+    if (errors.length > 0) {
+      results.push({
+        hash,
+        commit: original,
+        errors
+      });
+    }
+  });
+
+  return results;
+};
+
 module.exports = {
   getCommitType,
   getComparisonCommitHashes,
   formatChangelogMessage,
+  lintCommits,
   parseCommitMessage,
   parseCommits,
   semverBump
