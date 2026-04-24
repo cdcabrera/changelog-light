@@ -31,4 +31,4 @@ jobs:
         if: ${{ steps.modules-cache.outputs.cache-hit != 'true' }}
         run: npm ci
       - name: Lint
-        run: npm run start:node -- --lint
+        run: npm run start:node -- --lint --branch ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
