@@ -35,6 +35,7 @@
     "release": "npm run release:commit",
     "release:commit": "node ./bin/cli.js",
     "start": "./bin/cli.js",
+    "start:node": "node ./bin/cli.js",
     "test": "npm run test:lint && npm run test:spell && npm run test:spell-docs && npm run test:ci",
     "test:ci": "export CI=true; jest --collectCoverage --coverageReporters=\"lcov\" --coverageReporters=\"json-summary\"",
     "test:clearCache": "jest --clearCache",
