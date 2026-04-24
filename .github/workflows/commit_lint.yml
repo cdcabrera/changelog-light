@@ -13,14 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
-      - name: Git commits
-        run: |
-          git remote add ssh-origin "https://github.com/$GITHUB_REPOSITORY"
-          git fetch ssh-origin
-          echo 'GIT_COMMITS<<EOF' >> $GITHUB_ENV
-          git cherry -v ssh-origin/${{ env.BRANCH }} | grep "+" >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
