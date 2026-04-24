@@ -5,7 +5,7 @@ const {
   parseCommitMessage,
   parseCommits,
   semverBump,
-  getComparisonCommitHashes
+  getComparisonCommitHashes, lintCommits
 } = require('../parse');
 const { OPTIONS } = require('../global');
 
@@ -295,5 +295,108 @@ describe('semverBump', () => {
     const commitObj = (commitLog && parseCommits({ getGit: () => commitLog })) || undefined;
 
     expect(semverBump({ ...commitObj, ...params })).toMatchSnapshot();
+  });
+});
+
+describe('lintCommits', () => {
+  const mockCommits = [
+    {
+      hash: '123',
+      type: 'feat',
+      description: 'add new feature',
+      original: 'feat: add new feature',
+      messageLength: 21
+    },
+    {
+      hash: '456',
+      type: 'fix',
+      description: 'fix a bug',
+      original: 'fix: fix a bug',
+      messageLength: 14
+    }
+  ];
+
+  it('should pass for valid commits', () => {
+    const results = lintCommits({ commits: mockCommits });
+
+    expect(results).toHaveLength(0);
+  });
+
+  it('should fail for invalid types', () => {
+    const invalidCommits = [
+      ...mockCommits,
+      {
+        hash: '789',
+        type: 'invalid',
+        description: 'invalid type',
+        original: 'invalid: invalid type',
+        messageLength: 21
+      }
+    ];
+    const results = lintCommits({ commits: invalidCommits });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].errors[0]).toContain('INVALID: type');
+  });
+
+  it('should fail for missing description', () => {
+    const invalidCommits = [
+      {
+        hash: '789',
+        type: 'feat',
+        description: undefined,
+        original: 'feat:',
+        messageLength: 5
+      }
+    ];
+    const results = lintCommits({ commits: invalidCommits });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].errors[0]).toContain('INVALID: description');
+  });
+
+  it('should fail for excessive length', () => {
+    const invalidCommits = [
+      {
+        hash: '789',
+        type: 'feat',
+        description: 'a very long description that exceeds the default sixty five characters limit',
+        original: 'feat: a very long description that exceeds the default sixty five characters limit',
+        messageLength: 82
+      }
+    ];
+    const results = lintCommits({ commits: invalidCommits }, { lintMaxLength: 65 });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].errors[0]).toContain('INVALID: message length');
+  });
+
+  it('should require issue number when lintRequireIssue is true', () => {
+    const results = lintCommits({ commits: mockCommits }, { lintRequireIssue: true });
+
+    expect(results).toHaveLength(2);
+    expect(results[0].errors[0]).toContain('INVALID: issue number');
+  });
+
+  it('should pass with issue number when lintRequireIssue is true', () => {
+    const validCommitsWithIssue = [
+      {
+        hash: '654',
+        type: 'feat',
+        description: 'JIRA-123 add new feature',
+        original: 'feat: JIRA-123 add new feature',
+        messageLength: 30
+      },
+      {
+        hash: '456',
+        type: 'fix',
+        description: 'issues/123 fix new feature',
+        original: 'fix: issues/123 fix new feature',
+        messageLength: 30
+      }
+    ];
+    const results = lintCommits({ commits: validCommitsWithIssue }, { lintRequireIssue: true });
+
+    expect(results).toHaveLength(0);
   });
 });

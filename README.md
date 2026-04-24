@@ -75,6 +75,13 @@ NPM install...
                                                [array] [default: "chore(release)"]
         --release-desc     Add a description under the release version header
                            copy. Example, "Lorem ipsum dolor sit!"        [string]
+        --lint             Lint commits against conventional commit types
+                                                        [boolean] [default: false]
+        --lint-length      Max length of the main message string
+                                                            [number] [default: 65]
+        --lint-issue
+                           Require an issue number in the commit description
+                                                        [boolean] [default: false]
     -h, --help             Show help                                     [boolean]
     -v, --version          Show version number                           [boolean]
 ```
@@ -154,6 +161,61 @@ To get your release commit setup from a "forked" repository...
 1. Merge, or rebase, your commit (depending on your approval process) into the target branch
    > The git hash associated with the release commit **IS NOT USED** until the next time you run `changelog-light`. Having it updated when you merge, or rebase, your commit makes no difference in your markdown.
 
+
+#### Commit Linting
+You can use `changelog-light` to lint your commit messages. This ensures all commits follow the conventional commit formatting required to generate an accurate changelog.
+
+**Example CLI use:**
+
+Lint from the last release to the current HEAD (default):
+```bash
+$ changelog --lint
+```
+
+Lint only the latest commit on the current branch:
+```bash
+$ changelog --lint --branch HEAD^..HEAD
+```
+
+Lint a single specific commit hash:
+```bash
+$ changelog --lint --branch 7d2f9a1^..7d2f9a1
+```
+
+Lint a specific range of commits:
+```bash
+$ changelog --lint --branch [earliest hash]..[latest hash]
+```
+
+Lint a range of commits using specific hashes:
+```bash
+$ changelog --lint --branch 7d2f9a1..8b3c4e2
+```
+
+Lint from the last release to a specific hash:
+```bash
+$ changelog --lint --branch 7d2f9a1
+```
+
+**Example GitHub Workflow:**
+```yaml
+name: CI
+on: [pull_request]
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+      - name: Lint commits
+        if: github.event_name == 'pull_request'
+        run: npx changelog-light --lint --branch ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
+```
 
 ## Credit
 This project is influenced by the deprecated project [Standard Version](https://github.com/conventional-changelog/standard-version). 

@@ -188,7 +188,7 @@ const getGit = (
    * @returns {string}
    */
   const getGitLog = (commitHash, searchFilter) => {
-    const releaseCommitHashRange = (commitHash && ` ${commitHash}..${releaseBranch}`) || '';
+    const releaseCommitHashRange = (commitHash && ` ${commitHash}..${releaseBranch}`) || (releaseBranch && ` ${releaseBranch}`) || '';
     const searchFilterCommits = searchFilter?.map(value => ` --grep="${value}"`).join(' ') || '';
 
     return runCmd(
