@@ -205,18 +205,16 @@ jobs:
   commitlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: lts/*
-      - name: Install
-        run: npm install
-      - name: Validate PR commits
+      - name: Lint commits
         if: github.event_name == 'pull_request'
-        run: npx changelog --lint --branch ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
+        run: npx changelog-light --lint --branch ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
 ```
 
 ## Credit
