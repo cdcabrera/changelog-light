@@ -19,8 +19,8 @@ const { getGit, getReleaseCommit, getLinkUrls } = require('./cmds');
  * @returns {{
  *     feat:{description:string, title:string, value:string},
  *     fix:{description:string, title:string, value:string},
- *     chore:{description:string, title:string, value:string,
- *     general:({description:string, title:string, value:string}|undefined)}
+ *     chore:{description:string, title:string, value:string},
+ *     general:({description:string, title:string, value:string}|undefined)
  *     }} Combined commit types
  */
 const getCommitType = ({ isAllowNonConventionalCommits } = OPTIONS) => ({
