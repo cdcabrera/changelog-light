@@ -123,7 +123,7 @@ const updatePackage = (versionBump, { isDryRun = false, packagePath } = OPTIONS)
   if (!isDryRun) {
     runCmd(
       `(cd ${directory} && npm version ${versionBump} --git-tag-version=false)`,
-      'Skipping package.json version... {0}'
+      { errorMessage: 'Skipping package.json version... {0}' }
     );
   }
 

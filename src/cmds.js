@@ -56,7 +56,7 @@ const commitFiles = (version, { changelogPath, packagePath, lockFilePath, releas
     `git add ${packagePath} ${changelogPath}${updatedLockFilePath} && git commit ${packagePath} ${changelogPath}${updatedLockFilePath} -m "${
       (isArray && releaseTypeScope?.[0]) || releaseTypeScope
     }: ${version}"`,
-    'Skipping release commit... {0}'
+    { errorMessage: 'Skipping release commit... {0}' }
   );
 };
 
@@ -96,7 +96,7 @@ const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
     `git log${updatedReleaseBranch} --grep="${
       (isArray && releaseTypeScope?.[1]) || (isArray && releaseTypeScope?.[0]) || releaseTypeScope
     }" --pretty=oneline -1`,
-    'Skipping release commit check... {0}'
+    { errorMessage: 'Skipping release commit check... {0}' }
   );
 };
 
@@ -115,7 +115,7 @@ const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
  * @returns {{baseUrl: string, commitUrl: string, compareUrl: string, prUrl: string }}
  */
 const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath } = OPTIONS) => {
-  const setUrl = linkUrl || runCmd('git remote get-url origin', 'Skipping remote path check... {0}');
+  const setUrl = linkUrl || runCmd('git remote get-url origin', { errorMessage: 'Skipping remote path check... {0}' });
   let updatedUrl;
   let commitUrl;
   let compareUrl;
@@ -193,7 +193,7 @@ const getGit = (
 
     return runCmd(
       `git log${releaseCommitHashRange} --pretty=oneline${searchFilterCommits}`,
-      'Skipping commit "get" check... {0}'
+      { errorMessage: 'Skipping commit "get" check... {0}' }
     );
   };
 

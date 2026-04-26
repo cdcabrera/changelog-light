@@ -613,7 +613,10 @@ options, after which the object is frozen to prevent further modifications.
     <td>[changelogFile]</td><td><code>string</code></td><td><p>Path to the changelog file (set during initialization)</p>
 </td>
     </tr><tr>
-    <td>[packagePath]</td><td><code>string</code></td><td><p>Path to the package.json file (set during initialization)</p>
+    <td>[commitPath]</td><td><code>string</code></td><td><p>Path segment for commit links (set during initialization)</p>
+</td>
+    </tr><tr>
+    <td>[comparePath]</td><td><code>string</code></td><td><p>Path segment for compare links (set during initialization)</p>
 </td>
     </tr><tr>
     <td>[isDryRun]</td><td><code>boolean</code></td><td><p>Whether to perform a dry run without writing files (set during initialization)</p>
@@ -622,7 +625,16 @@ options, after which the object is frozen to prevent further modifications.
     <td>[isCommit]</td><td><code>boolean</code></td><td><p>Whether to commit changes to git (set during initialization)</p>
 </td>
     </tr><tr>
-    <td>[overrideVersion]</td><td><code>string</code></td><td><p>Optional version to use instead of calculated version (set during initialization)</p>
+    <td>[linkUrl]</td><td><code>string</code></td><td><p>Base URL for repository links (set during initialization)</p>
+</td>
+    </tr><tr>
+    <td>[overrideVersion]</td><td><code>string</code></td><td><p>Version to use instead of a calculated version (set during initialization)</p>
+</td>
+    </tr><tr>
+    <td>[packagePath]</td><td><code>string</code></td><td><p>Path to the package.json file (set during initialization)</p>
+</td>
+    </tr><tr>
+    <td>[prPath]</td><td><code>string</code></td><td><p>Path segment for pull request links (set during initialization)</p>
 </td>
     </tr>  </tbody>
 </table>

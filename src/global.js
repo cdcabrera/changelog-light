@@ -122,10 +122,14 @@ const conventionalCommitType = (types => {
  * @property {string} contextPath - Base directory path for file operations
  * @property {Function} _set - Setter function for initializing options (used once then removed)
  * @property {string} [changelogFile] - Path to the changelog file (set during initialization)
- * @property {string} [packagePath] - Path to the package.json file (set during initialization)
+ * @property {string} [commitPath] - Path segment for commit links (set during initialization)
+ * @property {string} [comparePath] - Path segment for compare links (set during initialization)
  * @property {boolean} [isDryRun] - Whether to perform a dry run without writing files (set during initialization)
  * @property {boolean} [isCommit] - Whether to commit changes to git (set during initialization)
- * @property {string} [overrideVersion] - Optional version to use instead of calculated version (set during initialization)
+ * @property {string} [linkUrl] - Base URL for repository links (set during initialization)
+ * @property {string} [overrideVersion] - Version to use instead of a calculated version (set during initialization)
+ * @property {string} [packagePath] - Path to the package.json file (set during initialization)
+ * @property {string} [prPath] - Path segment for pull request links (set during initialization)
  */
 const OPTIONS = {
   contextPath,
