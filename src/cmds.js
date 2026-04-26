@@ -1,8 +1,7 @@
 const { execSync } = require('child_process');
-const { join } = require('path');
 const semverClean = require('semver/functions/clean');
 const semverInc = require('semver/functions/inc');
-const { color, OPTIONS } = require('./global');
+const { color, isUrl, OPTIONS } = require('./global');
 
 /**
  * Functions for `git`, `package.json` version, and more
@@ -112,20 +111,30 @@ const getReleaseCommit = ({ releaseTypeScope, releaseBranch } = OPTIONS) => {
  * @param {string} options.comparePath - Path segment for comparison URLs (e.g., "compare")
  * @param {string} options.linkUrl - Optional explicit repository URL (falls back to git remote)
  * @param {string} options.prPath - Path segment for pull request URLs (e.g., "pull")
+ * @param {string} options.remoteDomain - Available remote domain for parsing if linkUrl is not provided.
  * @returns {{baseUrl: string, commitUrl: string, compareUrl: string, prUrl: string }}
  */
-const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath } = OPTIONS) => {
-  const setUrl = linkUrl || runCmd('git remote get-url origin', { errorMessage: 'Skipping remote path check... {0}' });
+const getLinkUrls = ({ commitPath, comparePath, linkUrl, prPath, remoteDomain } = OPTIONS) => {
+  let setUrl = linkUrl;
   let updatedUrl;
   let commitUrl;
   let compareUrl;
   let prUrl;
 
-  if (/^http/.test(setUrl)) {
+  if (!setUrl) {
+    setUrl = runCmd('git remote get-url origin', { errorMessage: 'Skipping remote path check... {0}' });
+
+    if (!isUrl(setUrl, { allowedProtocols: ['http', 'https'] })) {
+      setUrl = setUrl.split(remoteDomain).pop()?.replace(/^:/, '')?.replace(/^\//, '');
+      setUrl = `https://${remoteDomain}/${setUrl}`;
+    }
+  }
+
+  if (isUrl(setUrl, { allowedProtocols: ['http', 'https'] })) {
     updatedUrl = setUrl.trim().replace(/(\.git)$/, '');
     const [protocol, linkPath] = updatedUrl.split('://');
     const generateUrl = path => {
-      let tempUrl = typeof path === 'string' && `${protocol}://${join(linkPath, path)}`;
+      let tempUrl = typeof path === 'string' && `${protocol}://${linkPath.replace(/\/$/, '')}/${path}`;
 
       if (tempUrl && !/\/$/.test(tempUrl)) {
         tempUrl += '/';

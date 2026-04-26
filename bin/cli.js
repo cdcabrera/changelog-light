@@ -25,6 +25,7 @@ const {
   'pr-path': prPath,
   'release-message': releaseTypeScope,
   'release-desc': releaseDescription,
+  'remote-domain': remoteDomain,
   'link-url': linkUrl
 } = yargs
   .usage('Generate a CHANGELOG.md with conventional commit types.\n\nUsage: changelog [options]')
@@ -123,6 +124,11 @@ const {
   .option('release-desc', {
     describe: 'Add a description under the release version header copy. Example, "Lorem ipsum dolor sit!"',
     type: 'string'
+  })
+  .option('remote-domain', {
+    default: 'github.com',
+    describe: 'The remote HTTPS and SSH domain used to connect local repos to remotes. Defaults to Github.',
+    type: 'string'
   }).argv;
 
 /**
@@ -167,7 +173,8 @@ OPTIONS._set = {
   prPath,
   releaseBranch,
   releaseDescription,
-  releaseTypeScope
+  releaseTypeScope,
+  remoteDomain
 };
 
 /**

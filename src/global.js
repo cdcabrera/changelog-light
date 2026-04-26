@@ -112,6 +112,42 @@ const conventionalCommitType = (types => {
 })(commitTypes.types);
 
 /**
+ * Confirm a value is a valid URL or URL-like.
+ *
+ * @param {string} str - Confirm a string is a URL
+ * @param {object} [settings={}] - Configuration options
+ * @param {Array} [settings.allowedProtocols=['http', 'https']] - List of allowed URL protocols.
+ * @param {boolean} [settings.isStrict=true] - If `true`, only strict URL validation is performed.
+ * @returns {boolean}
+ */
+const isUrl = (str, { allowedProtocols = ['file', 'http', 'https', 'data', 'node', 'git'], isStrict = true } = {}) => {
+  if (typeof str !== 'string' || !str.trim()) {
+    return false;
+  }
+
+  const isAllowed = allowedProtocols.some(type => str.toLowerCase().startsWith(`${type}:`));
+
+  // Strict and not allowed protocols
+  if (isStrict && !isAllowed) {
+    return false;
+  }
+
+  // Not strict and allowed protocols
+  if (!isStrict && isAllowed) {
+    return true;
+  }
+
+  // URL validation
+  try {
+    new URL(str);
+
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+/**
  * Global configuration options for the changelog generator.
  *
  * This object stores all configuration options used throughout the application.
@@ -129,6 +165,7 @@ const conventionalCommitType = (types => {
  * @property {string} [linkUrl] - Base URL for repository links (set during initialization)
  * @property {string} [overrideVersion] - Version to use instead of a calculated version (set during initialization)
  * @property {string} [packagePath] - Path to the package.json file (set during initialization)
+ * @property {string} [remoteDomain] - Domain to use if linkUrl is not provided (set during initialization)
  * @property {string} [prPath] - Path segment for pull request links (set during initialization)
  */
 const OPTIONS = {
@@ -148,4 +185,4 @@ const OPTIONS = {
   }
 };
 
-module.exports = { color, contextPath, conventionalCommitType, generalCommitType, OPTIONS };
+module.exports = { color, contextPath, conventionalCommitType, generalCommitType, isUrl, OPTIONS };
