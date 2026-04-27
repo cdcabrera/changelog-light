@@ -190,6 +190,9 @@ It handles formatting and ensures all URLs end with a trailing slash.
     </tr><tr>
     <td>options.prPath</td><td><code>string</code></td><td></td><td><p>Path segment for pull request URLs (e.g., &quot;pull&quot;)</p>
 </td>
+    </tr><tr>
+    <td>options.remoteDomain</td><td><code>string</code></td><td></td><td><p>Available remote domain for parsing if linkUrl is not provided.</p>
+</td>
     </tr>  </tbody>
 </table>
 
@@ -437,6 +440,7 @@ modifying the file.
     * [~generalCommitType](#module_Global..generalCommitType) : <code>object</code>
     * [~conventionalCommitType](#module_Global..conventionalCommitType) : <code>object</code>
     * [~OPTIONS](#module_Global..OPTIONS) : <code>object</code>
+    * [~isUrl(str, [settings])](#module_Global..isUrl) ⇒ <code>boolean</code>
 
 <a name="module_Global..color"></a>
 
@@ -634,7 +638,38 @@ options, after which the object is frozen to prevent further modifications.
     <td>[packagePath]</td><td><code>string</code></td><td><p>Path to the package.json file (set during initialization)</p>
 </td>
     </tr><tr>
+    <td>[remoteDomain]</td><td><code>string</code></td><td><p>Domain to use if linkUrl is not provided (set during initialization)</p>
+</td>
+    </tr><tr>
     <td>[prPath]</td><td><code>string</code></td><td><p>Path segment for pull request links (set during initialization)</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_Global..isUrl"></a>
+
+### Global~isUrl(str, [settings]) ⇒ <code>boolean</code>
+Confirm a value is a valid URL or URL-like.
+
+**Kind**: inner method of [<code>Global</code>](#module_Global)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>str</td><td><code>string</code></td><td></td><td><p>Confirm a string is a URL</p>
+</td>
+    </tr><tr>
+    <td>[settings]</td><td><code>object</code></td><td><code>{}</code></td><td><p>Configuration options</p>
+</td>
+    </tr><tr>
+    <td>[settings.allowedProtocols]</td><td><code>Array</code></td><td><code>[&#x27;http&#x27;, &#x27;https&#x27;]</code></td><td><p>List of allowed URL protocols.</p>
+</td>
+    </tr><tr>
+    <td>[settings.isStrict]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If <code>true</code>, only strict URL validation is performed.</p>
 </td>
     </tr>  </tbody>
 </table>

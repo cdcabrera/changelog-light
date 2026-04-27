@@ -1,5 +1,6 @@
 const { join } = require('path');
 const cmds = require('../cmds');
+const { getLinkUrls } = cmds;
 const { OPTIONS } = require('../global');
 
 describe('Commands', () => {
@@ -67,5 +68,47 @@ describe('Commands', () => {
     );
 
     multiItemMockClear();
+  });
+});
+
+describe('getLinkUrls', () => {
+  it.each([
+    {
+      description: 'Standard GitHub HTTPS',
+      options: { linkUrl: 'https://github.com/user/repo', commitPath: 'commit', comparePath: 'compare', prPath: 'pull' },
+      expected: {
+        baseUrl: 'https://github.com/user/repo',
+        commitUrl: 'https://github.com/user/repo/commit/',
+        compareUrl: 'https://github.com/user/repo/compare/',
+        prUrl: 'https://github.com/user/repo/pull/'
+      }
+    },
+    {
+      description: 'Custom GitLab Domain',
+      options: {
+        linkUrl: 'https://gitlab.mycorp.com/group/project',
+        commitPath: '-/commit',
+        prPath: '-/merge_requests'
+      },
+      expected: {
+        baseUrl: 'https://gitlab.mycorp.com/group/project',
+        commitUrl: 'https://gitlab.mycorp.com/group/project/-/commit/',
+        prUrl: 'https://gitlab.mycorp.com/group/project/-/merge_requests/'
+      }
+    },
+    {
+      description: 'SSH override (Strict CLI Contract)',
+      options: { linkUrl: 'git@github.com:user/repo.git', remoteDomain: 'github.com' },
+      expected: {
+        baseUrl: undefined,
+        commitUrl: undefined,
+        compareUrl: undefined,
+        prUrl: undefined
+      }
+    }
+  ])('should handle correctly, $description', ({ options, expected }) => {
+    const result = getLinkUrls(options);
+
+    expect(result).toMatchObject(expected);
   });
 });

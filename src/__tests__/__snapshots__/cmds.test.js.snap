@@ -15,10 +15,10 @@ exports[`Commands should attempt to run commands: commands 1`] = `
   },
   {
     "getLinkUrls": {
-      "baseUrl": undefined,
-      "commitUrl": undefined,
-      "compareUrl": undefined,
-      "prUrl": undefined,
+      "baseUrl": "https://undefined/<execSync>["git remote get-url origin"]</execSync>",
+      "commitUrl": false,
+      "compareUrl": false,
+      "prUrl": false,
     },
   },
   {
