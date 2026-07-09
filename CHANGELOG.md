@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.0](https://github.com/cdcabrera/changelog-light/compare/43b2360ebd54e43531ba4dedda42a5671863c42a...8089d366903728bcd2a01f5047bacd4b3c97137d) (2026-07-09)
+
+
+### Features
+* **cli** allow remote-domain ([#301](https://github.com/cdcabrera/changelog-light/pull/301)) ([ad1b940](https://github.com/cdcabrera/changelog-light/commit/ad1b940bac0be6c1e4c204142503216e2999b407))
+
+### Builds
+* **deps** lock update ([#319](https://github.com/cdcabrera/changelog-light/pull/319)) ([8089d36](https://github.com/cdcabrera/changelog-light/commit/8089d366903728bcd2a01f5047bacd4b3c97137d))
+* **deps** bump semver from 7.8.4 to 7.8.5 ([#318](https://github.com/cdcabrera/changelog-light/pull/318)) ([4fc2f91](https://github.com/cdcabrera/changelog-light/commit/4fc2f91bfe0a3ad1600b96bb874cdbc921acb75e))
+* **deps** bump actions/checkout from 6 to 7 ([#315](https://github.com/cdcabrera/changelog-light/pull/315)) ([2400682](https://github.com/cdcabrera/changelog-light/commit/240068243491fa6b07d06e70b3bfbd3ba9f5fff2))
+* **deps-dev** bump eslint from 10.4.1 to 10.5.0 ([#317](https://github.com/cdcabrera/changelog-light/pull/317)) ([95db7fd](https://github.com/cdcabrera/changelog-light/commit/95db7fdb4eebe9d5140664d4dcec02bb3ee83cf7))
+* **deps-dev** bump eslint from 9.39.4 to 10.4.1 ([#312](https://github.com/cdcabrera/changelog-light/pull/312)) ([752ff90](https://github.com/cdcabrera/changelog-light/commit/752ff900818e9b581debc3a145e1a7515a23c8d9))
+* **deps** bump semver from 7.8.1 to 7.8.4 ([#314](https://github.com/cdcabrera/changelog-light/pull/314)) ([cdaf889](https://github.com/cdcabrera/changelog-light/commit/cdaf889ea01708b879b24e9b6eb3a64a1d5d9d8d))
+* **deps** bump semver from 7.7.4 to 7.8.1 ([#308](https://github.com/cdcabrera/changelog-light/pull/308)) ([3add9f1](https://github.com/cdcabrera/changelog-light/commit/3add9f13d797dea9549f8d7ad758460236dc25bf))
+* **deps** bump actions/upload-pages-artifact from 4 to 5 ([#309](https://github.com/cdcabrera/changelog-light/pull/309)) ([02aeabf](https://github.com/cdcabrera/changelog-light/commit/02aeabff96736b58fcc5c7e9075946da948bbb5f))
+* **deps** bump actions/github-script from 8 to 9 ([#310](https://github.com/cdcabrera/changelog-light/pull/310)) ([bb0fb03](https://github.com/cdcabrera/changelog-light/commit/bb0fb0373fde47fd82e83ebba07a0c1d21f0ca5d))
+* **deps-dev** bump the dev group with 2 updates ([#307](https://github.com/cdcabrera/changelog-light/pull/307)) ([e7f71f1](https://github.com/cdcabrera/changelog-light/commit/e7f71f146630cd733486d7e23bfd516f12e96bee))
+* **deps** bump actions/configure-pages from 5 to 6 ([#303](https://github.com/cdcabrera/changelog-light/pull/303)) ([db66f5f](https://github.com/cdcabrera/changelog-light/commit/db66f5fd28714e8a6b0cbcd96ba2dd37642e062e))
+* **deps** bump actions/deploy-pages from 4 to 5 ([#302](https://github.com/cdcabrera/changelog-light/pull/302)) ([c8836af](https://github.com/cdcabrera/changelog-light/commit/c8836afe427d1cf4d2d72e7698c125b0aa5a426a))
+* **deps-dev** @cdcabrera/eslint-config-toolkit 0.5.1 to 0.5.2 ([#296](https://github.com/cdcabrera/changelog-light/pull/296)) ([3031b01](https://github.com/cdcabrera/changelog-light/commit/3031b0157b5594bff5f05ec2968eab1f3a7b3f83))
+
+### Bug Fixes
+* **cmds** pass correct params, annotations ([#300](https://github.com/cdcabrera/changelog-light/pull/300)) ([0ad48cc](https://github.com/cdcabrera/changelog-light/commit/0ad48cc3ef19ed2999b6ba2a531349e505c19a03))
+
 ## [3.0.8](https://github.com/cdcabrera/changelog-light/compare/6789def6e47d39cf9b589a778dd36302a2e07abf...f60db1ade12872d8d1779a16d0808a626088607d) (2026-03-28)
 
 
