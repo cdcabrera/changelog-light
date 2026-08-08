@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0](https://github.com/cdcabrera/changelog-light/compare/d2246757c85e9f956a47fd750840297c44adfd92...c7a33c0dec98dea5f19f3eafcca0d8f68bdbbf6c) (2026-08-08)
+⚠ BREAKING CHANGES
+
+### Continuous Integrations
+*  remove dup workflow caching ([#326](https://github.com/cdcabrera/changelog-light/pull/326)) ([b88545a](https://github.com/cdcabrera/changelog-light/commit/b88545a26a19bb034abdd020a91c6e9f6b722a35))
+*  workflow perms ([#324](https://github.com/cdcabrera/changelog-light/pull/324)) ([4c9fcd6](https://github.com/cdcabrera/changelog-light/commit/4c9fcd65c6db66d7eabf223d03f0ec5cf21e1826))
+
+### Builds
+* **deps** lock update ([#329](https://github.com/cdcabrera/changelog-light/pull/329)) ([c7a33c0](https://github.com/cdcabrera/changelog-light/commit/c7a33c0dec98dea5f19f3eafcca0d8f68bdbbf6c))
+* **deps-dev** bump @cdcabrera/eslint-config-toolkit ([#328](https://github.com/cdcabrera/changelog-light/pull/328)) ([33b896e](https://github.com/cdcabrera/changelog-light/commit/33b896e7fb0308282d5c6e779c5d3c7ca3194c02))
+* **deps** bump actions/setup-node from 6 to 7 ([#327](https://github.com/cdcabrera/changelog-light/pull/327)) ([f4ec878](https://github.com/cdcabrera/changelog-light/commit/f4ec878c423aa5c9263cae5129b8fa41cc860180))
+* **deps-dev** bump cspell from 9.7.0 to 10.0.1 ([#313](https://github.com/cdcabrera/changelog-light/pull/313)) ([1965c20](https://github.com/cdcabrera/changelog-light/commit/1965c206f1cde0050e29aa770d83ff843e1e4a0c))
+* ⚠ **nodejs** remove 20 support ([#325](https://github.com/cdcabrera/changelog-light/pull/325)) ([bc3b055](https://github.com/cdcabrera/changelog-light/commit/bc3b055f947b0098b324205267c19c68373f66b4))
+* **deps-dev** bump @cdcabrera/eslint-config-toolkit ([#323](https://github.com/cdcabrera/changelog-light/pull/323)) ([9bc7b31](https://github.com/cdcabrera/changelog-light/commit/9bc7b31fcf22cff64a382facf5328f55eca6855a))
+* **deps-dev** bump eslint from 10.6.0 to 10.7.0 ([#322](https://github.com/cdcabrera/changelog-light/pull/322)) ([825423f](https://github.com/cdcabrera/changelog-light/commit/825423fc01a2d4ce2298ae55b94665c15c77d070))
+* **deps-dev** bump eslint from 10.5.0 to 10.6.0 ([#321](https://github.com/cdcabrera/changelog-light/pull/321)) ([5acd23b](https://github.com/cdcabrera/changelog-light/commit/5acd23b248c4fad746bbe50880697ebd0624f11a))
+
 ## [3.1.0](https://github.com/cdcabrera/changelog-light/compare/43b2360ebd54e43531ba4dedda42a5671863c42a...8089d366903728bcd2a01f5047bacd4b3c97137d) (2026-07-09)
 
 
