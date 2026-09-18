@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1](https://github.com/cdcabrera/changelog-light/compare/2973e5a6c97eeeb63fed8cebfeaec85db4d15afb...ff17c13e036e4c81242bcf4ded7fe06875ee84fa) (2026-09-18)
+
+
+### Builds
+* **deps** lock update ([#336](https://github.com/cdcabrera/changelog-light/pull/336)) ([ff17c13](https://github.com/cdcabrera/changelog-light/commit/ff17c13e036e4c81242bcf4ded7fe06875ee84fa))
+* **deps-dev** bump the dev group with 2 updates ([#335](https://github.com/cdcabrera/changelog-light/pull/335)) ([87dba6c](https://github.com/cdcabrera/changelog-light/commit/87dba6c282911d644d806fed50b6174eedab86db))
+* **deps-dev** bump the dev group with 2 updates ([#334](https://github.com/cdcabrera/changelog-light/pull/334)) ([53555a1](https://github.com/cdcabrera/changelog-light/commit/53555a14ca31976cf332b9b2c49b20a4ee854d16))
+* **deps-dev** bump eslint from 10.8.0 to 10.8.1 ([#333](https://github.com/cdcabrera/changelog-light/pull/333)) ([acf591c](https://github.com/cdcabrera/changelog-light/commit/acf591c6f5db3893fc1226fa67d0d8074a34b928))
+* **deps-dev** bump eslint from 10.7.0 to 10.8.0 ([#331](https://github.com/cdcabrera/changelog-light/pull/331)) ([5043c26](https://github.com/cdcabrera/changelog-light/commit/5043c26a9db9d061ace34a07b7ed92ee16f8eecd))
+
 ## [4.0.0](https://github.com/cdcabrera/changelog-light/compare/d2246757c85e9f956a47fd750840297c44adfd92...c7a33c0dec98dea5f19f3eafcca0d8f68bdbbf6c) (2026-08-08)
 ⚠ BREAKING CHANGES
 
