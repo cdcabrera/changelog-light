@@ -78,8 +78,8 @@
   "devDependencies": {
     "@cdcabrera/eslint-config-toolkit": "^1.1.0",
     "cspell": "^10.3.3",
-    "eslint": "^10.10.0",
-    "jest": "^30.5.1",
+    "eslint": "^10.11.0",
+    "jest": "^30.5.2",
     "jsdoc-to-markdown": "^9.1.3"
   }
 }
