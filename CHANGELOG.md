@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.2](https://github.com/cdcabrera/changelog-light/compare/6d990d3a66ba04cdb604735e2153cd18f6dae5e5...eb1540c844c47392748c5c913a50c51d5d173cd8) (2026-11-05)
+
+
+### Builds
+* **deps** lock update ([#346](https://github.com/cdcabrera/changelog-light/pull/346)) ([eb1540c](https://github.com/cdcabrera/changelog-light/commit/eb1540c844c47392748c5c913a50c51d5d173cd8))
+* **deps-dev** bump dev group with 2 updates ([#345](https://github.com/cdcabrera/changelog-light/pull/345)) ([4dc668e](https://github.com/cdcabrera/changelog-light/commit/4dc668ea27ba7e2e4db97140feb8d7f903bf4206))
+* **deps-dev** bump eslint from 10.11.0 to 10.12.0 ([#343](https://github.com/cdcabrera/changelog-light/pull/343)) ([cb26b4e](https://github.com/cdcabrera/changelog-light/commit/cb26b4e0c0c65f50ea13df68d9ec8df53d48c3db))
+* **deps-dev** bump cspell from 10.3.3 to 10.3.6 ([#342](https://github.com/cdcabrera/changelog-light/pull/342)) ([3917ddd](https://github.com/cdcabrera/changelog-light/commit/3917ddda286ed4317e856377ead6f87d6cff9480))
+* **deps-dev** bump the dev group with 2 updates ([#340](https://github.com/cdcabrera/changelog-light/pull/340)) ([f06af63](https://github.com/cdcabrera/changelog-light/commit/f06af631351ace2707e20f2b68affc939c519fb3))
+* **deps-dev** bump cspell from 10.3.0 to 10.3.3 ([#339](https://github.com/cdcabrera/changelog-light/pull/339)) ([9e95185](https://github.com/cdcabrera/changelog-light/commit/9e95185432406e95ec4304e8b16f14f43fedd1b2))
+* **deps-dev** bump the dev group with 2 updates ([#338](https://github.com/cdcabrera/changelog-light/pull/338)) ([22b6046](https://github.com/cdcabrera/changelog-light/commit/22b6046a81af296a0597c5d84baff0d4e5b87ae8))
+
 ## [4.0.1](https://github.com/cdcabrera/changelog-light/compare/2973e5a6c97eeeb63fed8cebfeaec85db4d15afb...ff17c13e036e4c81242bcf4ded7fe06875ee84fa) (2026-09-18)
 
 
