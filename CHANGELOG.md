@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.3](https://github.com/cdcabrera/changelog-light/compare/784ade432e7522afc820d3a0f106a5a1f5fd358e...e44ffda1ef5e39ec178dea3c0f0a4627eb1afff9) (2026-11-22)
+
+
+### Continuous Integrations
+* **workflows** break coverage into multiple jobs ([#350](https://github.com/cdcabrera/changelog-light/pull/350)) ([cecb3b4](https://github.com/cdcabrera/changelog-light/commit/cecb3b45f7d198035bc5d220cbbbb0d1c74f9c9e))
+
+### Builds
+* **deps** lock update ([#351](https://github.com/cdcabrera/changelog-light/pull/351)) ([e44ffda](https://github.com/cdcabrera/changelog-light/commit/e44ffda1ef5e39ec178dea3c0f0a4627eb1afff9))
+* **deps** bump semver from 7.8.5 to 7.8.6 ([#349](https://github.com/cdcabrera/changelog-light/pull/349)) ([5d44d73](https://github.com/cdcabrera/changelog-light/commit/5d44d733e61432f3b1254e1adab0ea5fd6eb5363))
+* **deps-dev** bump eslint from 10.13.0 to 10.14.0 ([#348](https://github.com/cdcabrera/changelog-light/pull/348)) ([a79789f](https://github.com/cdcabrera/changelog-light/commit/a79789f6566667376bf3e3e19adede80d529dbef))
+
 ## [4.0.2](https://github.com/cdcabrera/changelog-light/compare/6d990d3a66ba04cdb604735e2153cd18f6dae5e5...eb1540c844c47392748c5c913a50c51d5d173cd8) (2026-11-05)
 
 
